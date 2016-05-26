@@ -1,1 +1,2 @@
-sqlcmd -S localhost\SQLSERVER2012 -U gd -P gd2016 -i gd_esquema.Schema.sql,gd_esquema.Maestra.Table.sql  -a 32767 -o resultado_output.txt
+@rem sqlcmd -S localhost\BFNB13541 -U gd -P gd2016 -i gd_esquema.Schema.sql,gd_esquema.Maestra.Table.sql  -a 32767 -o resultado_output.txt
+sqlcmd -S BFNB13541 -i gd_esquema.Schema.sql,gd_esquema.Maestra.Table.sql  -a 32767 -o resultado_output.txt
