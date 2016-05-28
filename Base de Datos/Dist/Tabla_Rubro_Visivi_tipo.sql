@@ -1,5 +1,5 @@
 
- /*drop table dbo.PublicacionTipo
+ drop table dbo.PublicacionTipo
  drop table dbo.PublicacionRubro
  drop table dbo.PublicacionVisibilidad
  drop table dbo.Publicacion
@@ -53,16 +53,17 @@ select distinct
  Publicacion_Visibilidad_Precio, 
  Publicacion_Visibilidad_Porcentaje
 from gd_esquema.Maestra   
-where Publicacion_Visibilidad_Cod is not null  */
+where Publicacion_Visibilidad_Cod is not null  
 
 --------------------------------------------------------------------------
 ---------------Tabla Publicacion ----------------------------------------
-/*
+
 create table Publicacion (
      Publicacion_Id int not null identity,
 	 Publicacion_Id_PublicacionTipo int,
 	 Publicacion_Id_PublicacionVisibilidad int,
 	 Publicacion_Id_Usuario int,
+	 Publicacion_Id_PublicacionRubro int,
      Publicacion_Cod numeric(18, 0),
      Publicacion_Descripcion nvarchar(255), 
      Publicacion_Stock numeric(18, 0),
@@ -73,30 +74,13 @@ create table Publicacion (
  go
 
  insert into dbo.Publicacion (Publicacion_Id_PublicacionTipo,Publicacion_Id_PublicacionVisibilidad,
-     Publicacion_Id_Usuario,Publicacion_Cod, Publicacion_Descripcion, Publicacion_Stock,Publicacion_Fecha,
+     Publicacion_Id_Usuario,Publicacion_Id_PublicacionRubro,Publicacion_Cod, Publicacion_Descripcion, Publicacion_Stock,Publicacion_Fecha,
      Publicacion_Fecha_Venc,Publicacion_Precio,Publicacion_Estado)
  select distinct
- Publ_Cli_Dni, 
- Publ_Empresa_Razon_Social,
- Publicacion_Cod, 
- Publicacion_Descripcion, 
- Publicacion_Stock,
- Publicacion_Fecha,
- Publicacion_Fecha_Venc,
- Publicacion_Precio,
- Publicacion_Estado
- from gd_esquema.Maestra 
-
-
-*/
-
-
- select
- Publ_Cli_Dni, 
- Publ_Empresa_Razon_Social,
+ PublicacionTipo_Id,
  PublicacionVisibilidad_Id,
- Publicacion_Tipo,
- Publicacion_Rubro_Descripcion,
+ T.Usuario_Id,
+ PublicacionRubro_Id,
  Publicacion_Cod, 
  Publicacion_Descripcion, 
  Publicacion_Stock,
@@ -111,7 +95,10 @@ left join dbo.PublicacionTipo
 on Publicacion_Tipo = PublicacionTipo_Descripcion
 left join dbo.PublicacionRubro
 on Publicacion_Rubro_Descripcion = PublicacionRubro_Descripcion
---on Publ_Empresa_Razon_Social = Empresa_Razon_Social
+left join (select Usuario_Id,Empresa_Razon_Social,Empresa_Cuit,Cliente_Dni from dbo.Usuario
+                 left join dbo.Empresa on Usuario_Id = Empresa_Id
+                 left join dbo.Cliente on Usuario_Id = Cliente_Id) as T
+on  (Publ_Empresa_Razon_Social = T.Empresa_Razon_Social and Publ_Empresa_Cuit = T.Empresa_Cuit) or (Publ_Cli_Dni = T.Cliente_Dni)
 
 --select * from dbo.PublicacionRubro
 --select * from dbo.PublicacionTipo
