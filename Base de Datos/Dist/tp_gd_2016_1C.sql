@@ -3,10 +3,22 @@ USE gd1c2016
 ---------------------------------------------------------------
 -----------Creacion de la entidad Usuario Empresa Cliente ---------------------
 
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Usuario')
+DROP TABLE Usuario
+GO
 
- drop table dbo.Usuario
- drop table dbo.Cliente
- drop table dbo.Empresa
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Cliente')
+DROP TABLE Cliente
+GO
+
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Empresa')
+DROP TABLE Empresa
+GO
+
+
+
+ 
+
  drop table #dbo.tablaTemporal
  go   
  
