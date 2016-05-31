@@ -7,8 +7,8 @@ IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Usuarios')
 DROP TABLE Usuarios
 GO
 
-IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Cliente')
-DROP TABLE Cliente
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Clientes')
+DROP TABLE Clientes
 GO
 
 IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Empresa')
@@ -27,7 +27,7 @@ GO
 go
 
 
-create table Cliente (
+create table Clientes (
      Cliente_Id int primary key not null,
      Cliente_Dni numeric (18, 0),
      Cliente_Apellido nvarchar (255) ,
