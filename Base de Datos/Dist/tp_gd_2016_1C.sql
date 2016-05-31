@@ -14,13 +14,6 @@ GO
 IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Empresa')
 DROP TABLE Empresa
 GO
-
-
-
- 
-
- drop table #dbo.tablaTemporal
- go   
  
  
   create table Usuario(
