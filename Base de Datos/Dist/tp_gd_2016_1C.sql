@@ -12,7 +12,7 @@ USE gd1c2016
  
  
   create table Usuario(
-    Usuario_Id int not null,
+    Usuario_Id int primary key not null,
 	Usuario_Mail nvarchar (255),
     Usuario_Dom_Calle nvarchar(255),
     Usuario_Nro_Calle numeric(18, 0),
@@ -23,7 +23,7 @@ go
 
 
 create table Cliente (
-     Cliente_Id int not null,
+     Cliente_Id int primary key not null,
      Cliente_Dni numeric (18, 0),
      Cliente_Apellido nvarchar (255) ,
      Cliente_Nombre nvarchar(255),
@@ -31,7 +31,7 @@ create table Cliente (
 	 go 
 
  create table Empresa (
-       Empresa_Id int not null, 
+       Empresa_Id int primary key not null, 
        Empresa_Razon_Social nvarchar (255),
        Empresa_Cuit nvarchar(50) ,
        Empresa_Fecha_Creacion datetime )
