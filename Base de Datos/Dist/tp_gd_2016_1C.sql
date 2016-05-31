@@ -3,8 +3,8 @@ USE gd1c2016
 ---------------------------------------------------------------
 -----------Creacion de la entidad Usuario Empresa Cliente ---------------------
 
-IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Usuario')
-DROP TABLE Usuario
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Usuarios')
+DROP TABLE Usuarios
 GO
 
 IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Cliente')
@@ -16,7 +16,7 @@ DROP TABLE Empresa
 GO
  
  
-  create table Usuario(
+  create table Usuarios(
     Usuario_Id int primary key not null,
 	Usuario_Mail nvarchar (255),
     Usuario_Dom_Calle nvarchar(255),
