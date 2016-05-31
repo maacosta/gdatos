@@ -11,8 +11,8 @@ IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Clientes')
 DROP TABLE Clientes
 GO
 
-IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Empresa')
-DROP TABLE Empresa
+IF EXISTS (SELECT * FROM sys.tables  WHERE	name = 'Empresas')
+DROP TABLE Empresas
 GO
  
  
@@ -35,7 +35,7 @@ create table Clientes (
      Cliente_Fecha_Nac datetime )
 	 go 
 
- create table Empresa (
+ create table Empresas (
        Empresa_Id int primary key not null, 
        Empresa_Razon_Social nvarchar (255),
        Empresa_Cuit nvarchar(50) ,
