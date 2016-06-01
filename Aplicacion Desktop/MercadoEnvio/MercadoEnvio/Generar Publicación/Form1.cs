@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.Generar_Publicación
+namespace MercadoEnvio.Generar_Publicación
 {
     public partial class Form1 : Form
     {

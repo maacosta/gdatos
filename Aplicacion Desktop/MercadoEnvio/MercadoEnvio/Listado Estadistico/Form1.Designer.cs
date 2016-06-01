@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.Listado_Estadistico
+﻿namespace MercadoEnvio.Listado_Estadistico
 {
     partial class Form1
     {

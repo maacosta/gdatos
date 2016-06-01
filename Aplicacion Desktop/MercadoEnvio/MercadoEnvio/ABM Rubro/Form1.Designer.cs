@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.ABM_Rubro
+﻿namespace MercadoEnvio.ABM_Rubro
 {
     partial class Form1
     {

@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.ABM_Visibilidad
+﻿namespace MercadoEnvio.ABM_Visibilidad
 {
     partial class Form1
     {
