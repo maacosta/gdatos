@@ -38,12 +38,14 @@ namespace WindowsFormsApplication1
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            _logWriter.Write(e.Exception.Message, "Unhandled Thread Exception");
+            if(_logWriter.IsLoggingEnabled())
+                _logWriter.Write(e.Exception.Message, "Unhandled Thread Exception");
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            _logWriter.Write((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
+            if (_logWriter.IsLoggingEnabled())
+                _logWriter.Write((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
         }
     }
 }
