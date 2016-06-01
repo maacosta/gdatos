@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MercadoEnvio.Dal
+namespace MercadoEnvio.Dal.Dto
 {
-    public class Class1
+    public class Rol
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 }
