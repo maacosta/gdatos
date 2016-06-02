@@ -44,6 +44,49 @@ create table Clientes (
        Empresa_Fecha_Creacion datetime )
 
 	go
+-----------------------------------------------------------
+
+	create table #TC(TC_Cli_Dni numeric (18, 0),
+	TC_Cli_Apellido nvarchar (255),
+	TC_Cli_Nombre nvarchar (255),
+	TC_Cli_Fecha_Nac datetime,
+	TC_Cli_Mail nvarchar (255),
+	TC_Cli_Dom_Calle nvarchar (255),
+	TC_Cli_Nro_Calle numeric (18, 0),
+	TC_Cli_Piso numeric (18, 0),
+	TC_Cli_Depto nvarchar (50),
+	TC_Cli_Cod_Postal nvarchar (50)
+)
+go
+
+insert  into dbo.#TC(TC_Cli_Dni,
+	TC_Cli_Apellido,
+	TC_Cli_Nombre,
+	TC_Cli_Fecha_Nac,
+	TC_Cli_Mail,
+	TC_Cli_Dom_Calle,
+	TC_Cli_Nro_Calle,
+	TC_Cli_Piso,
+	TC_Cli_Depto,
+	TC_Cli_Cod_Postal)
+
+ select distinct Cli_Dni,
+	Cli_Apeliido,
+	Cli_Nombre,
+	Cli_Fecha_Nac,
+	Cli_Mail,
+	Cli_Dom_Calle,
+	Cli_Nro_Calle,
+	Cli_Piso,
+	Cli_Depto,
+	Cli_Cod_Postal from gd_esquema.Maestra
+	where Cli_Dni is not null
+	union
+	select distinct Publ_Cli_Dni,Publ_Cli_Apeliido,Publ_cli_Nombre,Publ_cli_Fecha_Nac,Publ_Cli_Mail,Publ_Cli_Dom_Calle,Publ_Cli_Nro_Calle,
+Publ_Cli_Piso,Publ_Cli_Depto,Publ_Cli_Cod_Postal  from gd_esquema.Maestra 
+where Publ_Cli_Dni is not null
+
+go
 
 create table #tablaTemporal(T_Id int identity,T_Cli_Dni numeric (18, 0),T_Cli_Apellido nvarchar (255),T_cli_Nombre nvarchar(255),
 T_cli_Fecha_Nac datetime,T_Cli_Mail nvarchar(255),T_Cli_Dom_Calle nvarchar(255),T_Cli_Nro_Calle numeric (18,0),T_Cli_Piso numeric (18,0),
@@ -52,20 +95,9 @@ T_Empresa_Razon_Social nvarchar (255),T_Empresa_Cuit nvarchar(50),T_Empresa_Fech
 T_Empresa_Dom_Calle nvarchar(100),T_Empresa_Nro_Calle numeric (18,0),T_Empresa_Piso numeric (18,0),T_Empresa_Depto nvarchar (50),
 T_Empresa_Cod_Postal nvarchar (255))
 
-insert into dbo.#tablaTemporal (T_Cli_Dni,T_Cli_Apellido,T_cli_Nombre,T_cli_Fecha_Nac,T_Cli_Mail,T_Cli_Dom_Calle,T_Cli_Nro_Calle,
-T_Cli_Piso,T_Cli_Depto,T_Cli_Cod_Postal,
-T_Empresa_Razon_Social,T_Empresa_Cuit ,T_Empresa_Fecha_Creacion,T_Empresa_Mail,T_Empresa_Dom_Calle,T_Empresa_Nro_Calle,
+insert into dbo.#tablaTemporal (T_Empresa_Razon_Social,T_Empresa_Cuit ,T_Empresa_Fecha_Creacion,T_Empresa_Mail,T_Empresa_Dom_Calle,T_Empresa_Nro_Calle,
 T_Empresa_Piso,T_Empresa_Depto,T_Empresa_Cod_Postal)
-select distinct Publ_Cli_Dni,
-       Publ_Cli_Apeliido,
-       Publ_Cli_Nombre,
-       Publ_Cli_Fecha_Nac,
-       Publ_Cli_Mail,
-       Publ_Cli_Dom_Calle,
-       Publ_Cli_Nro_Calle,
-       Publ_Cli_Piso,
-       Publ_Cli_Depto,
-       Publ_Cli_Cod_Postal,
+select distinct 
 	   Publ_Empresa_Razon_Social,
 	   Publ_Empresa_Cuit,
        Publ_Empresa_Fecha_Creacion,
@@ -76,16 +108,7 @@ select distinct Publ_Cli_Dni,
        Publ_Empresa_Depto,
        Publ_Empresa_Cod_Postal
 	   from gd_esquema.Maestra
-group by Publ_Cli_Dni,
-       Publ_Cli_Apeliido,
-       Publ_Cli_Nombre,
-       Publ_Cli_Fecha_Nac,
-       Publ_Cli_Mail,
-       Publ_Cli_Dom_Calle,
-       Publ_Cli_Nro_Calle,
-       Publ_Cli_Piso,
-       Publ_Cli_Depto,
-       Publ_Cli_Cod_Postal,  
+group by  
        Publ_Empresa_Razon_Social,
        Publ_Empresa_Cuit,
        Publ_Empresa_Fecha_Creacion,
@@ -97,6 +120,26 @@ group by Publ_Cli_Dni,
        Publ_Empresa_Cod_Postal 
 go
 
+
+
+insert into #tablaTemporal(T_Cli_Dni,T_Cli_Apellido ,T_cli_Nombre ,
+T_cli_Fecha_Nac,T_Cli_Mail ,T_Cli_Dom_Calle ,T_Cli_Nro_Calle,T_Cli_Piso,
+T_Cli_Depto ,T_Cli_Cod_Postal)
+select distinct TC_Cli_Dni,
+	TC_Cli_Apellido,
+	TC_Cli_Nombre,
+	TC_Cli_Fecha_Nac,
+	TC_Cli_Mail,
+	TC_Cli_Dom_Calle,
+	TC_Cli_Nro_Calle,
+	TC_Cli_Piso,
+	TC_Cli_Depto,
+	TC_Cli_Cod_Postal from dbo.#TC
+go
+
+
+ 
+------------------------------------------------------------------------
 declare @var_Id int;
 declare @var_Cli_Dni numeric (18, 0);
 declare @var_Cli_Apellido nvarchar (255);
