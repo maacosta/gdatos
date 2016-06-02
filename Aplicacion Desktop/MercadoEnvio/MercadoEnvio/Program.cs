@@ -28,7 +28,8 @@ namespace WindowsFormsApplication1
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            Application.Run(new Form1());
+            Application.Run(new MercadoEnvio.ABM_Rol.Form1());
+            //Application.Run(new Form1());
         }
 
         static void Application_ApplicationExit(object sender, EventArgs e)

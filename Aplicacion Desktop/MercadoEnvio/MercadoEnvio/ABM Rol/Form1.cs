@@ -1,4 +1,5 @@
 ﻿using MercadoEnvio.Dal.Biz;
+using MercadoEnvio.Dal.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace MercadoEnvio.ABM_Rol
         public Form1()
         {
             InitializeComponent();
+            this._rolDal = new RolDal();
+            List<Rol> rolList = this._rolDal.GetByUser(1);
         }
     }
 }
