@@ -131,36 +131,53 @@ select distinct Publicacion_Visibilidad_desc,Publicacion_Visibilidad_Precio,Publ
 from gd_esquema.Maestra  where Publicacion_Visibilidad_Cod is not null  
 go
 
-*/
+
 
 ------------------------------------------------------------------------------------
 -------------------------Publicacion-------------------------------------------------
 
-
-insert into gd_esquema.Publicacion (Codigo,TipoPublicacion,Estado,Descripcion,
-	Stock,FechaInicio,FechaVencimiento,Precio,IdUsuario1,IdRubro,IdVisibilidad,IdUsuario)
-
-select Publicacion_Cod,Publicacion_Tipo,Publicacion_Estado, Publicacion_Descripcion,Publicacion_Stock,
- Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,u.Id, rubroId, viId, usuPublico
+create table #tpu(tpId int identity  not null,
+	tpTipoPublicacion nvarchar(255), 
+	tpEstado char (1) ,
+	tpDescripcion nvarchar(255),
+	tpStock numeric (18, 0), 
+	tpFechaInicio datetime,
+	tpFechaVencimiento datetime ,
+	tpPrecio numeric (18, 2),
+	tpIdUsuario1 int ,
+	tpIdRubro int,
+	tpIdVisibilidad int ,
+	tpIdUsuario int NOT NULL) 
+go
+ 
+insert into dbo.#tpu(tpTipoPublicacion,tpEstado,tpDescripcion,tpStock,tpFechaInicio,tpFechaVencimiento,tpPrecio,tpIdUsuario1,tpIdRubro,tpIdVisibilidad,tpIdUsuario)
+select Publicacion_Tipo, dbo.publicacionEstado(Publicacion_Estado), Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,u.Id, rubroId, viId, usuPublico
 from usuarioPublicaron() as up
 left join Usu_Cli_Emp()as u
-on u.dni = up.Cli_Dni
+on u.dni = up.Cli_Dni 
+go 
 
- 
+insert into gd_esquema.Publicacion(Id,TipoPublicacion,Estado,Descripcion,Stock,FechaInicio,FechaVencimiento,Precio,IdUsuario1,IdRubro,IdVisibilidad,IdUsuario) 
+select * from dbo.#tpu
+go
 
-/*left join dbo.PublicacionVisibilidad  
-on Publicacion_Visibilidad_Cod = PublicacionVisibilidad_Cod
-left join dbo.PublicacionTipo
-on Publicacion_Tipo = PublicacionTipo_Descripcion
-left join dbo.PublicacionRubro
-on Publicacion_Rubro_Descripcion = PublicacionRubro_Descripcion
-left join (select Usuario_Id,Empresa_Razon_Social,Empresa_Cuit,Cliente_Dni from dbo.Usuario
-                 left join dbo.Empresa on Usuario_Id = Empresa_Id
-                 left join dbo.Cliente on Usuario_Id = Cliente_Id) as T
-on  (Publ_Empresa_Razon_Social = T.Empresa_Razon_Social and Publ_Empresa_Cuit = T.Empresa_Cuit) or (Publ_Cli_Dni = T.Cliente_Dni)
-
-
-select * from gd_esquema.Rubro
-select * from gd_esquema.Visibilidad
 */
 
+---------------------------------------------------------------------------------
+-------------Tabla CompraOferta------------------------------------------
+
+--insert into gd_esquema .CompraOferta (Id,IdPublicacion,IdUsuario,Tipo,Fecha,Cantidad,Monto)
+/*select * from
+(*/select Id,Publicacion_Cod, Compra_Fecha,Compra_Cantidad,Oferta_Fecha,Oferta_Monto,count(*) as PoUsuario
+ from gd_esquema.Maestra,Usu_Cli_Emp()
+where Compra_Fecha is not null or Oferta_Fecha is not null
+group by Id,Publicacion_Cod, Compra_Fecha,Compra_Cantidad,Oferta_Fecha,Oferta_Monto /*) as PU 
+
+left join usuarioPublicaron() as t
+on t.Publicacion_Cod = PU.Publicacion_Cod */
+
+
+
+
+
+ 
