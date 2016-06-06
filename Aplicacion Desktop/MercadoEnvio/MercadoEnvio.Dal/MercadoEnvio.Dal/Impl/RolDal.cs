@@ -1,13 +1,13 @@
 ﻿using MercadoEnvio.Dal.Core;
-using MercadoEnvio.Dal.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using MercadoEnvio.Common.Entity;
 
-namespace MercadoEnvio.Dal.Biz
+namespace MercadoEnvio.Dal.Impl
 {
     public class RolDal : BaseDal
     {

@@ -1,5 +1,4 @@
-﻿using MercadoEnvio.Dal.Biz;
-using MercadoEnvio.Dal.Dto;
+﻿using MercadoEnvio.Biz.Impl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +13,12 @@ namespace MercadoEnvio.ABM_Rol
 {
     public partial class frmRol : Form
     {
-        private RolDal _rolDal;
+        private RolBiz _rolBiz;
 
         public frmRol()
         {
             InitializeComponent();
+            this._rolBiz = new RolBiz();
         }
     }
 }

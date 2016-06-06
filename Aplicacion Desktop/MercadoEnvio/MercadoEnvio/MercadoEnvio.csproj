@@ -186,9 +186,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MercadoEnvio.Dal\MercadoEnvio.Dal\MercadoEnvio.Dal.csproj">
-      <Project>{d8ef3513-749b-41c9-b931-57448e42b3c9}</Project>
-      <Name>MercadoEnvio.Dal</Name>
+    <ProjectReference Include="..\MercadoEnvio.Biz\MercadoEnvio.Biz.csproj">
+      <Project>{face2e88-7ab6-41e7-ad1f-273f3e655b8d}</Project>
+      <Name>MercadoEnvio.Biz</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MercadoEnvio.Common\MercadoEnvio.Common.csproj">
+      <Project>{5f01fb4c-e8e1-40d1-8d63-2f4834904774}</Project>
+      <Name>MercadoEnvio.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MercadoEnvio.Dal.Dto
+namespace MercadoEnvio.Common.Entity
 {
     public class Rol
     {

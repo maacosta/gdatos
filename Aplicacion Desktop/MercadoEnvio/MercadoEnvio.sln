@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9CC149
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoEnvio.Biz", "MercadoEnvio.Biz\MercadoEnvio.Biz.csproj", "{FACE2E88-7AB6-41E7-AD1F-273F3E655B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoEnvio.Common", "MercadoEnvio.Common\MercadoEnvio.Common.csproj", "{5F01FB4C-E8E1-40D1-8D63-2F4834904774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{D8EF3513-749B-41C9-B931-57448E42B3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8EF3513-749B-41C9-B931-57448E42B3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8EF3513-749B-41C9-B931-57448E42B3C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACE2E88-7AB6-41E7-AD1F-273F3E655B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACE2E88-7AB6-41E7-AD1F-273F3E655B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACE2E88-7AB6-41E7-AD1F-273F3E655B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACE2E88-7AB6-41E7-AD1F-273F3E655B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F01FB4C-E8E1-40D1-8D63-2F4834904774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F01FB4C-E8E1-40D1-8D63-2F4834904774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F01FB4C-E8E1-40D1-8D63-2F4834904774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F01FB4C-E8E1-40D1-8D63-2F4834904774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
