@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MercadoEnvio.ComprarOfertar
 {
-    public partial class Form1 : Form
+    public partial class frmComprarOfertar : Form
     {
-        public Form1()
+        public frmComprarOfertar()
         {
             InitializeComponent();
         }

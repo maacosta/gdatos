@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MercadoEnvio.Historial_Cliente
 {
-    public partial class Contenedor : Form
+    public partial class frmHistorialCliente : Form
     {
-        public Contenedor()
+        public frmHistorialCliente()
         {
             InitializeComponent();
-        }
-
-        private void Contenedor_Load(object sender, EventArgs e)
-        {
-            Ingresar frm = new Ingresar();
-            frm.ShowDialog(this);
         }
     }
 }

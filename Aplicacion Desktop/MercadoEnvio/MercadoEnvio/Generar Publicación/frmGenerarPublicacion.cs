@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MercadoEnvio.Generar_Publicación
 {
-    public partial class Form1 : Form
+    public partial class frmGenerarPublicacion : Form
     {
-        public Form1()
+        public frmGenerarPublicacion()
         {
             InitializeComponent();
         }

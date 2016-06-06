@@ -1,6 +1,6 @@
-﻿namespace MercadoEnvio.ABM_Rol
+﻿namespace MercadoEnvio.ABM_Usuario
 {
-    partial class Form1
+    partial class frmUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frmUsuario
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "frmUsuario";
+            this.Text = "ABM Usuario";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -12,15 +12,13 @@ using System.Windows.Forms;
 
 namespace MercadoEnvio.ABM_Rol
 {
-    public partial class Form1 : Form
+    public partial class frmRol : Form
     {
         private RolDal _rolDal;
 
-        public Form1()
+        public frmRol()
         {
             InitializeComponent();
-            this._rolDal = new RolDal();
-            List<Rol> rolList = this._rolDal.GetByUser(1);
         }
     }
 }

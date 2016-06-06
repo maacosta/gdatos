@@ -1,6 +1,6 @@
-﻿namespace MercadoEnvio.ABM_Visibilidad
+﻿namespace MercadoEnvio.Facturas
 {
-    partial class Form1
+    partial class frmFacturas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frmFacturas
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "frmFacturas";
+            this.Text = "Facturas";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

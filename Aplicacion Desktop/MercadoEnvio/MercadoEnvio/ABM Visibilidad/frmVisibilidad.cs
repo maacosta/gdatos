@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MercadoEnvio.Facturas
+namespace MercadoEnvio.ABM_Visibilidad
 {
-    public partial class Form1 : Form
+    public partial class frmVisibilidad : Form
     {
-        public Form1()
+        public frmVisibilidad()
         {
             InitializeComponent();
         }
