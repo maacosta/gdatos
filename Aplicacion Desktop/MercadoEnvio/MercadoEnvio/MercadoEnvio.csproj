@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM Rol\frmAMRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Rol\frmAMRol.Designer.cs">
+      <DependentUpon>frmAMRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Rol\frmRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,12 @@
     </Compile>
     <Compile Include="ABM Rubro\frmRubro.Designer.cs">
       <DependentUpon>frmRubro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\frmAMUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\frmAMUsuario.Designer.cs">
+      <DependentUpon>frmAMUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\frmUsuario.cs">
       <SubType>Form</SubType>
@@ -129,11 +141,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABM Rol\frmAMRol.resx">
+      <DependentUpon>frmAMRol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\frmRol.resx">
       <DependentUpon>frmRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rubro\frmRubro.resx">
       <DependentUpon>frmRubro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\frmAMUsuario.resx">
+      <DependentUpon>frmAMUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
