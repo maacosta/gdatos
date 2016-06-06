@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class Contenedor : Form
     {
-        public Form1()
+        public Contenedor()
         {
             InitializeComponent();
+        }
+
+        private void Contenedor_Load(object sender, EventArgs e)
+        {
+            Ingresar frm = new Ingresar();
+            frm.ShowDialog(this);
         }
     }
 }
