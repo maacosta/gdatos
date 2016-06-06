@@ -64,7 +64,7 @@ go
  
  */
 
- IF OBJECT_ID (N'usuarioPublicaron', N'IF') IS NOT NULL
+ /*IF OBJECT_ID (N'usuarioPublicaron', N'IF') IS NOT NULL
 DROP FUNCTION usuarioPublicaron;
 go
 create function usuarioPublicaron()
@@ -83,7 +83,21 @@ on(uce.Dni = Publ_Cli_Dni) or (uce.RazonSocial = Publ_Empresa_Razon_Social  and 
 go
 
 
-select  * from usuarioPublicaron()
+--select  * from usuarioPublicaron()
 
 
+IF OBJECT_ID (N'publicacionEstado', N'FN') IS NOT NULL
+DROP FUNCTION publicacionEstado;
+go
+create function publicacionEstado(@estado nvarchar(255))
+returns char (1)
+as
+begin
+    declare @resultado char (1)
+	if (@estado = 'Publicada')
+	set @resultado = 'P'
+	else set @resultado = 'N'
+	return @resultado
+end 
 
+*/
