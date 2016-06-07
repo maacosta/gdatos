@@ -1,17 +1,26 @@
+set nocount on  --deshabilita el mensaje   "x rows affected"
 
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Inicio'
 
---------------------Creacion De Tablas---------------------------
-
+--Elimina / Crea objetos de la base
 USE [GD1C2016]
 
-  /****** Object:  Table [gd_esquema].[Cliente]    Script Date: 03/06/2016 04:58:27 p.m. ******/
+--El order para droppear las tablas 
+drop table [gd_esquema].[FacturaItem]
+drop table [gd_esquema].[Factura]
+drop table [gd_esquema].[PublicacionCalificacion]
+drop table [gd_esquema].[PublicacionPreguntas]
+drop table [gd_esquema].[CompraOferta]
+drop table [gd_esquema].[Publicacion]
+drop table [gd_esquema].[Rubro]
+drop table [gd_esquema].[FormaPago]
+drop table [gd_esquema].[Visibilidad]
+drop table [gd_esquema].[Empresa]
+drop table [gd_esquema].[Cliente]
+drop table [gd_esquema].[Usuario]
+drop table [gd_esquema].[Localidad]
 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
+--------------------Creacion De Tablas---------------------------
 CREATE TABLE [gd_esquema].[Cliente](
 	[IdUsuario] [int] NOT NULL,
 	[Dni] [numeric](18, 0) NOT NULL,
@@ -33,15 +42,7 @@ CREATE TABLE [gd_esquema].[Cliente](
 )ON [PRIMARY]
 
 GO
-SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [gd_esquema].[CompraOferta]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
+
 CREATE TABLE [gd_esquema].[CompraOferta](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdPublicacion] [int] NOT NULL,
@@ -57,13 +58,7 @@ CREATE TABLE [gd_esquema].[CompraOferta](
 ) ON [PRIMARY]
 
 GO
-SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [gd_esquema].[Empresa]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[Empresa](
 	[IdUsuario] [int] NOT NULL,
 	[Cuit] [nvarchar](50) NOT NULL,
@@ -88,11 +83,7 @@ CREATE TABLE [gd_esquema].[Empresa](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[Factura]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[Factura](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdUsuario] [int] NOT NULL,
@@ -107,11 +98,7 @@ CREATE TABLE [gd_esquema].[Factura](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[FacturaItem]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[FacturaItem](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdFactura] [int] NOT NULL,
@@ -125,11 +112,7 @@ CREATE TABLE [gd_esquema].[FacturaItem](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[FormaPago]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[FormaPago](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [nvarchar](255) NOT NULL,
@@ -140,11 +123,7 @@ CREATE TABLE [gd_esquema].[FormaPago](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[Localidad]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[Localidad](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](50) NOT NULL,
@@ -155,13 +134,7 @@ CREATE TABLE [gd_esquema].[Localidad](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[Publicacion]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
+
 CREATE TABLE [gd_esquema].[Publicacion](
 	[Id] [int] NOT NULL,
 	[Codigo] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
@@ -183,13 +156,7 @@ CREATE TABLE [gd_esquema].[Publicacion](
 ) ON [PRIMARY]
 
 GO
-SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [gd_esquema].[PublicacionCalificacion]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[PublicacionCalificacion](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdPublicacion] [int] NOT NULL,
@@ -203,11 +170,7 @@ CREATE TABLE [gd_esquema].[PublicacionCalificacion](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[PublicacionPreguntas]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[PublicacionPreguntas](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdPublicacion] [int] NOT NULL,
@@ -220,11 +183,7 @@ CREATE TABLE [gd_esquema].[PublicacionPreguntas](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[Rubro]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [gd_esquema].[Rubro](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Codigo] [numeric](18, 0) NOT NULL,
@@ -241,10 +200,7 @@ CREATE TABLE [gd_esquema].[Rubro](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [gd_esquema].[Usuario]    Script Date: 03/06/2016 04:58:27 p.m. ******/
---SET ANSI_NULLS ON  GO
---SET QUOTED_IDENTIFIER ON GO
---SET ANSI_PADDING ON GO
+
 CREATE TABLE [gd_esquema].[Usuario](
 	[Id] [int] IDENTITY(1,1) NOT NULL primary key,
 	[Username] [nvarchar](50) NULL,
@@ -269,13 +225,7 @@ CREATE TABLE [gd_esquema].[Usuario](
 --) ON [PRIMARY] 
  
 GO
-SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [gd_esquema].[Visibilidad]    Script Date: 03/06/2016 04:58:27 p.m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON 
-GO 
+
 CREATE TABLE [gd_esquema].[Visibilidad](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [nvarchar](255) NOT NULL,
@@ -392,62 +342,8 @@ GO
 ALTER TABLE [gd_esquema].[Publicacion] CHECK CONSTRAINT [CK_Publicacion_TipoPublicacion]
 GO
 
------------------------------------------------------------------------------------------------------------
--------------Poblacion de tablas---------------------------------------------------------------------------
-
-
-/*******************Usuario*Cliente*Empresa*************************************/
-
-create table #TC(TC_Cli_Dni numeric (18, 0),TC_Cli_Apellido nvarchar (255),TC_Cli_Nombre nvarchar (255),TC_Cli_Fecha_Nac datetime,TC_Cli_Mail nvarchar (255),
-	             TC_Cli_Dom_Calle nvarchar (255),TC_Cli_Nro_Calle numeric (18, 0),TC_Cli_Piso numeric (18, 0),TC_Cli_Depto nvarchar (50),
-	             TC_Cli_Cod_Postal nvarchar (50)) 
-go
-insert  into dbo.#TC (TC_Cli_Dni,TC_Cli_Apellido,TC_Cli_Nombre,TC_Cli_Fecha_Nac,TC_Cli_Mail,TC_Cli_Dom_Calle,TC_Cli_Nro_Calle,TC_Cli_Piso,
-	                  TC_Cli_Depto,TC_Cli_Cod_Postal)
-	
-select distinct Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal 
-	from gd_esquema.Maestra where Cli_Dni is not null
-	union
-select distinct Publ_Cli_Dni,Publ_Cli_Apeliido,Publ_cli_Nombre,Publ_cli_Fecha_Nac,Publ_Cli_Mail,Publ_Cli_Dom_Calle,Publ_Cli_Nro_Calle,Publ_Cli_Piso,Publ_Cli_Depto,Publ_Cli_Cod_Postal 
-     from gd_esquema.Maestra  where Publ_Cli_Dni is not null
-go 
- 
- 
- create table dbo.#te (te_Empresa_Razon_Social nvarchar (255),te_Empresa_Cuit nvarchar(50),te_Empresa_Fecha_Creacion datetime,te_Empresa_Mail nvarchar(50),
-              te_Empresa_Dom_Calle nvarchar(100),te_Empresa_Nro_Calle numeric (18,0),te_Empresa_Piso numeric (18,0),te_Empresa_Depto nvarchar (50),
-              te_Empresa_Cod_Postal nvarchar (255))
-go
-insert into dbo.#te (te_Empresa_Razon_Social,te_Empresa_Cuit,te_Empresa_Fecha_Creacion,te_Empresa_Mail,te_Empresa_Dom_Calle,te_Empresa_Nro_Calle,te_Empresa_Piso,
-            te_Empresa_Depto,te_Empresa_Cod_Postal)
-select distinct Publ_Empresa_Razon_Social,Publ_Empresa_Cuit,Publ_Empresa_Fecha_Creacion,Publ_Empresa_Mail,Publ_Empresa_Dom_Calle,
-                Publ_Empresa_Nro_Calle,Publ_Empresa_Piso,Publ_Empresa_Depto,Publ_Empresa_Cod_Postal from gd_esquema.Maestra
-       where Publ_Empresa_Razon_Social is not null and Publ_Empresa_Cuit is not null
-go
- 
-insert into gd_esquema.Usuario(Mail,Calle,Numero,Piso,Depto,CodigoPostal) 
-select TC_Cli_Mail,TC_Cli_Dom_Calle,TC_Cli_Nro_Calle,TC_Cli_Piso,TC_Cli_Depto,TC_Cli_Cod_Postal from dbo.#TC
-go
-
-insert into gd_esquema.Cliente (Dni,IdUsuario,Apellido,Nombre,FechaNacimiento)  
-select distinct TC_Cli_Dni,Id, TC_Cli_Apellido,TC_Cli_Nombre,TC_Cli_Fecha_Nac from dbo.#TC, gd_esquema.Usuario 
-where TC_Cli_Mail = Mail and TC_Cli_Dom_Calle = Calle and TC_Cli_Nro_Calle = Numero
-   and TC_Cli_Piso = Piso and TC_Cli_Depto =  Depto and TC_Cli_Cod_Postal = CodigoPostal
-order by Id
- go   
-
- insert into gd_esquema.Usuario (Mail,Calle,Numero,Piso,Depto,CodigoPostal) 
-select te_Empresa_Mail,te_Empresa_Dom_Calle,te_Empresa_Nro_Calle,te_Empresa_Piso,te_Empresa_Depto,te_Empresa_Cod_Postal from dbo.#te
-go
-  
-insert into gd_esquema.Empresa (IdUsuario,Cuit,RazonSocial,FechaCreacion)
-select 	Id,te_Empresa_Cuit,te_Empresa_Razon_Social,te_Empresa_Fecha_Creacion from dbo.#te, gd_esquema.Usuario
-where te_Empresa_Mail = Mail and te_Empresa_Dom_Calle = Calle and te_Empresa_Nro_Calle = Numero
-and te_Empresa_Piso = Piso and te_Empresa_Depto = Depto and te_Empresa_Cod_Postal = CodigoPostal
-order by Id 
- 
- /********************Rubro****************************/
-
- IF OBJECT_ID (N'descripcionCorta', N'FN') IS NOT NULL
+/********************Rubro****************************/
+IF OBJECT_ID (N'descripcionCorta', N'FN') IS NOT NULL
 DROP FUNCTION descripcionCorta;
 Go
  
@@ -461,28 +357,9 @@ Go
  end 
  go 
 
- 
-create table #tr(trDescLarga nvarchar(255), trCodigo numeric (18,0) identity (100,1) NOT NULL,trDescCorta nvarchar(50) )
- go
-
- insert into dbo.#tr (trDescLarga,trDescCorta)
-select distinct Publicacion_Rubro_Descripcion, dbo.descripcionCorta(Publicacion_Rubro_Descripcion)  
-from gd_esquema.Maestra where Publicacion_Rubro_Descripcion is not null order by 2
-go 
-insert into gd_esquema.Rubro (DescLarga,Codigo,DescCorta)
-select trDescLarga,trCodigo,trDescCorta from dbo.#tr
-go
 
 
- /*****************FormaPago******************************/
-
- insert into gd_esquema.FormaPago(Descripcion)
-select distinct Forma_Pago_Desc from gd_esquema.Maestra where Forma_Pago_Desc is not null
-go 
-
-
-/*****************Visibilidad**********************************/
-
+ /*****************Visibilidad**********************************/
 IF OBJECT_ID (N'porcentajeEnvio', N'FN') IS NOT NULL
 DROP FUNCTION porcentajeEnvio;
 Go
@@ -497,14 +374,8 @@ Go
  end 
  go 
 
- insert into gd_esquema.Visibilidad (Descripcion,Precio,Porcentaje,PorcentajeEnvio)
-select distinct Publicacion_Visibilidad_desc,Publicacion_Visibilidad_Precio,Publicacion_Visibilidad_Porcentaje,dbo.porcentajeEnvio(Publicacion_Visibilidad_Porcentaje)
-from gd_esquema.Maestra  where Publicacion_Visibilidad_Cod is not null  
-go
 
 /******************Publicacion*************************************/
-
-
 IF OBJECT_ID (N'Usu_Cli_Emp', N'IF') IS NOT NULL
 DROP FUNCTION Usu_Cli_Emp;
 Go
@@ -554,6 +425,108 @@ begin
 end 
 go
 
+----------  FIN DE CREACIÓN DE OBJETOS
+
+
+
+--Datos
+
+-----------------------------------------------------------------------------------------------------------
+-------------Poblacion de tablas---------------------------------------------------------------------------
+drop table #TC
+drop table #te
+drop table #tr
+drop table #tpu
+
+delete from gd_esquema.Cliente
+delete from gd_esquema.Empresa
+delete from gd_esquema.Usuario
+delete from gd_esquema.Rubro
+delete from gd_esquema.FormaPago
+delete from gd_esquema.Visibilidad
+delete from gd_esquema.Publicacion
+
+--Temporal de Clientes
+create table #TC(TC_Cli_Dni numeric (18, 0),TC_Cli_Apellido nvarchar (255),TC_Cli_Nombre nvarchar (255),TC_Cli_Fecha_Nac datetime,TC_Cli_Mail nvarchar (255),
+	             TC_Cli_Dom_Calle nvarchar (255),TC_Cli_Nro_Calle numeric (18, 0),TC_Cli_Piso numeric (18, 0),TC_Cli_Depto nvarchar (50),
+	             TC_Cli_Cod_Postal nvarchar (50))
+
+insert  into dbo.#TC (TC_Cli_Dni,TC_Cli_Apellido,TC_Cli_Nombre,TC_Cli_Fecha_Nac,TC_Cli_Mail,TC_Cli_Dom_Calle,TC_Cli_Nro_Calle,TC_Cli_Piso,
+	                  TC_Cli_Depto,TC_Cli_Cod_Postal)
+select distinct Cli_Dni,Cli_Apeliido,Cli_Nombre,Cli_Fecha_Nac,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal 
+	from gd_esquema.Maestra where Cli_Dni is not null
+	union
+select distinct Publ_Cli_Dni,Publ_Cli_Apeliido,Publ_cli_Nombre,Publ_cli_Fecha_Nac,Publ_Cli_Mail,Publ_Cli_Dom_Calle,Publ_Cli_Nro_Calle,Publ_Cli_Piso,Publ_Cli_Depto,Publ_Cli_Cod_Postal 
+     from gd_esquema.Maestra  where Publ_Cli_Dni is not null
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla temporal de Clientes: ' + convert(char(50),@@ROWCOUNT)
+
+ --Temporal de Empresas
+ create table dbo.#te (te_Empresa_Razon_Social nvarchar (255),te_Empresa_Cuit nvarchar(50),te_Empresa_Fecha_Creacion datetime,te_Empresa_Mail nvarchar(50),
+              te_Empresa_Dom_Calle nvarchar(100),te_Empresa_Nro_Calle numeric (18,0),te_Empresa_Piso numeric (18,0),te_Empresa_Depto nvarchar (50),
+              te_Empresa_Cod_Postal nvarchar (255))
+
+insert into dbo.#te (te_Empresa_Razon_Social,te_Empresa_Cuit,te_Empresa_Fecha_Creacion,te_Empresa_Mail,te_Empresa_Dom_Calle,te_Empresa_Nro_Calle,te_Empresa_Piso,
+            te_Empresa_Depto,te_Empresa_Cod_Postal)
+select distinct Publ_Empresa_Razon_Social,Publ_Empresa_Cuit,Publ_Empresa_Fecha_Creacion,Publ_Empresa_Mail,Publ_Empresa_Dom_Calle,
+                Publ_Empresa_Nro_Calle,Publ_Empresa_Piso,Publ_Empresa_Depto,Publ_Empresa_Cod_Postal from gd_esquema.Maestra
+       where Publ_Empresa_Razon_Social is not null and Publ_Empresa_Cuit is not null
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla temporal de Empresas: ' + convert(char(50),@@ROWCOUNT)
+
+-- Usuario
+insert into gd_esquema.Usuario(Mail,Calle,Numero,Piso,Depto,CodigoPostal) 
+select TC_Cli_Mail,TC_Cli_Dom_Calle,TC_Cli_Nro_Calle,TC_Cli_Piso,TC_Cli_Depto,TC_Cli_Cod_Postal from dbo.#TC
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Usuarios desde temporal de Clientes: ' + convert(char,@@ROWCOUNT)
+
+insert into gd_esquema.Usuario (Mail,Calle,Numero,Piso,Depto,CodigoPostal) 
+select te_Empresa_Mail,te_Empresa_Dom_Calle,te_Empresa_Nro_Calle,te_Empresa_Piso,te_Empresa_Depto,te_Empresa_Cod_Postal from dbo.#te
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Usuarios desde temporal de Empresas: ' + convert(char,@@ROWCOUNT)
+
+-- Cliente
+insert into gd_esquema.Cliente (Dni,IdUsuario,Apellido,Nombre,FechaNacimiento)  
+select distinct TC_Cli_Dni,Id, TC_Cli_Apellido,TC_Cli_Nombre,TC_Cli_Fecha_Nac from dbo.#TC, gd_esquema.Usuario 
+where TC_Cli_Mail = Mail and TC_Cli_Dom_Calle = Calle and TC_Cli_Nro_Calle = Numero
+   and TC_Cli_Piso = Piso and TC_Cli_Depto =  Depto and TC_Cli_Cod_Postal = CodigoPostal
+order by Id
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Clientes desde temporal de Clientes: ' + convert(char,@@ROWCOUNT)
+
+insert into gd_esquema.Empresa (IdUsuario,Cuit,RazonSocial,FechaCreacion)
+select 	Id,te_Empresa_Cuit,te_Empresa_Razon_Social,te_Empresa_Fecha_Creacion from dbo.#te, gd_esquema.Usuario
+where te_Empresa_Mail = Mail and te_Empresa_Dom_Calle = Calle and te_Empresa_Nro_Calle = Numero
+and te_Empresa_Piso = Piso and te_Empresa_Depto = Depto and te_Empresa_Cod_Postal = CodigoPostal
+order by Id 
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Empresas desde temporal de Empresas: ' + convert(char,@@ROWCOUNT)
+
+create table #tr(trDescLarga nvarchar(255), trCodigo numeric (18,0) identity (100,1) NOT NULL,trDescCorta nvarchar(50) )
+
+insert into dbo.#tr (trDescLarga,trDescCorta)
+select distinct Publicacion_Rubro_Descripcion, dbo.descripcionCorta(Publicacion_Rubro_Descripcion)  
+from gd_esquema.Maestra where Publicacion_Rubro_Descripcion is not null order by 2
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla temporal de Rubros: ' + convert(char,@@ROWCOUNT)
+
+insert into gd_esquema.Rubro (DescLarga,Codigo,DescCorta)
+select trDescLarga,trCodigo,trDescCorta from dbo.#tr
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Rubros desde temporal de Rubros: ' + convert(char,@@ROWCOUNT)
+
+-- FormaPago
+insert into gd_esquema.FormaPago(Descripcion)
+select distinct Forma_Pago_Desc from gd_esquema.Maestra where Forma_Pago_Desc is not null
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla FormaPago: ' + convert(char,@@ROWCOUNT)
+
+insert into gd_esquema.Visibilidad (Descripcion,Precio,Porcentaje,PorcentajeEnvio)
+select distinct Publicacion_Visibilidad_desc,Publicacion_Visibilidad_Precio,Publicacion_Visibilidad_Porcentaje,dbo.porcentajeEnvio(Publicacion_Visibilidad_Porcentaje)
+from gd_esquema.Maestra  where Publicacion_Visibilidad_Cod is not null
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla Visibilidad: ' + convert(char,@@ROWCOUNT)
+
 create table #tpu(tpId int identity  not null,
 	tpTipoPublicacion nvarchar(255), 
 	tpEstado char (1) ,
@@ -566,15 +539,18 @@ create table #tpu(tpId int identity  not null,
 	tpIdRubro int,
 	tpIdVisibilidad int ,
 	tpIdUsuario int NOT NULL) 
-go
  
 insert into dbo.#tpu(tpTipoPublicacion,tpEstado,tpDescripcion,tpStock,tpFechaInicio,tpFechaVencimiento,tpPrecio,tpIdUsuario1,tpIdRubro,tpIdVisibilidad,tpIdUsuario)
 select Publicacion_Tipo, dbo.publicacionEstado(Publicacion_Estado), Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,u.Id, rubroId, viId, usuPublico
 from usuarioPublicaron() as up
 left join Usu_Cli_Emp()as u
-on u.dni = up.Cli_Dni 
-go 
+on u.dni = up.Cli_Dni
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla temporal de Publicaciones: ' + convert(char,@@ROWCOUNT)
 
 insert into gd_esquema.Publicacion(Id,TipoPublicacion,Estado,Descripcion,Stock,FechaInicio,FechaVencimiento,Precio,IdUsuario1,IdRubro,IdVisibilidad,IdUsuario) 
 select * from dbo.#tpu
-go
+
+print 'Time: ' + format(getdate(),'HH:mm:ss') + ' - Cargando tabla de Publicaciones: ' + convert(char,@@ROWCOUNT)
+
+----------   FIN DE MIGRACIÓN DE DATOS
