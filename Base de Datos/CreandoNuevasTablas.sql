@@ -1,3 +1,5 @@
+use GD1C2016
+go
 /* 
 create table #TC(TC_Cli_Dni numeric (18, 0),
 	TC_Cli_Apellido nvarchar (255),
@@ -167,15 +169,23 @@ go
 -------------Tabla CompraOferta------------------------------------------
 
 --insert into gd_esquema .CompraOferta (Id,IdPublicacion,IdUsuario,Tipo,Fecha,Cantidad,Monto)
-/*select * from
-(*/select Id,Publicacion_Cod, Compra_Fecha,Compra_Cantidad,Oferta_Fecha,Oferta_Monto,count(*) as PoUsuario
- from gd_esquema.Maestra,Usu_Cli_Emp()
-where Compra_Fecha is not null or Oferta_Fecha is not null
-group by Id,Publicacion_Cod, Compra_Fecha,Compra_Cantidad,Oferta_Fecha,Oferta_Monto /*) as PU 
 
-left join usuarioPublicaron() as t
-on t.Publicacion_Cod = PU.Publicacion_Cod */
+drop table dbo.#TCompOferta
+select distinct Publicacion_Cod,Publ_Cli_Dni,Publ_Empresa_Cuit,Publ_Empresa_Razon_Social, Publicacion_Tipo,Compra_Fecha as fecha,Compra_Cantidad ,Oferta_Monto 
+ into #TCompOferta
+ from gd_esquema.Maestra where (Publicacion_Tipo = 'Compra Inmediata') and Compra_Fecha is not null
+ union
+select distinct Publicacion_Cod,Publ_Cli_Dni,Publ_Empresa_Cuit,Publ_Empresa_Razon_Social, Publicacion_Tipo,Oferta_Fecha as fecha ,Compra_Cantidad ,Oferta_Monto
+ from gd_esquema.Maestra where Publicacion_Tipo = 'Subasta' and Oferta_Fecha is not null
+ 
 
+ select u.Id,Publicacion_Tipo,Compra_Fecha as fecha,Compra_Cantidad ,Oferta_Monto 
+ from dbo.#TCompOferta as c
+ left join Usu_Cli_Emp() as u
+ on (Publ_Cli_Dni = u.Dni ) or (Publ_Empresa_Razon_Social = u.RazonSocial and Publ_Empresa_Cuit = u.Cuit)
+ left join usuarioPublicaron()
+
+ ---falata  join por codigo y despues................ join necesitamos el id publicacion hahhahahhhhhhhhhhahhhahahhah
 
 
 
