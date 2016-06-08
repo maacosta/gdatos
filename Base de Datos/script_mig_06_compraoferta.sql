@@ -1,17 +1,19 @@
-/*
-TODO: falta hacer join con tabla Publicacion y Usuario|Cliente
-*/
-
---COMPRA
-select Publicacion_Cod, cli_dni, Compra_Fecha fecha, Compra_Cantidad cantidad, 'C' tipo
-from gd_esquema.maestra
-where Publicacion_Cod is not null and cli_dni is not null
-and compra_fecha is not null and compra_cantidad is not null
-group by Publicacion_Cod, cli_dni, Compra_Fecha, Compra_Cantidad
-
---OFERTA
-select Publicacion_Cod, cli_dni, oferta_fecha fecha, oferta_monto monto, 'O' tipo
-from gd_esquema.maestra
-where Publicacion_Cod is not null and cli_dni is not null
-and oferta_fecha is not null and oferta_monto is not null
-group by Publicacion_Cod, cli_dni, oferta_fecha, oferta_monto
+select distinct Publicacion_Cod,Publ_Cli_Dni,Publ_Empresa_Cuit,Publ_Empresa_Razon_Social,Cli_Dni,Publicacion_Tipo,Compra_Fecha as fecha,Compra_Cantidad ,Oferta_Monto
+ into #TCompOferta
+ from gd_esquema.Maestra where (Publicacion_Tipo = 'Compra Inmediata') and Compra_Fecha is not null
+ union
+select distinct Publicacion_Cod,Publ_Cli_Dni,Publ_Empresa_Cuit,Publ_Empresa_Razon_Social,Cli_Dni,Publicacion_Tipo,Oferta_Fecha as fecha ,Compra_Cantidad ,Oferta_Monto
+ from gd_esquema.Maestra where Publicacion_Tipo = 'Subasta' and Oferta_Fecha is not null
+ go
+ 
+ insert into gd_esquema .CompraOferta (IdPublicacion,IdUsuario,IdUsuario1,Tipo,Fecha,Cantidad,Monto)
+ select Codigo,u.Id,otraU.Id,dbo.publicacionTipo(Publicacion_Tipo),fecha,Compra_Cantidad ,Oferta_Monto 
+ from dbo.#TCompOferta as c
+ left join Usu_Cli_Emp() as u
+ on (Publ_Cli_Dni = u.Dni ) or (Publ_Empresa_Razon_Social = u.RazonSocial and Publ_Empresa_Cuit = u.Cuit)
+ left join gd_esquema.Publicacion
+ on Codigo = Publicacion_Cod 
+ left join Usu_Cli_Emp() as oTraU
+ on Publ_Cli_Dni = OtraU.Dni 
+ 
+ go 
