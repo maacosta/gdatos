@@ -67,7 +67,7 @@ insert into gd_esquema.Usuario
 select id, dni, mail, calle, numero, piso, depto, cp 
 from #TCliente
 
-set @idmax = SCOPE_IDENTITY()+1
+set @idmax = SCOPE_IDENTITY()
 
 insert into gd_esquema.Cliente 
 	(IdUsuario, Dni, TipoDocumento, Apellido, Nombre, FechaNacimiento, FechaCreacion)  
