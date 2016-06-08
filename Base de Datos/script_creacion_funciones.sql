@@ -90,4 +90,3 @@ begin
 	return @resultado
 end 
 
-*/
