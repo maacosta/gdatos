@@ -38,11 +38,12 @@ begin
 	else set @resultado = 'N'
 	return @resultado
 end 
+go
 
 /*
 funcion usuarioPublicaron()
 */
-IF OBJECT_ID (N'fn_mig_getTipoPublicacion', N'IF') IS NOT NULL
+IF OBJECT_ID (N'fn_mig_getTipoPublicacion', N'FN') is not null
 	DROP FUNCTION fn_mig_getTipoPublicacion;
 go
 create function fn_mig_getTipoPublicacion
