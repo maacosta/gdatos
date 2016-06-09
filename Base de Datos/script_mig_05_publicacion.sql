@@ -1,17 +1,35 @@
-select distinct Publicacion_Cod,Publ_Cli_Dni, Publ_Empresa_Razon_Social,Publ_Empresa_Cuit,Publicacion_Tipo,Publicacion_Estado, Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,Publicacion_Visibilidad_Desc,Publicacion_Rubro_Descripcion 
-into #Tpu
-from gd_esquema.Maestra
-group by Publicacion_Cod,Publ_Cli_Dni, Publ_Empresa_Razon_Social,Publ_Empresa_Cuit,Publicacion_Tipo,Publicacion_Estado, Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,Publicacion_Visibilidad_Desc,Publicacion_Rubro_Descripcion
-order by Publicacion_Cod
+IF OBJECT_ID('tempdb..#TPublicacion') IS NOT NULL DROP TABLE #TPublicacion
+GO
 
-insert into gd_esquema.Publicacion(TipoPublicacion,Estado,Descripcion,Stock,FechaInicio,FechaVencimiento,Precio,IdUsuario,IdRubro,IdVisibilidad) 
+select p.* into #TPublicacion
+from (
+select distinct 
+	publicacion_cod codigo, 
+	dbo.fn_mig_getTipoPublicacion(Publicacion_Tipo) tipoPublicacion, 
+	'F' estado, 
+	Publicacion_Descripcion descripcion,
+	Publicacion_Stock stock,
+	Publicacion_Fecha fechaInicio,
+	Publicacion_Fecha_Venc fechaVencimiento,
+	Publicacion_Precio precio,
+	Publicacion_Rubro_Descripcion rubroDesc,
+	Publicacion_Visibilidad_Cod visibilidadCodigo,
+	Publ_Cli_Dni clienteDni,
+	Publ_Empresa_Cuit empresaCuit
+from gd_esquema.maestra
+where [Publicacion_Cod] is not null
+) p
 
-select Publicacion_Tipo, dbo.publicacionEstado(Publicacion_Estado), Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha,Publicacion_Fecha_Venc,Publicacion_Precio,u.Id, rubro.Id, visibilidad.Id
-from dbo.#Tpu
-left join Usu_Cli_Emp()as u
-on (Dni = Publ_Cli_Dni) or ((RazonSocial = Publ_Empresa_Razon_Social ) and (Publ_Empresa_Cuit = Cuit))
-left join gd_esquema.Visibilidad
-on Publicacion_Visibilidad_Desc = Descripcion
-left join gd_esquema.Rubro
-on Publicacion_Rubro_Descripcion = DescLarga
-go 
+insert into gd_esquema.Publicacion 
+	(Codigo, TipoPublicacion, Estado, Descripcion, Stock, FechaInicio, FechaVencimiento, Precio, IdRubro, IdVisibilidad, IdUsuario)
+select 
+	t.codigo, t.tipoPublicacion, t.estado, t.descripcion, t.stock, t.fechaInicio, t.fechaVencimiento, t.precio, r.Id, v.Id, u.Id
+from #TPublicacion t
+	inner join gd_esquema.Rubro r on r.DescCorta = t.descripcion
+	inner join gd_esquema.Visibilidad v on v.codigo = t.visibilidadCodigo
+	inner join gd_esquema.Cliente c on c.dni = t.clienteDni
+	inner join gd_esquema.Empresa e on e.cuit = t.empresaCuit
+	inner join gd_esquema.Usuario u on u.id = c.idusuario
+
+go
+
