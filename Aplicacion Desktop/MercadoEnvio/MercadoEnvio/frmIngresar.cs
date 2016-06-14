@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MercadoEnvio.Biz.Impl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,15 @@ namespace WindowsFormsApplication1
         public frmIngresar()
         {
             InitializeComponent();
+
+            LoginBiz login = new LoginBiz();
+
+            var plainText = "clave";
+            string salt;
+            var hash = login.ComputeHash(plainText, out salt);
+            var res = login.GetHashing(plainText, salt);
+
+            var r = res == hash;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
