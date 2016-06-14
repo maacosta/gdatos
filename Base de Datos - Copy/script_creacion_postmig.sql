@@ -7,9 +7,3 @@ CREATE SEQUENCE [gd_esquema].[sq_publicacion]
  MAXVALUE 9223372036854775807
  CACHE 
 GO
-
-INSERT INTO [gd_esquema].[Usuario]
-           ([Username], [PassHash], [PassSalt])
-     VALUES
-           ('admin', 'U3hc2PwspfX6gECdhWXkk9n4MEtL7NIPsXsvdUZPOu8n2YCi', 'J9mAog==')
-GO

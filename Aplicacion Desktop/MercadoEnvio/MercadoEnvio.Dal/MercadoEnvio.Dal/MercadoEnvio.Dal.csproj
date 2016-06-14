@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Impl\RolDal.cs" />
     <Compile Include="Core\BaseDal.cs" />
+    <Compile Include="Impl\UsuarioDal.cs" />
     <Compile Include="MercadoEnvioDataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

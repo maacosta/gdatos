@@ -4,11 +4,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MercadoEnvio.Dal.Impl;
 
 namespace MercadoEnvio.Biz.Impl
 {
     public class LoginBiz
     {
+        private UsuarioDal _usuarioDal;
+
+        public LoginBiz()
+        {
+            this._usuarioDal = new UsuarioDal();
+        }
+
+        public bool Login(string user, string password)
+        {
+            var loginData = this._usuarioDal.GetLoginData(user);
+
+            if (loginData.Intentos >= 3)
+            {
+                this._usuarioDal.SetFechaBaja(user);
+                throw new Exception("Superó los intentos de usuario y clave permitidos");
+            }
+
+            var hash = this.GetHashing(password, loginData.PassSalt);
+
+            var login = this._usuarioDal.Autenticar(user, hash);
+            
+            return true;
+        }
+
         public string ComputeHash(string plainText, out string salt)
         {
             byte[] saltBytes = this.GetRandomSalt();
