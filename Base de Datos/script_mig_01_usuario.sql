@@ -1,5 +1,10 @@
 IF OBJECT_ID('tempdb..#TCliente') IS NOT NULL DROP TABLE #TCliente
 IF OBJECT_ID('tempdb..#TEmpresa') IS NOT NULL DROP TABLE #TEmpresa
+
+delete from gd_esquema.Cliente
+delete from gd_esquema.Empresa
+delete from gd_esquema.Usuario
+
 GO
 
 SET IDENTITY_INSERT gd_esquema.Usuario ON
