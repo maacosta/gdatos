@@ -5,7 +5,8 @@ CREATE PROCEDURE gd_esquema.sp_rubro_modifRubro  (@id int,@codigo int,@descCorta
 
 AS
 	BEGIN
-		update  gd_esquema.Rubro set  codigo=@codigo,DescCorta =@descCorta ,descLarga =@descLarga 
+		update  gd_esquema.Rubro 
+		set  codigo=@codigo,DescCorta =@descCorta ,descLarga =@descLarga 
 		where gd_esquema.Rubro.Id = @id
 		
 	END
