@@ -1,7 +1,7 @@
-DROP PROCEDURE sp_rubro_delRubro
+DROP PROCEDURE gd_esquema.sp_rubro_delRubro
 go
 
-CREATE PROCEDURE sp_rubro_delRubro  (@id int)
+CREATE PROCEDURE gd_esquema.sp_rubro_delRubro  (@id int)
 
 AS
 	BEGIN

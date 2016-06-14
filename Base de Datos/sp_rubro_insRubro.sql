@@ -1,7 +1,7 @@
-DROP PROCEDURE sp_rubro_insRubro
+DROP PROCEDURE gd_esquema.sp_rubro_insRubro
 go
 
-CREATE PROCEDURE sp_rubro_insRubro  (@codigo int,@descCorta varchar(50),@descLarga varchar(255))
+CREATE PROCEDURE gd_esquema.sp_rubro_insRubro  (@codigo int,@descCorta varchar(50),@descLarga varchar(255))
 
 AS
 	BEGIN

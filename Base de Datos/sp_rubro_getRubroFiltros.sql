@@ -1,8 +1,8 @@
-IF (OBJECT_ID('sp_rubro_getRubroFiltros') IS NOT NULL)
-drop PROCEDURE sp_rubro_getRubroFiltros
+IF (OBJECT_ID('gd_esquema.sp_rubro_getRubroFiltros') IS NOT NULL)
+drop PROCEDURE gd_esquema.sp_rubro_getRubroFiltros
 go
 
-CREATE PROCEDURE sp_rubro_getRubroFiltros (@id int, @codigo numeric(18,0), @desccorta nvarchar(50), @desclarga nvarchar(255))
+CREATE PROCEDURE gd_esquema.sp_rubro_getRubroFiltros (@id int, @codigo numeric(18,0), @desccorta nvarchar(50), @desclarga nvarchar(255))
 AS
 
 BEGIN
