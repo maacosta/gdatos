@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Impl\LoginBiz.cs" />
     <Compile Include="Impl\RolBiz.cs" />
+    <Compile Include="Impl\RubroBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
