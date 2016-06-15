@@ -1,7 +1,7 @@
-DROP PROCEDURE gd_esquema.sp_usuario_Get_logindata
+DROP PROCEDURE gd_esquema.sp_usuario_getLoginData
 GO
 
-CREATE PROCEDURE gd_esquema.sp_usuario_Get_logindata  (@username varchar(50))
+CREATE PROCEDURE gd_esquema.sp_usuario_getLoginData  (@username varchar(50))
 
 AS
 	BEGIN		
