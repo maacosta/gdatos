@@ -1,4 +1,5 @@
 ﻿using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace MercadoEnvio.ABM_Rubro
     public partial class frmRubro : Form
     {
         private RubroBiz _rubroBiz;
+
+        public Rubro Rubro { get { return null; } }
 
         public frmRubro()
         {
