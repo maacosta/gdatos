@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MercadoEnvio.Dal.Impl;
+using MercadoEnvio.Common.FunctionalException;
+using MercadoEnvio.Common.Entity;
 
 namespace MercadoEnvio.Biz.Impl
 {
@@ -17,21 +19,30 @@ namespace MercadoEnvio.Biz.Impl
             this._usuarioDal = new UsuarioDal();
         }
 
-        public bool Login(string user, string password)
+        public List<Rol> Login(string user, string password)
         {
             var loginData = this._usuarioDal.GetLoginData(user);
 
-            if (loginData.Intentos >= 3)
+            if (loginData == null)
+            {
+                throw new UsuarioException(UsuarioTypeExcep.UsuarioInexistente);
+            }
+            else if (loginData.Intentos >= 3)
             {
                 this._usuarioDal.SetFechaBaja(user);
-                throw new Exception("Superó los intentos de usuario y clave permitidos");
+                throw new UsuarioException(UsuarioTypeExcep.IntentosDeLoginFallidos_UsuarioBloqueado);
             }
 
             var hash = this.GetHashing(password, loginData.PassSalt);
 
-            var login = this._usuarioDal.Autenticar(user, hash);
-            
-            return true;
+            var roles = this._usuarioDal.Autenticar(user, hash);
+
+            if (roles == null || (roles.Count == 1 && roles[0].Id == 0))
+            {
+                throw new UsuarioException(UsuarioTypeExcep.ClaveIncorrecta);
+            }
+
+            return roles;
         }
 
         public string ComputeHash(string plainText, out string salt)

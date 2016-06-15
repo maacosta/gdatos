@@ -1,4 +1,5 @@
 ﻿using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.FunctionalException;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Core;
 
 namespace WindowsFormsApplication1
 {
@@ -38,27 +40,38 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                if (this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text))
-                {
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Usuario o Clave incorrecta");
-                    this.txtUsuario.Text = "";
-                    this.txtClave.Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Usuario bloqueado");
+                GlobalData.Instance.Roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text);
+
                 this.Close();
             }
+            catch (UsuarioException funEx)
+            {
+                switch (funEx.ExceptionType)
+                {
+                    case UsuarioTypeExcep.IntentosDeLoginFallidos_UsuarioBloqueado:
+                        MessageBox.Show("Superó la cantidad de intentos fallidos. Usuario bloqueado.");
+                        Application.Exit();
+                        break;
+                    case UsuarioTypeExcep.UsuarioInexistente:
+                        MessageBox.Show("Usuario inexistente.");
+                        break;
+                    case UsuarioTypeExcep.ClaveIncorrecta:
+                        MessageBox.Show("Clave incorrecta.");
+                        break;
+                }
+            }
+            this.LimpiarCampos();
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LimpiarCampos()
+        {
+            this.txtUsuario.Text = "";
+            this.txtClave.Text = "";
         }
     }
 }

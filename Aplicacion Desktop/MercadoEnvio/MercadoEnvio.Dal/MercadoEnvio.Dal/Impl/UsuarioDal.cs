@@ -25,14 +25,14 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { username };
 
-            this._db.ExecuteSprocAccessor<UsuarioLogin>("sp_usuario_setFechaBaja", param);
+            this._db.ExecuteSprocAccessor<UsuarioLogin>("gd_esquema.sp_usuario_setFechaBaja", param);
         }
 
-        public UsuarioLogin Autenticar(string username, string password)
+        public List<Rol> Autenticar(string username, string passHashed)
         {
-            object[] param = new object[] { username, password };
+            object[] param = new object[] { username, passHashed };
 
-            var data = this._db.ExecuteSprocAccessor<UsuarioLogin>("sp_usuario_login", param).FirstOrDefault();
+            var data = this._db.ExecuteSprocAccessor<Rol>("gd_esquema.sp_usuario_login", param).ToList();
 
             return data;
         }
