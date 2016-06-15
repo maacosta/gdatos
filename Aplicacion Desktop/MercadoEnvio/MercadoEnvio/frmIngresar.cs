@@ -36,6 +36,7 @@ namespace WindowsFormsApplication1
             {
                 var roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text);
 
+                GlobalData.Instance.Username = this.txtUsuario.Text;
                 if (roles.Count == 1)
                 {
                     GlobalData.Instance.Rol = roles[0];

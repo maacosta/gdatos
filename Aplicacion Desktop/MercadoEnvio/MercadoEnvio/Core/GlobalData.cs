@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1.Core
         private GlobalData()
         { }
 
+        public string Username { get; set; }
         public Rol Rol { get; set; }
         public DateTime FechaSistema { get; set; }
     }
