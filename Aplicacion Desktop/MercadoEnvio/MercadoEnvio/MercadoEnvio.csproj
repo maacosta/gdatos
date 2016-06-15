@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="Core\FormFactory.cs" />
     <Compile Include="Core\GlobalData.cs" />
+    <Compile Include="Core\PermisoFuncionalidad.cs" />
     <Compile Include="frmContenedor.cs">
       <SubType>Form</SubType>
     </Compile>

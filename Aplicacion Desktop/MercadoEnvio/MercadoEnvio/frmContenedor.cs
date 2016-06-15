@@ -6,6 +6,7 @@ using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Facturas;
 using MercadoEnvio.Generar_Publicación;
 using MercadoEnvio.Historial_Cliente;
+using MercadoEnvio.Listado_Estadistico;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,16 @@ namespace WindowsFormsApplication1
         {
             frmIngresar frm = new frmIngresar();
             frm.ShowDialog(this);
+
+            this.aBMRolToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Rol_V);
+            this.aBMRubroToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Rubro_V);
+            this.aBMUsuarioToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Usuario_ABM);
+            this.aBMVisibilidadToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Visibilidad_V);
+            this.generarPublicaciónToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Publicacion_V);
+            this.historialClienteToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.HistorialCliente_V);
+            this.comprarOfertarToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ComprarOfertar_V);
+            this.facturasToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ConsultaFacturas_V);
+            this.listadoEstadísticoToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ListadoEstadistico_V);
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,6 +89,11 @@ namespace WindowsFormsApplication1
         private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this._formFactory.OpenChildForm<frmFacturas>();
+        }
+
+        private void listadoEstadísticoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this._formFactory.OpenChildForm<frmListadoEstadistico>();
         }
     }
 }

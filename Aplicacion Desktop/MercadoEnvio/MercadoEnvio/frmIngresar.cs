@@ -39,8 +39,7 @@ namespace WindowsFormsApplication1
                 GlobalData.Instance.Username = this.txtUsuario.Text;
                 if (roles.Count == 1)
                 {
-                    GlobalData.Instance.Rol = roles[0];
-                    GlobalData.Instance.Permisos = this._loginBiz.GetPermisos(GlobalData.Instance.Rol);
+                    GlobalData.Instance.SetRol(roles[0]);
                     this.Close();
                 }
                 else
@@ -72,8 +71,7 @@ namespace WindowsFormsApplication1
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            GlobalData.Instance.Rol = (Rol)this.cmbRol.SelectedItem;
-            GlobalData.Instance.Permisos = this._loginBiz.GetPermisos(GlobalData.Instance.Rol);
+            GlobalData.Instance.SetRol((Rol)this.cmbRol.SelectedItem);
             this.Close();
         }
 
