@@ -24,5 +24,6 @@ namespace WindowsFormsApplication1.Core
         { }
 
         public Rol Rol { get; set; }
+        public DateTime FechaSistema { get; set; }
     }
 }

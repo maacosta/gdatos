@@ -1,10 +1,13 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Logging;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Core;
 
 namespace WindowsFormsApplication1
 {
@@ -27,6 +30,11 @@ namespace WindowsFormsApplication1
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
+            CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["DefaultCulture"]);
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            GlobalData.Instance.FechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
 
             Application.Run(new frmContenedor());
         }
