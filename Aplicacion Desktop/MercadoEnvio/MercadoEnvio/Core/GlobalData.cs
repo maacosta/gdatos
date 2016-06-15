@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.Core
 
         public string Username { get; set; }
         public Rol Rol { get; set; }
+        public List<Permiso> Permisos { get; set; }
         public DateTime FechaSistema { get; set; }
     }
 }

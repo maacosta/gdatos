@@ -13,10 +13,12 @@ namespace MercadoEnvio.Biz.Impl
     public class LoginBiz
     {
         private UsuarioDal _usuarioDal;
+        private PermisoDal _permisoDal;
 
         public LoginBiz()
         {
             this._usuarioDal = new UsuarioDal();
+            this._permisoDal = new PermisoDal();
         }
 
         public List<Rol> Login(string user, string password)
@@ -37,12 +39,17 @@ namespace MercadoEnvio.Biz.Impl
 
             var roles = this._usuarioDal.Autenticar(user, hash);
 
-            if (roles == null || (roles.Count == 1 && roles[0].Id == 0))
+            if (roles == null || roles.Count == 0)
             {
                 throw new UsuarioException(UsuarioTypeExcep.ClaveIncorrecta);
             }
 
             return roles;
+        }
+
+        public List<Permiso> GetPermisos(Rol rol)
+        {
+            return this._permisoDal.GetPermisos(rol.Id);
         }
 
         public string ComputeHash(string plainText, out string salt)
