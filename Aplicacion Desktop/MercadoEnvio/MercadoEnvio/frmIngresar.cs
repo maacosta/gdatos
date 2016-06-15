@@ -1,4 +1,5 @@
 ﻿using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.Entity;
 using MercadoEnvio.Common.FunctionalException;
 using System;
 using System.Collections.Generic;
@@ -22,27 +23,31 @@ namespace WindowsFormsApplication1
             InitializeComponent();
 
             this._loginBiz = new LoginBiz();
-
-            //var plainText = "admin";
-            //string salt;
-            //var hash = this._loginBiz.ComputeHash(plainText, out salt);
-            //var res = this._loginBiz.GetHashing(plainText, salt);
-
-            //var r = res == hash;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
-                GlobalData.Instance.Roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text);
+                var roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text);
 
-                this.Close();
+                if (roles.Count == 1)
+                {
+                    GlobalData.Instance.Rol = roles[0];
+                    this.Close();
+                }
+                else
+                {
+                    this.grbAutenticacion.Visible = false;
+                    this.cmbRol.DataSource = roles;
+                    this.cmbRol.DisplayMember = "Nombre";
+                }
+
             }
             catch (UsuarioException funEx)
             {
@@ -59,19 +64,28 @@ namespace WindowsFormsApplication1
                         MessageBox.Show("Clave incorrecta.");
                         break;
                 }
+                this.LimpiarCampos();
             }
-            this.LimpiarCampos();
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-
+            GlobalData.Instance.Rol = (Rol)this.cmbRol.SelectedItem;
+            this.Close();
         }
 
         private void LimpiarCampos()
         {
             this.txtUsuario.Text = "";
             this.txtClave.Text = "";
+        }
+
+        private void frmIngresar_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (GlobalData.Instance.Rol == null)
+            {
+                Application.Exit();
+            }
         }
     }
 }

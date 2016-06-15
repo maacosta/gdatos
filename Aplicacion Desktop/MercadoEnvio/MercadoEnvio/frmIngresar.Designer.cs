@@ -35,12 +35,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.grbAutenticacion = new System.Windows.Forms.GroupBox();
-            this.grbRol = new System.Windows.Forms.GroupBox();
-            this.cmbRol = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.txtRepetir = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.grbRol = new System.Windows.Forms.GroupBox();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
             this.grbAutenticacion.SuspendLayout();
             this.grbRol.SuspendLayout();
             this.SuspendLayout();
@@ -115,45 +115,6 @@
             this.grbAutenticacion.TabStop = false;
             this.grbAutenticacion.Text = "Autenticación";
             // 
-            // grbRol
-            // 
-            this.grbRol.Controls.Add(this.btnSeleccionar);
-            this.grbRol.Controls.Add(this.label3);
-            this.grbRol.Controls.Add(this.cmbRol);
-            this.grbRol.Location = new System.Drawing.Point(12, 12);
-            this.grbRol.Name = "grbRol";
-            this.grbRol.Size = new System.Drawing.Size(366, 165);
-            this.grbRol.TabIndex = 7;
-            this.grbRol.TabStop = false;
-            this.grbRol.Text = "Seleccione un rol";
-            // 
-            // cmbRol
-            // 
-            this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(65, 26);
-            this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(290, 21);
-            this.cmbRol.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Rol";
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(281, 116);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
-            this.btnSeleccionar.TabIndex = 2;
-            this.btnSeleccionar.Text = "Seleccionar";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
             // txtRepetir
             // 
             this.txtRepetir.Location = new System.Drawing.Point(65, 78);
@@ -172,6 +133,46 @@
             this.label4.Text = "Repetir";
             this.label4.Visible = false;
             // 
+            // grbRol
+            // 
+            this.grbRol.Controls.Add(this.btnSeleccionar);
+            this.grbRol.Controls.Add(this.label3);
+            this.grbRol.Controls.Add(this.cmbRol);
+            this.grbRol.Location = new System.Drawing.Point(12, 12);
+            this.grbRol.Name = "grbRol";
+            this.grbRol.Size = new System.Drawing.Size(366, 165);
+            this.grbRol.TabIndex = 7;
+            this.grbRol.TabStop = false;
+            this.grbRol.Text = "Seleccione un rol";
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(281, 116);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionar.TabIndex = 2;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Rol";
+            // 
+            // cmbRol
+            // 
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(65, 26);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(290, 21);
+            this.cmbRol.TabIndex = 0;
+            // 
             // frmIngresar
             // 
             this.AcceptButton = this.btnAceptar;
@@ -186,6 +187,7 @@
             this.Name = "frmIngresar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingresar";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmIngresar_FormClosed);
             this.grbAutenticacion.ResumeLayout(false);
             this.grbAutenticacion.PerformLayout();
             this.grbRol.ResumeLayout(false);

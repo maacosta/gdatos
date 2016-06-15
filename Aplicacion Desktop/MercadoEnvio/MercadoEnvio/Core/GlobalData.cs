@@ -23,6 +23,6 @@ namespace WindowsFormsApplication1.Core
         private GlobalData()
         { }
 
-        public List<Rol> Roles { get; set; }
+        public Rol Rol { get; set; }
     }
 }
