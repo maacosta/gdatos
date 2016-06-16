@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="Core\FormFactory.cs" />
     <Compile Include="Core\GlobalData.cs" />
+    <Compile Include="Core\IFormMDI.cs" />
     <Compile Include="Core\PermisoFuncionalidad.cs" />
     <Compile Include="frmContenedor.cs">
       <SubType>Form</SubType>
@@ -123,6 +124,12 @@
     </Compile>
     <Compile Include="frmIngresar.Designer.cs">
       <DependentUpon>frmIngresar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicación\frmAMPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\frmAMPublicacion.Designer.cs">
+      <DependentUpon>frmAMPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Publicación\frmGenerarPublicacion.cs">
       <SubType>Form</SubType>
@@ -170,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmContenedor.resx">
       <DependentUpon>frmContenedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\frmAMPublicacion.resx">
+      <DependentUpon>frmAMPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\frmGenerarPublicacion.resx">
       <DependentUpon>frmGenerarPublicacion.cs</DependentUpon>

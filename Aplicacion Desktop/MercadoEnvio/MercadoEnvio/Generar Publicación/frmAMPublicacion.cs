@@ -1,5 +1,4 @@
-﻿using MercadoEnvio.Biz.Impl;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,18 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Core;
 
-namespace MercadoEnvio.ABM_Rol
+namespace MercadoEnvio.Generar_Publicación
 {
-    public partial class frmRol : Form, IFormMDI
+    public partial class frmAMPublicacion : Form, IFormMDI
     {
-        private RolBiz _rolBiz;
-
         public FormFactory FormFactory { get; set; }
 
-        public frmRol()
+        public frmAMPublicacion()
         {
             InitializeComponent();
-            this._rolBiz = new RolBiz();
         }
     }
 }

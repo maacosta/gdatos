@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Core;
 
 namespace MercadoEnvio.Facturas
 {
-    public partial class frmFacturas : Form
+    public partial class frmFacturas : Form, IFormMDI
     {
+        public FormFactory FormFactory { get; set; }
+
         public frmFacturas()
         {
             InitializeComponent();

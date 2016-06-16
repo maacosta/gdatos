@@ -9,13 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Core;
 
 namespace MercadoEnvio.ABM_Rubro
 {
-    public partial class frmRubro : Form
+    public partial class frmRubro : Form, IFormMDI
     {
         private RubroBiz _rubroBiz;
 
+        public FormFactory FormFactory { get; set; }
         public Rubro Rubro { get { return null; } }
 
         public frmRubro()

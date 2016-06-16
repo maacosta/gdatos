@@ -25,6 +25,11 @@ namespace WindowsFormsApplication1.Core
                 var frm = Activator.CreateInstance<TForm>();
                 this._formList.Add(frm);
 
+                if (frm.GetType().GetInterfaces().Contains(typeof(IFormMDI)))
+                {
+                    ((IFormMDI)frm).FormFactory = this;
+                }
+
                 frm.FormClosed += frm_FormClosed;
                 frm.MdiParent = this._mdiForm;
                 frm.Show();
