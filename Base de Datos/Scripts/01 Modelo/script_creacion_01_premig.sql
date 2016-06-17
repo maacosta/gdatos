@@ -61,3 +61,25 @@ begin
 	return @resultado
 end
 go
+
+/*
+funcion cantEstrellas()
+*/
+IF OBJECT_ID (N'fn_mig_cantEstrellas', N'FN') is not null
+	DROP FUNCTION fn_mig_cantEstrellas;
+go
+create function fn_mig_cantEstrellas
+(
+	@calificacionCantEstrellas numeric(18,0)
+)
+returns smallint 
+as
+begin
+    declare @resultado smallint 
+	if (@calificacionCantEstrellas > 5)
+		set @resultado = 5
+	else 
+		set @resultado = @calificacionCantEstrellas
+	return @resultado
+end
+go
