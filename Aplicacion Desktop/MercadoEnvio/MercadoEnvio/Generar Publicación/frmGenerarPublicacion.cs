@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MercadoEnvio.Biz.Impl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,21 +14,26 @@ namespace MercadoEnvio.Generar_Publicación
 {
     public partial class frmGenerarPublicacion : Form, IFormMDI
     {
+        private PublicacionBiz _publicacionBiz;
+
         public FormFactory FormFactory { get; set; }
 
         public frmGenerarPublicacion()
         {
             InitializeComponent();
+            this._publicacionBiz = new PublicacionBiz();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            var list = this._publicacionBiz.GetByDesc(GlobalData.Instance.Username, this.txtTexto.Text);
 
+            this.grvPublicacion.DataSource = list;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-
+            this.txtTexto.Text = "";
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)

@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.grvRubro = new System.Windows.Forms.DataGridView();
+            this.grvPublicacion = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTexto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNuevo = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.grvRubro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPublicacion)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSeleccionar.Location = new System.Drawing.Point(361, 357);
+            this.btnSeleccionar.Location = new System.Drawing.Point(174, 78);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
             this.btnSeleccionar.TabIndex = 13;
@@ -51,16 +50,16 @@
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
-            // grvRubro
+            // grvPublicacion
             // 
-            this.grvRubro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grvPublicacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grvRubro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvRubro.Location = new System.Drawing.Point(12, 116);
-            this.grvRubro.Name = "grvRubro";
-            this.grvRubro.Size = new System.Drawing.Size(424, 234);
-            this.grvRubro.TabIndex = 12;
+            this.grvPublicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvPublicacion.Location = new System.Drawing.Point(12, 116);
+            this.grvPublicacion.Name = "grvPublicacion";
+            this.grvPublicacion.Size = new System.Drawing.Size(424, 264);
+            this.grvPublicacion.TabIndex = 12;
             // 
             // btnBuscar
             // 
@@ -131,13 +130,13 @@
             this.ClientSize = new System.Drawing.Size(448, 392);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnSeleccionar);
-            this.Controls.Add(this.grvRubro);
+            this.Controls.Add(this.grvPublicacion);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmGenerarPublicacion";
             this.Text = "Generar Publicación";
-            ((System.ComponentModel.ISupportInitialize)(this.grvRubro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPublicacion)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -147,7 +146,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.DataGridView grvRubro;
+        private System.Windows.Forms.DataGridView grvPublicacion;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.GroupBox groupBox1;

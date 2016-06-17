@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Impl\PublicacionDal.cs" />
     <Compile Include="Impl\VisibilidadDal.cs" />
     <Compile Include="Impl\PermisoDal.cs" />
     <Compile Include="Impl\RolDal.cs" />
