@@ -1,5 +1,5 @@
 insert into gd_esquema.FacturaItem(IdFactura,IdCompraOferta,Monto,Cantidad)
-select  F.Id,CO.Id,CO.IdPublicacion,TFacturaItem.Publicacion_Cod,TFacturaItem.Item_Factura_Monto,TFacturaItem.Item_Factura_Cantidad 
+select  F.Id,CO.Id,TFacturaItem.Item_Factura_Monto,TFacturaItem.Item_Factura_Cantidad 
 from (select distinct	
 Factura_Nro,
 Publicacion_Cod,
