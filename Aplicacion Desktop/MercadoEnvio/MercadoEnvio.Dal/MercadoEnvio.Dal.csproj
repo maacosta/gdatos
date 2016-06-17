@@ -61,7 +61,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MercadoEnvio.Common\MercadoEnvio.Common.csproj">
+    <ProjectReference Include="..\MercadoEnvio.Common\MercadoEnvio.Common.csproj">
       <Project>{5f01fb4c-e8e1-40d1-8d63-2f4834904774}</Project>
       <Name>MercadoEnvio.Common</Name>
     </ProjectReference>

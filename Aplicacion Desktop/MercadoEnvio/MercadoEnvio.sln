@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoEnvio", "MercadoEnvio\MercadoEnvio.csproj", "{DC2F8B5F-0A5A-49AA-A29A-D0DEB02B45E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoEnvio.Dal", "MercadoEnvio.Dal\MercadoEnvio.Dal\MercadoEnvio.Dal.csproj", "{D8EF3513-749B-41C9-B931-57448E42B3C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoEnvio.Dal", "MercadoEnvio.Dal\MercadoEnvio.Dal.csproj", "{D8EF3513-749B-41C9-B931-57448E42B3C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9CC14950-A5AC-4F40-BFC0-C8AC2D8C5807}"
 	ProjectSection(SolutionItems) = preProject

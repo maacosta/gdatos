@@ -50,7 +50,7 @@
       <Project>{5f01fb4c-e8e1-40d1-8d63-2f4834904774}</Project>
       <Name>MercadoEnvio.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MercadoEnvio.Dal\MercadoEnvio.Dal\MercadoEnvio.Dal.csproj">
+    <ProjectReference Include="..\MercadoEnvio.Dal\MercadoEnvio.Dal.csproj">
       <Project>{d8ef3513-749b-41c9-b931-57448e42b3c9}</Project>
       <Name>MercadoEnvio.Dal</Name>
     </ProjectReference>
