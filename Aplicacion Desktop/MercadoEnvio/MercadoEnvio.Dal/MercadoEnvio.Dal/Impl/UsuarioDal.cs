@@ -21,9 +21,9 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
-        public void SetFechaBaja(string username)
+        public void SetFechaBaja(string username, DateTime fechaSistema)
         {
-            object[] param = new object[] { username };
+            object[] param = new object[] { username, fechaSistema };
 
             this._db.ExecuteSprocAccessor<UsuarioLogin>("gd_esquema.sp_usuario_setFechaBaja", param);
         }

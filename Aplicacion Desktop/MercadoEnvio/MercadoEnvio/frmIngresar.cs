@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                var roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text);
+                var roles = this._loginBiz.Login(this.txtUsuario.Text, this.txtClave.Text, GlobalData.Instance.FechaSistema);
 
                 GlobalData.Instance.Username = this.txtUsuario.Text;
                 if (roles.Count == 1)

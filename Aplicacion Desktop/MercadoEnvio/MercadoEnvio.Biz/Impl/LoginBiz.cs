@@ -21,7 +21,7 @@ namespace MercadoEnvio.Biz.Impl
             this._permisoDal = new PermisoDal();
         }
 
-        public List<Rol> Login(string user, string password)
+        public List<Rol> Login(string user, string password, DateTime fechaSistema)
         {
             var loginData = this._usuarioDal.GetLoginData(user);
 
@@ -31,7 +31,7 @@ namespace MercadoEnvio.Biz.Impl
             }
             else if (loginData.Intentos >= 3)
             {
-                this._usuarioDal.SetFechaBaja(user);
+                this._usuarioDal.SetFechaBaja(user, fechaSistema);
                 throw new UsuarioException(UsuarioTypeExcep.IntentosDeLoginFallidos_UsuarioBloqueado);
             }
 
