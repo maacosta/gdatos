@@ -43,6 +43,7 @@
     <Compile Include="Entity\Rol.cs" />
     <Compile Include="Entity\Rubro.cs" />
     <Compile Include="Entity\UsuarioLogin.cs" />
+    <Compile Include="Entity\Visibilidad.cs" />
     <Compile Include="FunctionalException\UsuarioException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

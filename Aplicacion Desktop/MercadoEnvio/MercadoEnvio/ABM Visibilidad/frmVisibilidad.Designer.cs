@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.grvRubro = new System.Windows.Forms.DataGridView();
+            this.grvVisibilidad = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTexto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.grvRubro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvVisibilidad)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,17 +48,18 @@
             this.btnSeleccionar.TabIndex = 13;
             this.btnSeleccionar.Text = "Seleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
-            // grvRubro
+            // grvVisibilidad
             // 
-            this.grvRubro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grvVisibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grvRubro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvRubro.Location = new System.Drawing.Point(12, 116);
-            this.grvRubro.Name = "grvRubro";
-            this.grvRubro.Size = new System.Drawing.Size(424, 234);
-            this.grvRubro.TabIndex = 12;
+            this.grvVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvVisibilidad.Location = new System.Drawing.Point(12, 116);
+            this.grvVisibilidad.Name = "grvVisibilidad";
+            this.grvVisibilidad.Size = new System.Drawing.Size(424, 234);
+            this.grvVisibilidad.TabIndex = 12;
             // 
             // btnBuscar
             // 
@@ -69,6 +70,7 @@
             this.btnBuscar.TabIndex = 11;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnLimpiar
             // 
@@ -78,6 +80,7 @@
             this.btnLimpiar.TabIndex = 10;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // groupBox1
             // 
@@ -116,13 +119,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 392);
             this.Controls.Add(this.btnSeleccionar);
-            this.Controls.Add(this.grvRubro);
+            this.Controls.Add(this.grvVisibilidad);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmVisibilidad";
             this.Text = "ABM Visibilidad";
-            ((System.ComponentModel.ISupportInitialize)(this.grvRubro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvVisibilidad)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -132,7 +135,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.DataGridView grvRubro;
+        private System.Windows.Forms.DataGridView grvVisibilidad;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.GroupBox groupBox1;

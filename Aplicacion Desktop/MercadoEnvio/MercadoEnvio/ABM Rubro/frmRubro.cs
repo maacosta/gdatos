@@ -18,7 +18,7 @@ namespace MercadoEnvio.ABM_Rubro
         private RubroBiz _rubroBiz;
 
         public FormFactory FormFactory { get; set; }
-        public Rubro Rubro { get { return null; } }
+        public Rubro Rubro { get { return (Rubro)this.grvRubro.CurrentRow.DataBoundItem; } }
 
         public frmRubro()
         {
@@ -31,6 +31,16 @@ namespace MercadoEnvio.ABM_Rubro
             var list = this._rubroBiz.GetByDesc(this.txtTexto.Text);
 
             this.grvRubro.DataSource = list;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtTexto.Text = "";
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
