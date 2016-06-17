@@ -18,26 +18,47 @@ namespace WindowsFormsApplication1.Core
             this._formList = new List<Form>();
         }
 
-        public void OpenChildForm<TForm>() where TForm : Form
+        public TForm OpenChildDialogForm<TForm>() where TForm : Form
         {
+            return this.OpenChildForm<TForm>(true);
+        }
+
+        public TForm OpenChildForm<TForm>() where TForm : Form
+        {
+            return this.OpenChildForm<TForm>(false);
+        }
+
+        private TForm OpenChildForm<TForm>(bool asDialog) where TForm : Form
+        {
+            TForm frm = null;
             if (!this._formList.Exists(f => f.GetType() == typeof(TForm)))
             {
-                var frm = Activator.CreateInstance<TForm>();
-                this._formList.Add(frm);
+                frm = Activator.CreateInstance<TForm>();
 
                 if (frm.GetType().GetInterfaces().Contains(typeof(IFormMDI)))
                 {
                     ((IFormMDI)frm).FormFactory = this;
                 }
 
-                frm.FormClosed += frm_FormClosed;
-                frm.MdiParent = this._mdiForm;
-                frm.Show();
+                if (asDialog)
+                {
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    this._formList.Add(frm);
+                    frm.FormClosed += frm_FormClosed;
+
+                    frm.MdiParent = this._mdiForm;
+                    frm.Show();
+                }
             }
             else
             {
-                this._formList.First(f => f.GetType() == typeof(TForm)).Activate();
+                frm = (TForm)this._formList.First(f => f.GetType() == typeof(TForm));
+                frm.Activate();
             }
+            return frm;
         }
 
         private void frm_FormClosed(object sender, FormClosedEventArgs e)

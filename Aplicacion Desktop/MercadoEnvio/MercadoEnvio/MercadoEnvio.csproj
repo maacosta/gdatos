@@ -107,6 +107,12 @@
     <Compile Include="Core\GlobalData.cs" />
     <Compile Include="Core\IFormMDI.cs" />
     <Compile Include="Core\PermisoFuncionalidad.cs" />
+    <Compile Include="Core\ucSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\ucSelector.Designer.cs">
+      <DependentUpon>ucSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmContenedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\frmComprarOfertar.resx">
       <DependentUpon>frmComprarOfertar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\ucSelector.resx">
+      <DependentUpon>ucSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturas\frmFacturas.resx">
       <DependentUpon>frmFacturas.cs</DependentUpon>

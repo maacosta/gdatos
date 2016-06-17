@@ -1,4 +1,5 @@
 ﻿using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +39,8 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-
+            var frm = this.FormFactory.OpenChildForm<frmAMPublicacion>();
+            frm.SetPublicacion((Publicacion)this.grvPublicacion.CurrentRow.DataBoundItem);
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

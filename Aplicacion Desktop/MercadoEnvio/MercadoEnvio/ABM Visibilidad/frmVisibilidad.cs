@@ -18,7 +18,13 @@ namespace MercadoEnvio.ABM_Visibilidad
         private VisibilidadBiz _visibilidadBiz;
 
         public FormFactory FormFactory { get; set; }
-        public Visibilidad Visibilidad { get { return (Visibilidad)this.grvVisibilidad.CurrentRow.DataBoundItem; } }
+        public Visibilidad Visibilidad 
+        { 
+            get 
+            { 
+                return this.grvVisibilidad.CurrentRow != null ? (Visibilidad)this.grvVisibilidad.CurrentRow.DataBoundItem : null; 
+            } 
+        }
 
         public frmVisibilidad()
         {
@@ -40,7 +46,12 @@ namespace MercadoEnvio.ABM_Visibilidad
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.grvVisibilidad.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un item.");
+            }
+            else
+                this.Close();
         }
     }
 }

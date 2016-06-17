@@ -18,7 +18,13 @@ namespace MercadoEnvio.ABM_Rubro
         private RubroBiz _rubroBiz;
 
         public FormFactory FormFactory { get; set; }
-        public Rubro Rubro { get { return (Rubro)this.grvRubro.CurrentRow.DataBoundItem; } }
+        public Rubro Rubro 
+        { 
+            get 
+            { 
+                return this.grvRubro.CurrentRow != null ? (Rubro)this.grvRubro.CurrentRow.DataBoundItem : null; 
+            } 
+        }
 
         public frmRubro()
         {
@@ -40,7 +46,12 @@ namespace MercadoEnvio.ABM_Rubro
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this.grvRubro.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un item.");
+            }
+            else
+                this.Close();
         }
     }
 }
