@@ -17,8 +17,8 @@ Inicialización de datos
 --username: admin, password: admin
 SET IDENTITY_INSERT gd_esquema.Usuario ON
 GO 
-INSERT INTO gd_esquema.Usuario ([Id], [Username], [Nombre], [PassHash], [PassSalt])
-     VALUES (100, 'admin', 'Administrador General', 'y1Uk2aITg2GRutAc6RAlzarXRlYoExYtG+k2XxAVOf4n2YCi', 'J9mAog==')
+INSERT INTO gd_esquema.Usuario ([Id], [Username],  [PassHash], [PassSalt]) --[Nombre],
+     VALUES (100, 'admin', 'y1Uk2aITg2GRutAc6RAlzarXRlYoExYtG+k2XxAVOf4n2YCi', 'J9mAog==') --'Administrador General'
 SET IDENTITY_INSERT gd_esquema.Usuario OFF
 GO 
 
