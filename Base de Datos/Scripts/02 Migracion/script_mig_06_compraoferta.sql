@@ -10,7 +10,7 @@ select distinct
 	Compra_Fecha fecha,
 	Compra_Cantidad cantidad,
 	Publicacion_Precio monto
-from gd_esquema.Maestra 
+from LOS_DE_ADELANTE.Maestra 
 where Publicacion_Cod is not null and Compra_Fecha is not null
 union
 select distinct 
@@ -20,15 +20,15 @@ select distinct
 	Oferta_Fecha fecha,
 	1 cantidad,
 	Oferta_Monto monto
-from gd_esquema.Maestra 
+from LOS_DE_ADELANTE.Maestra 
 where Publicacion_Cod is not null and Oferta_Fecha is not null
 ) co
 go
 
-insert into gd_esquema.CompraOferta 
+insert into LOS_DE_ADELANTE.CompraOferta 
 	(IdPublicacion, IdUsuario, Tipo, Fecha, Cantidad, Monto)
 select p.Id, c.IdUsuario, tipo, fecha, cantidad, monto
 from #TCompraOferta co
-	inner join gd_esquema.Publicacion p on co.codigo = p.Codigo
-	inner join gd_esquema.Cliente c on co.dni = c.Dni
+	inner join LOS_DE_ADELANTE.Publicacion p on co.codigo = p.Codigo
+	inner join LOS_DE_ADELANTE.Cliente c on co.dni = c.Dni
 go 

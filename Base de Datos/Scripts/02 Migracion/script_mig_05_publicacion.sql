@@ -16,11 +16,11 @@ select distinct
 	Publicacion_Visibilidad_Cod visibilidadCodigo,
 	Publ_Cli_Dni clienteDni,
 	Publ_Empresa_Cuit empresaCuit
-from gd_esquema.maestra
+from LOS_DE_ADELANTE.maestra
 where [Publicacion_Cod] is not null
 ) p
 
-insert into gd_esquema.Publicacion 
+insert into LOS_DE_ADELANTE.Publicacion 
 	(Codigo, TipoPublicacion, Estado, Descripcion, Stock, FechaInicio, FechaVencimiento, Precio, IdRubro, IdVisibilidad, IdUsuario)
 select 
 	t.codigo, 
@@ -35,10 +35,10 @@ select
 	v.Id, 
 	case when c.dni is null then e.IdUsuario else c.IdUsuario end idUsuario
 from #TPublicacion t
-	inner join gd_esquema.Rubro r on r.DescCorta = t.rubroDesc
-	inner join gd_esquema.Visibilidad v on v.codigo = t.visibilidadCodigo
-	left join gd_esquema.Cliente c on t.clienteDni = c.dni
-	left join gd_esquema.Empresa e on t.empresaCuit = e.cuit
+	inner join LOS_DE_ADELANTE.Rubro r on r.DescCorta = t.rubroDesc
+	inner join LOS_DE_ADELANTE.Visibilidad v on v.codigo = t.visibilidadCodigo
+	left join LOS_DE_ADELANTE.Cliente c on t.clienteDni = c.dni
+	left join LOS_DE_ADELANTE.Empresa e on t.empresaCuit = e.cuit
 
 go
 

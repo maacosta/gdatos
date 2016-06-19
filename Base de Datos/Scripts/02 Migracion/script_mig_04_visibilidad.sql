@@ -1,4 +1,4 @@
-insert into gd_esquema.Visibilidad (Codigo, Descripcion, Precio, Porcentaje, PorcentajeEnvio)
+insert into LOS_DE_ADELANTE.Visibilidad (Codigo, Descripcion, Precio, Porcentaje, PorcentajeEnvio)
 select distinct 
 	Publicacion_Visibilidad_Cod, 
 	Publicacion_Visibilidad_desc, 
