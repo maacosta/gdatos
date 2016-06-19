@@ -1,13 +1,14 @@
 IF OBJECT_ID('tempdb..#TCliente') IS NOT NULL DROP TABLE #TCliente
 IF OBJECT_ID('tempdb..#TEmpresa') IS NOT NULL DROP TABLE #TEmpresa
 
-delete from gd_esquema.Cliente
-delete from gd_esquema.Empresa
-delete from gd_esquema.Usuario
+delete from LOS_DE_ADELANTE.Cliente
+delete from LOS_DE_ADELANTE.Empresa
+delete from LOS_DE_ADELANTE.UsuarioRol
+delete from LOS_DE_ADELANTE.Usuario
 
 GO
 
-SET IDENTITY_INSERT gd_esquema.Usuario ON
+SET IDENTITY_INSERT LOS_DE_ADELANTE.Usuario ON
 GO 
 
 --Temporal Clientes
@@ -67,14 +68,14 @@ declare @idmax int
 
 --Usuario
 
-insert into gd_esquema.Usuario
+insert into LOS_DE_ADELANTE.Usuario
 	(Id, Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal) 
 select id, dni, mail, calle, numero, piso, depto, cp 
 from #TCliente
 
 set @idmax = SCOPE_IDENTITY()
 
-insert into gd_esquema.Cliente 
+insert into LOS_DE_ADELANTE.Cliente 
 	(IdUsuario, Dni, TipoDocumento, Apellido, Nombre, FechaNacimiento, FechaCreacion)  
 select distinct 
 	id, dni, 'DNI', apellido, nombre, fechanac, @hoy
@@ -82,15 +83,15 @@ from #TCliente
 
 --Empresa
 
-insert into gd_esquema.Usuario
+insert into LOS_DE_ADELANTE.Usuario
 	(Id, Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal) 
 select id+@idmax, cuit, mail, calle, numero, piso, depto, cp 
 from #TEmpresa
   
-insert into gd_esquema.Empresa 
+insert into LOS_DE_ADELANTE.Empresa 
 	(IdUsuario, Cuit, RazonSocial, FechaCreacion)
 select 	Id+@idmax, cuit, razonsocial, fechacreacion 
 from #TEmpresa
 
-SET IDENTITY_INSERT gd_esquema.Usuario OFF
+SET IDENTITY_INSERT LOS_DE_ADELANTE.Usuario OFF
 GO 
