@@ -1,8 +1,8 @@
 --EnUsuario
-IF (OBJECT_ID('gd_esquema.sp_usuario_insEmpresa') IS NOT NULL)
-	drop PROCEDURE gd_esquema.sp_usuario_insEmpresa
+IF (OBJECT_ID('LOS_DE_ADELANTE.sp_usuario_insEmpresa') IS NOT NULL)
+	drop PROCEDURE LOS_DE_ADELANTE.sp_usuario_insEmpresa
 go
-create procedure gd_esquema.sp_usuario_insEmpresa( 
+create procedure LOS_DE_ADELANTE.sp_usuario_insEmpresa( 
      @Cuit nvarchar (50),
 	 @RazonSocial nvarchar(255),
 	 @Ciudad nvarchar (50),
@@ -21,15 +21,15 @@ create procedure gd_esquema.sp_usuario_insEmpresa(
  declare @hoy datetime = getdate()
 declare @idmax int
 
- insert into gd_esquema.Usuario (Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
+ insert into LOS_DE_ADELANTE.Usuario (Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
  values (@Cuit,@mail,@Calle,@Numero,@Piso,@Depto,@CodigoPostal,@Localidad,0);
 
  set @idmax = SCOPE_IDENTITY();
 
- insert into gd_esquema.Empresa (IdUsuario, Cuit, RazonSocial, FechaCreacion, Ciudad ,NombreContacto , RubroPrincipal)
+ insert into LOS_DE_ADELANTE.Empresa (IdUsuario, Cuit, RazonSocial, FechaCreacion, Ciudad ,NombreContacto , RubroPrincipal)
  values (@idmax,@Cuit,@RazonSocial,@hoy,@Ciudad ,@Contacto , @RubroPrincipal )
  end
 
  
--- gd_esquema.sp_usuario_insEmpresa '12345-4','palo','fruta','cntacto','rpl','hjdf@',1234,'hola',3,3,'b',1234,'ba'
+-- LOS_DE_ADELANTE.sp_usuario_insEmpresa '12345-4','palo','fruta','cntacto','rpl','hjdf@',1234,'hola',3,3,'b',1234,'ba'
 
