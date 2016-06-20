@@ -20,15 +20,17 @@ create procedure LOS_DE_ADELANTE.sp_usuario_insCliente (
  declare @hoy datetime = getdate()
 declare @idmax int
 
- insert into LOS_DE_ADELANTE.Usuario (Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
- values (@Dni,@mail,@Calle,@Numero,@Piso,@Depto,@CodigoPostal,@Localidad,0);
+ insert into LOS_DE_ADELANTE.Usuario (Username, Mail,Telefono, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
+ values (@Dni,@Mail,@Telefono,@Calle,@Numero,@Piso,@Depto,@CodigoPostal,@Localidad,0);
 
  set @idmax = SCOPE_IDENTITY();
 
  insert into LOS_DE_ADELANTE.Cliente(IdUsuario, Dni, TipoDocumento, Apellido, Nombre, FechaNacimiento, FechaCreacion) 
  values (@idmax,@Dni,'DNI',@Apellido,@Nombre,@FechaNacimiento,@hoy); 
  end
-
- --
+ go
+ 
  --LOS_DE_ADELANTE.sp_usuario_insCliente 1233,'palo','fruta','10-08-1990','hjdf@',1234,'hola',3,3,'b',1234,'ba'
+ --select* from LOS_DE_ADELANTE.Usuario
+--select* from LOS_DE_ADELANTE.Cliente
 

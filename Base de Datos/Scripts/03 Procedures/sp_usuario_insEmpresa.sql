@@ -1,4 +1,4 @@
---EnUsuario
+--insertando a Usuarios
 IF (OBJECT_ID('LOS_DE_ADELANTE.sp_usuario_insEmpresa') IS NOT NULL)
 	drop PROCEDURE LOS_DE_ADELANTE.sp_usuario_insEmpresa
 go
@@ -21,15 +21,15 @@ create procedure LOS_DE_ADELANTE.sp_usuario_insEmpresa(
  declare @hoy datetime = getdate()
 declare @idmax int
 
- insert into LOS_DE_ADELANTE.Usuario (Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
- values (@Cuit,@mail,@Calle,@Numero,@Piso,@Depto,@CodigoPostal,@Localidad,0);
+ insert into LOS_DE_ADELANTE.Usuario (Username, Mail,Telefono, Calle, Numero, Piso, Depto, CodigoPostal,Localidad,Intentos)
+ values (@Cuit,@mail,@Telefono,@Calle,@Numero,@Piso,@Depto,@CodigoPostal,@Localidad,0);
 
  set @idmax = SCOPE_IDENTITY();
 
  insert into LOS_DE_ADELANTE.Empresa (IdUsuario, Cuit, RazonSocial, FechaCreacion, Ciudad ,NombreContacto , RubroPrincipal)
  values (@idmax,@Cuit,@RazonSocial,@hoy,@Ciudad ,@Contacto , @RubroPrincipal )
  end
-
+ go
  
--- LOS_DE_ADELANTE.sp_usuario_insEmpresa '12345-4','palo','fruta','cntacto','rpl','hjdf@',1234,'hola',3,3,'b',1234,'ba'
+--LOS_DE_ADELANTE.sp_usuario_insEmpresa '12345-4','palo','fruta','cntacto','rpl','hjdf@',1234,'hola',3,3,'b',1234,'ba'
 
