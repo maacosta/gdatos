@@ -1,5 +1,5 @@
 if (object_id ('LOS_DE_ADELANTE.sp_publicacion_insPublicacion')is not null)
-drop procedure LOS_DE_ADELANTE.sp_publicacion_insPublicacion
+	drop procedure LOS_DE_ADELANTE.sp_publicacion_insPublicacion
 go
 
 create procedure LOS_DE_ADELANTE.sp_publicacion_insPublicacion 

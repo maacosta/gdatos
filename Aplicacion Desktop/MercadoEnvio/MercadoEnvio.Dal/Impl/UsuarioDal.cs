@@ -16,7 +16,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { username };
 
-            var data = this._db.ExecuteSprocAccessor<UsuarioLogin>("gd_esquema.sp_usuario_getLoginData", param).FirstOrDefault();
+            var data = this._db.ExecuteSprocAccessor<UsuarioLogin>("LOS_DE_ADELANTE.sp_usuario_getLoginData", param).FirstOrDefault();
 
             return data;
         }
@@ -25,14 +25,14 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { username, fechaSistema };
 
-            this._db.ExecuteSprocAccessor<UsuarioLogin>("gd_esquema.sp_usuario_setFechaBaja", param);
+            this._db.ExecuteSprocAccessor<UsuarioLogin>("LOS_DE_ADELANTE.sp_usuario_setFechaBaja", param);
         }
 
         public List<Rol> Autenticar(string username, string passHashed)
         {
             object[] param = new object[] { username, passHashed };
 
-            var data = this._db.ExecuteSprocAccessor<Rol>("gd_esquema.sp_usuario_login", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Rol>("LOS_DE_ADELANTE.sp_usuario_login", param).ToList();
 
             return data;
         }

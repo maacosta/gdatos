@@ -39,13 +39,20 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            if (this.grvPublicacion.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar un item");
+                return;
+            }
+
             var frm = this.FormFactory.OpenChildForm<frmAMPublicacion>();
             frm.SetPublicacion((Publicacion)this.grvPublicacion.CurrentRow.DataBoundItem);
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            this.FormFactory.OpenChildForm<frmAMPublicacion>();
+            var frm = this.FormFactory.OpenChildForm<frmAMPublicacion>();
+            frm.SetNewPublicacion();
         }
     }
 }

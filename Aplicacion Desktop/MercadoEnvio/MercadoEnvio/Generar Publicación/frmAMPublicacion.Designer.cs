@@ -39,6 +39,9 @@
             this.cmbTipoPublicacion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grbEmpresa = new System.Windows.Forms.GroupBox();
+            this.chkIncluirEnvio = new System.Windows.Forms.CheckBox();
+            this.ucsVisibilidad = new WindowsFormsApplication1.Core.ucSelector();
+            this.ucsRubro = new WindowsFormsApplication1.Core.ucSelector();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,8 +58,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtCosto = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.ucsVisibilidad = new WindowsFormsApplication1.Core.ucSelector();
-            this.ucsRubro = new WindowsFormsApplication1.Core.ucSelector();
+            this.btnActivar = new System.Windows.Forms.Button();
+            this.btnPausar = new System.Windows.Forms.Button();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
             this.SuspendLayout();
@@ -64,21 +68,23 @@
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(347, 403);
+            this.btnGuardar.Location = new System.Drawing.Point(347, 426);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 9;
-            this.btnGuardar.Text = "Buscar";
+            this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 403);
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 426);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 8;
-            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // groupBox1
             // 
@@ -148,6 +154,9 @@
             // 
             // cmbTipoPublicacion
             // 
+            this.cmbTipoPublicacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTipoPublicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoPublicacion.FormattingEnabled = true;
             this.cmbTipoPublicacion.Items.AddRange(new object[] {
             "Compra Inmediata",
@@ -156,6 +165,7 @@
             this.cmbTipoPublicacion.Name = "cmbTipoPublicacion";
             this.cmbTipoPublicacion.Size = new System.Drawing.Size(307, 21);
             this.cmbTipoPublicacion.TabIndex = 10;
+            this.cmbTipoPublicacion.SelectedIndexChanged += new System.EventHandler(this.cmbTipoPublicacion_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -170,6 +180,7 @@
             // 
             this.grbEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbEmpresa.Controls.Add(this.chkIncluirEnvio);
             this.grbEmpresa.Controls.Add(this.ucsVisibilidad);
             this.grbEmpresa.Controls.Add(this.ucsRubro);
             this.grbEmpresa.Controls.Add(this.dtpFechaFin);
@@ -190,10 +201,36 @@
             this.grbEmpresa.Controls.Add(this.label16);
             this.grbEmpresa.Location = new System.Drawing.Point(12, 129);
             this.grbEmpresa.Name = "grbEmpresa";
-            this.grbEmpresa.Size = new System.Drawing.Size(410, 268);
+            this.grbEmpresa.Size = new System.Drawing.Size(410, 291);
             this.grbEmpresa.TabIndex = 12;
             this.grbEmpresa.TabStop = false;
             this.grbEmpresa.Text = "Datos";
+            // 
+            // chkIncluirEnvio
+            // 
+            this.chkIncluirEnvio.AutoSize = true;
+            this.chkIncluirEnvio.Location = new System.Drawing.Point(84, 256);
+            this.chkIncluirEnvio.Name = "chkIncluirEnvio";
+            this.chkIncluirEnvio.Size = new System.Drawing.Size(84, 17);
+            this.chkIncluirEnvio.TabIndex = 24;
+            this.chkIncluirEnvio.Text = "Incluir Envio";
+            this.chkIncluirEnvio.UseVisualStyleBackColor = true;
+            // 
+            // ucsVisibilidad
+            // 
+            this.ucsVisibilidad.Location = new System.Drawing.Point(84, 230);
+            this.ucsVisibilidad.Name = "ucsVisibilidad";
+            this.ucsVisibilidad.Size = new System.Drawing.Size(307, 20);
+            this.ucsVisibilidad.TabIndex = 20;
+            this.ucsVisibilidad.SelectionClick += new System.EventHandler(this.ucsVisibilidad_SelectionClick);
+            // 
+            // ucsRubro
+            // 
+            this.ucsRubro.Location = new System.Drawing.Point(84, 204);
+            this.ucsRubro.Name = "ucsRubro";
+            this.ucsRubro.Size = new System.Drawing.Size(307, 20);
+            this.ucsRubro.TabIndex = 19;
+            this.ucsRubro.SelectionClick += new System.EventHandler(this.ucsRubro_SelectionClick);
             // 
             // dtpFechaFin
             // 
@@ -339,31 +376,49 @@
             this.label16.TabIndex = 2;
             this.label16.Text = "Costo";
             // 
-            // ucsVisibilidad
+            // btnActivar
             // 
-            this.ucsVisibilidad.Location = new System.Drawing.Point(84, 230);
-            this.ucsVisibilidad.Name = "ucsVisibilidad";
-            this.ucsVisibilidad.Size = new System.Drawing.Size(307, 20);
-            this.ucsVisibilidad.TabIndex = 20;
-            this.ucsVisibilidad.SelectionClick += new System.EventHandler(this.ucsVisibilidad_SelectionClick);
+            this.btnActivar.Location = new System.Drawing.Point(93, 426);
+            this.btnActivar.Name = "btnActivar";
+            this.btnActivar.Size = new System.Drawing.Size(75, 23);
+            this.btnActivar.TabIndex = 13;
+            this.btnActivar.Text = "&Activar";
+            this.btnActivar.UseVisualStyleBackColor = true;
+            this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
             // 
-            // ucsRubro
+            // btnPausar
             // 
-            this.ucsRubro.Location = new System.Drawing.Point(84, 204);
-            this.ucsRubro.Name = "ucsRubro";
-            this.ucsRubro.Size = new System.Drawing.Size(307, 20);
-            this.ucsRubro.TabIndex = 19;
-            this.ucsRubro.SelectionClick += new System.EventHandler(this.ucsRubro_SelectionClick);
+            this.btnPausar.Location = new System.Drawing.Point(174, 426);
+            this.btnPausar.Name = "btnPausar";
+            this.btnPausar.Size = new System.Drawing.Size(75, 23);
+            this.btnPausar.TabIndex = 14;
+            this.btnPausar.Text = "&Pausar";
+            this.btnPausar.UseVisualStyleBackColor = true;
+            this.btnPausar.Click += new System.EventHandler(this.btnPausar_Click);
+            // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.Location = new System.Drawing.Point(255, 426);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
+            this.btnFinalizar.TabIndex = 15;
+            this.btnFinalizar.Text = "&Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // frmAMPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 434);
+            this.ClientSize = new System.Drawing.Size(434, 461);
+            this.Controls.Add(this.btnFinalizar);
+            this.Controls.Add(this.btnPausar);
+            this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.grbEmpresa);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(450, 500);
             this.Name = "frmAMPublicacion";
             this.Text = "frmAMPublicacion";
             this.groupBox1.ResumeLayout(false);
@@ -405,5 +460,9 @@
         private System.Windows.Forms.CheckBox chkPermitirPreguntas;
         private WindowsFormsApplication1.Core.ucSelector ucsVisibilidad;
         private WindowsFormsApplication1.Core.ucSelector ucsRubro;
+        private System.Windows.Forms.CheckBox chkIncluirEnvio;
+        private System.Windows.Forms.Button btnActivar;
+        private System.Windows.Forms.Button btnPausar;
+        private System.Windows.Forms.Button btnFinalizar;
     }
 }

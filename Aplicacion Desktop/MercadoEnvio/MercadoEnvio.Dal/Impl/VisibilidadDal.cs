@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { texto };
 
-            var data = this._db.ExecuteSprocAccessor<Visibilidad>("gd_esquema.sp_visibilidad_getVisibilidadFiltros", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Visibilidad>("LOS_DE_ADELANTE.sp_visibilidad_getVisibilidadFiltros", param).ToList();
 
             return data;
         }

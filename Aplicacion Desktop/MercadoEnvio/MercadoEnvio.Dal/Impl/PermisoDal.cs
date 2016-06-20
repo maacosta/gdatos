@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { idRol };
 
-            var data = this._db.ExecuteSprocAccessor<Permiso>("gd_esquema.sp_permiso_getByRol", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Permiso>("LOS_DE_ADELANTE.sp_permiso_getByRol", param).ToList();
 
             return data;
         }

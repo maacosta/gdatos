@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { texto };
 
-            var data = this._db.ExecuteSprocAccessor<Rubro>("gd_esquema.sp_rubro_getRubroFiltros", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Rubro>("LOS_DE_ADELANTE.sp_rubro_getRubroFiltros", param).ToList();
 
             return data;
         }

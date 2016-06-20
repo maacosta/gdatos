@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { username, texto };
 
-            var data = this._db.ExecuteSprocAccessor<Publicacion>("gd_esquema.sp_publicacion_getPublicacionPropiaFiltros", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros", param).ToList();
 
             return data;
         }

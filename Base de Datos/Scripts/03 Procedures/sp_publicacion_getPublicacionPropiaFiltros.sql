@@ -2,8 +2,11 @@ IF (OBJECT_ID('LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros') IS N
 	Drop Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros
 go
 
-Create Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros (@username nvarchar(50), @texto nvarchar(255)) As
-
+Create Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros 
+(
+	@username nvarchar(50), 
+	@texto nvarchar(255)
+) As
 Begin
 
 SELECT pub.Id, pub.Codigo, TipoPublicacion, Estado, pub.Descripcion, Stock, FechaInicio, FechaVencimiento, pub.Precio, 
