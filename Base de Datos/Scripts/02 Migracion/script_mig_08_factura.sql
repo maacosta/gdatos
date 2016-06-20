@@ -10,7 +10,7 @@ select distinct
 	Factura_Nro, 
 	Factura_Fecha, 
 	Factura_Total
-from LOS_DE_ADELANTE.Maestra 
+from gd_esquema.Maestra 
 where Factura_Nro is not null and Publ_Cli_Dni is not null
 ) fc
 
@@ -22,7 +22,7 @@ select distinct
 	Factura_Nro, 
 	Factura_Fecha, 
 	Factura_Total
-from LOS_DE_ADELANTE.Maestra 
+from gd_esquema.Maestra 
 where Factura_Nro is not null and Publ_Empresa_Cuit is not null
 ) fe
 

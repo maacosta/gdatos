@@ -5,7 +5,7 @@ Factura_Nro,
 Publicacion_Cod,
 Item_Factura_Monto,
 Item_Factura_Cantidad
-from LOS_DE_ADELANTE.Maestra
+from gd_esquema.Maestra
 where Publicacion_cod is not null and Item_Factura_Monto is not null) as TFacturaItem
 left join LOS_DE_ADELANTE.Factura as F
 on F.Numero = TFacturaItem.Factura_Nro

@@ -10,7 +10,7 @@ select distinct
 	Compra_Fecha fecha,
 	Compra_Cantidad cantidad,
 	Publicacion_Precio monto
-from LOS_DE_ADELANTE.Maestra 
+from gd_esquema.Maestra 
 where Publicacion_Cod is not null and Compra_Fecha is not null
 union
 select distinct 
@@ -20,7 +20,7 @@ select distinct
 	Oferta_Fecha fecha,
 	1 cantidad,
 	Oferta_Monto monto
-from LOS_DE_ADELANTE.Maestra 
+from gd_esquema.Maestra 
 where Publicacion_Cod is not null and Oferta_Fecha is not null
 ) co
 go

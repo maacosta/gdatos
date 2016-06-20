@@ -16,7 +16,7 @@ select distinct
 	Publicacion_Visibilidad_Cod visibilidadCodigo,
 	Publ_Cli_Dni clienteDni,
 	Publ_Empresa_Cuit empresaCuit
-from LOS_DE_ADELANTE.maestra
+from gd_esquema.maestra
 where [Publicacion_Cod] is not null
 ) p
 
