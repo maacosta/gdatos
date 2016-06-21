@@ -40,8 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.grbEmpresa = new System.Windows.Forms.GroupBox();
             this.chkIncluirEnvio = new System.Windows.Forms.CheckBox();
-            this.ucsVisibilidad = new WindowsFormsApplication1.Core.ucSelector();
-            this.ucsRubro = new WindowsFormsApplication1.Core.ucSelector();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,6 +59,8 @@
             this.btnActivar = new System.Windows.Forms.Button();
             this.btnPausar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
+            this.ucsVisibilidad = new WindowsFormsApplication1.Core.ucSelector();
+            this.ucsRubro = new WindowsFormsApplication1.Core.ucSelector();
             this.groupBox1.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
             this.SuspendLayout();
@@ -145,6 +145,8 @@
             // chkPermitirPreguntas
             // 
             this.chkPermitirPreguntas.AutoSize = true;
+            this.chkPermitirPreguntas.Checked = true;
+            this.chkPermitirPreguntas.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPermitirPreguntas.Location = new System.Drawing.Point(13, 51);
             this.chkPermitirPreguntas.Name = "chkPermitirPreguntas";
             this.chkPermitirPreguntas.Size = new System.Drawing.Size(110, 17);
@@ -215,22 +217,6 @@
             this.chkIncluirEnvio.TabIndex = 24;
             this.chkIncluirEnvio.Text = "Incluir Envio";
             this.chkIncluirEnvio.UseVisualStyleBackColor = true;
-            // 
-            // ucsVisibilidad
-            // 
-            this.ucsVisibilidad.Location = new System.Drawing.Point(84, 230);
-            this.ucsVisibilidad.Name = "ucsVisibilidad";
-            this.ucsVisibilidad.Size = new System.Drawing.Size(307, 20);
-            this.ucsVisibilidad.TabIndex = 20;
-            this.ucsVisibilidad.SelectionClick += new System.EventHandler(this.ucsVisibilidad_SelectionClick);
-            // 
-            // ucsRubro
-            // 
-            this.ucsRubro.Location = new System.Drawing.Point(84, 204);
-            this.ucsRubro.Name = "ucsRubro";
-            this.ucsRubro.Size = new System.Drawing.Size(307, 20);
-            this.ucsRubro.TabIndex = 19;
-            this.ucsRubro.SelectionClick += new System.EventHandler(this.ucsRubro_SelectionClick);
             // 
             // dtpFechaFin
             // 
@@ -405,6 +391,22 @@
             this.btnFinalizar.Text = "&Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = true;
             this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
+            // 
+            // ucsVisibilidad
+            // 
+            this.ucsVisibilidad.Location = new System.Drawing.Point(84, 230);
+            this.ucsVisibilidad.Name = "ucsVisibilidad";
+            this.ucsVisibilidad.Size = new System.Drawing.Size(307, 20);
+            this.ucsVisibilidad.TabIndex = 20;
+            this.ucsVisibilidad.SelectionClick += new System.EventHandler(this.ucsVisibilidad_SelectionClick);
+            // 
+            // ucsRubro
+            // 
+            this.ucsRubro.Location = new System.Drawing.Point(84, 204);
+            this.ucsRubro.Name = "ucsRubro";
+            this.ucsRubro.Size = new System.Drawing.Size(307, 20);
+            this.ucsRubro.TabIndex = 19;
+            this.ucsRubro.SelectionClick += new System.EventHandler(this.ucsRubro_SelectionClick);
             // 
             // frmAMPublicacion
             // 

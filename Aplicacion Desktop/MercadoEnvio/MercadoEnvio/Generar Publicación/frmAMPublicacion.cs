@@ -1,5 +1,6 @@
 ﻿using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.ABM_Visibilidad;
+using MercadoEnvio.Biz.Impl;
 using MercadoEnvio.Common.Entity;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace MercadoEnvio.Generar_Publicación
             Finalizada = 'F'
         }
         private Publicacion _publicacion;
+        private PublicacionBiz _publicacionBiz;
 
         public FormFactory FormFactory { get; set; }
 
@@ -126,6 +128,11 @@ namespace MercadoEnvio.Generar_Publicación
             this._publicacion.Precio = Convert.ToDecimal(this.txtPrecio.Text);
             this._publicacion.IdRubro = ((Rubro)this.ucsRubro.Entity).Id;
             this._publicacion.IdVisibilidad = ((Visibilidad)this.ucsVisibilidad.Entity).Id;
+
+            if (this._publicacion.Id == 0)
+                this._publicacionBiz.InsPublicacion(this._publicacion);
+            else
+                this._publicacionBiz.UpdPublicacion(this._publicacion);
         }
 
         private bool EsValido()

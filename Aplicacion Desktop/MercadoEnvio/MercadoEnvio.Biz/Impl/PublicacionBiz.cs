@@ -21,5 +21,15 @@ namespace MercadoEnvio.Biz.Impl
         {
             return this._publicacionDal.GetByDesc(username, texto);
         }
+
+        public Publicacion InsPublicacion(Publicacion publicacion)
+        {
+            return this._publicacionDal.InsPublicacion(publicacion.TipoPublicacion, publicacion.Estado, publicacion.Descripcion, publicacion.Stock, publicacion.FechaInicio, publicacion.FechaVencimiento, publicacion.Precio, publicacion.Costo, publicacion.PermitirPreguntas, publicacion.IncluirEnvio, publicacion.CodigoRubro, publicacion.CodigoVisibilidad, publicacion.Usuario);
+        }
+
+        public Publicacion UpdPublicacion(Publicacion publicacion)
+        {
+            return this._publicacionDal.UpdPublicacion(publicacion.TipoPublicacion, publicacion.Estado, publicacion.Descripcion, publicacion.Stock, publicacion.FechaInicio, publicacion.FechaVencimiento, publicacion.Precio, publicacion.Costo, publicacion.PermitirPreguntas, publicacion.IncluirEnvio, publicacion.CodigoRubro, publicacion.CodigoVisibilidad, publicacion.Usuario);
+        }
     }
 }
