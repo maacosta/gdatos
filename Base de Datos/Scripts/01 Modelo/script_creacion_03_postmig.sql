@@ -19,8 +19,8 @@ Set Nocount On
 --username: admin, password: admin
 SET IDENTITY_INSERT LOS_DE_ADELANTE.Usuario ON
 GO 
-INSERT INTO LOS_DE_ADELANTE.Usuario ([Id], [Username], [PassHash], [PassSalt])
-     VALUES (100, 'admin', 'U3hc2PwspfX6gECdhWXkk9n4MEtL7NIPsXsvdUZPOu8n2YCi', 'J9mAog==')
+INSERT INTO LOS_DE_ADELANTE.Usuario ([Id], [Username], [PassHash], [PassSalt]) --[Nombre],
+     VALUES (100, 'admin', 'y1Uk2aITg2GRutAc6RAlzarXRlYoExYtG+k2XxAVOf4n2YCi', 'J9mAog==') --'Administrador General'
 SET IDENTITY_INSERT LOS_DE_ADELANTE.Usuario OFF
 GO 
 
