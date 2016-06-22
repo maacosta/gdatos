@@ -132,6 +132,7 @@
             this.txtEstado.ReadOnly = true;
             this.txtEstado.Size = new System.Drawing.Size(135, 20);
             this.txtEstado.TabIndex = 21;
+            this.txtEstado.TextChanged += new System.EventHandler(this.txtEstado_TextChanged);
             // 
             // label3
             // 
@@ -277,6 +278,7 @@
             this.txtStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStock.Location = new System.Drawing.Point(84, 74);
+            this.txtStock.MaxLength = 4;
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(307, 20);
             this.txtStock.TabIndex = 5;
@@ -295,6 +297,7 @@
             this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescripcion.Location = new System.Drawing.Point(84, 48);
+            this.txtDescripcion.MaxLength = 255;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(307, 20);
             this.txtDescripcion.TabIndex = 3;
@@ -314,6 +317,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodigo.Location = new System.Drawing.Point(84, 22);
             this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(307, 20);
             this.txtCodigo.TabIndex = 1;
             // 
@@ -331,6 +335,7 @@
             this.txtPrecio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrecio.Location = new System.Drawing.Point(84, 152);
+            this.txtPrecio.MaxLength = 7;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(307, 20);
             this.txtPrecio.TabIndex = 1;
@@ -349,6 +354,7 @@
             this.txtCosto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCosto.Location = new System.Drawing.Point(84, 178);
+            this.txtCosto.MaxLength = 7;
             this.txtCosto.Name = "txtCosto";
             this.txtCosto.Size = new System.Drawing.Size(307, 20);
             this.txtCosto.TabIndex = 3;

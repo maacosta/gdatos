@@ -20,20 +20,29 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
-        public Publicacion InsPublicacion(string tipoPublicacion, string estado, string descripcion, decimal stock, DateTime fechaInicio, DateTime fechaVencimiento, decimal precio, decimal costo, bool permitirPreguntas, bool incluirEnvio, string codigoRubro, string codigoVisibilidad, string username)
+        public Publicacion InsPublicacion(string tipoPublicacion, string estado, string descripcion, decimal stock, DateTime fechaInicio, DateTime fechaVencimiento, decimal precio, decimal costo, bool permitirPreguntas, bool incluirEnvio, int idRubro, int idVisibilidad, string username)
         {
-            object[] param = new object[] { tipoPublicacion, estado, descripcion, stock, fechaInicio, fechaVencimiento, precio, costo, permitirPreguntas, incluirEnvio, codigoRubro, codigoVisibilidad, username };
+            object[] param = new object[] { tipoPublicacion, estado, descripcion, stock, fechaInicio, fechaVencimiento, precio, costo, permitirPreguntas, incluirEnvio, idRubro, idVisibilidad, username };
 
             var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_insPublicacion", param).First();
 
             return data;
         }
 
-        public Publicacion UpdPublicacion(string tipoPublicacion, string estado, string descripcion, decimal stock, DateTime fechaInicio, DateTime fechaVencimiento, decimal precio, decimal costo, bool permitirPreguntas, bool incluirEnvio, string codigoRubro, string codigoVisibilidad, string username)
+        public Publicacion UpdPublicacion(int idPublicacion, string tipoPublicacion, string estado, string descripcion, decimal stock, DateTime fechaInicio, DateTime fechaVencimiento, decimal precio, decimal costo, bool permitirPreguntas, bool incluirEnvio, int idRubro, int idVisibilidad, string username)
         {
-            object[] param = new object[] { tipoPublicacion, estado, descripcion, stock, fechaInicio, fechaVencimiento, precio, costo, permitirPreguntas, incluirEnvio, codigoRubro, codigoVisibilidad, username };
+            object[] param = new object[] { idPublicacion, tipoPublicacion, estado, descripcion, stock, fechaInicio, fechaVencimiento, precio, costo, permitirPreguntas, incluirEnvio, idRubro, idVisibilidad, username };
 
-            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_insPublicacion", param).First();
+            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_updPublicacion", param).First();
+
+            return data;
+        }
+
+        public Publicacion UpdPublicacionEstado(int idPublicacion, string estado)
+        {
+            object[] param = new object[] { idPublicacion, estado };
+
+            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_updPublicacionEstado", param).First();
 
             return data;
         }

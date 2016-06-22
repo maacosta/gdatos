@@ -24,12 +24,44 @@ namespace MercadoEnvio.Biz.Impl
 
         public Publicacion InsPublicacion(Publicacion publicacion)
         {
-            return this._publicacionDal.InsPublicacion(publicacion.TipoPublicacion, publicacion.Estado, publicacion.Descripcion, publicacion.Stock, publicacion.FechaInicio, publicacion.FechaVencimiento, publicacion.Precio, publicacion.Costo, publicacion.PermitirPreguntas, publicacion.IncluirEnvio, publicacion.CodigoRubro, publicacion.CodigoVisibilidad, publicacion.Usuario);
+            return this._publicacionDal.InsPublicacion(
+                publicacion.TipoPublicacion, 
+                publicacion.Estado, 
+                publicacion.Descripcion, 
+                publicacion.Stock, 
+                publicacion.FechaInicio, 
+                publicacion.FechaVencimiento, 
+                publicacion.Precio, 
+                publicacion.Costo, 
+                publicacion.PermitirPreguntas, 
+                publicacion.IncluirEnvio, 
+                publicacion.IdRubro, 
+                publicacion.IdVisibilidad, 
+                publicacion.Usuario);
         }
 
         public Publicacion UpdPublicacion(Publicacion publicacion)
         {
-            return this._publicacionDal.UpdPublicacion(publicacion.TipoPublicacion, publicacion.Estado, publicacion.Descripcion, publicacion.Stock, publicacion.FechaInicio, publicacion.FechaVencimiento, publicacion.Precio, publicacion.Costo, publicacion.PermitirPreguntas, publicacion.IncluirEnvio, publicacion.CodigoRubro, publicacion.CodigoVisibilidad, publicacion.Usuario);
+            return this._publicacionDal.UpdPublicacion(
+                publicacion.Id,
+                publicacion.TipoPublicacion, 
+                publicacion.Estado, 
+                publicacion.Descripcion, 
+                publicacion.Stock, 
+                publicacion.FechaInicio, 
+                publicacion.FechaVencimiento, 
+                publicacion.Precio, 
+                publicacion.Costo, 
+                publicacion.PermitirPreguntas, 
+                publicacion.IncluirEnvio, 
+                publicacion.IdRubro, 
+                publicacion.IdVisibilidad, 
+                publicacion.Usuario);
+        }
+
+        public void UpdPublicacionEstado(int idPublicacion, string estado)
+        {
+            this._publicacionDal.UpdPublicacionEstado(idPublicacion, estado);
         }
     }
 }
