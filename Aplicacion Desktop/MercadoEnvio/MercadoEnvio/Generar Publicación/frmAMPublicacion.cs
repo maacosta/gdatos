@@ -167,11 +167,11 @@ namespace MercadoEnvio.Generar_Publicación
             {
                 msg.AppendLine("Ingrese una descripción válida. ");
             }
-            if (((Rubro)this.ucsRubro.Entity).Id != 0)
+            if (((Rubro)this.ucsRubro.Entity).Id == 0)
             {
                 msg.AppendLine("Debe seleccionar un rubro. ");
             }
-            if (((Visibilidad)this.ucsVisibilidad.Entity).Id != 0)
+            if (((Visibilidad)this.ucsVisibilidad.Entity).Id == 0)
             {
                 msg.AppendLine("Debe seleccionar una visibilidad. ");
             }
