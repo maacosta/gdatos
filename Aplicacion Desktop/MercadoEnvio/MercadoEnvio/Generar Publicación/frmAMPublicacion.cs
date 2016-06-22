@@ -179,6 +179,7 @@ namespace MercadoEnvio.Generar_Publicación
             if (msg.Length > 0)
             {
                 MessageBox.Show(msg.ToString());
+                return false;
             }
 
             return true;
