@@ -43,16 +43,31 @@ namespace MercadoEnvio.ComprarOfertar
         {
             StringBuilder msg = new StringBuilder();
 
-            decimal precio = 0m;
-            if (!decimal.TryParse(this.txtMonto.Text, out precio))
+            decimal monto = 0m;
+            if (!decimal.TryParse(this.txtMonto.Text, out monto))
             {
                 msg.AppendLine("El monto debe tener formato decimal. ");
+            }
+            else
+            {
+                if (monto <= Convert.ToDecimal(this.txtPrecio.Text))
+                {
+                    msg.AppendLine("El monto debe ser superior al precio publicado. ");
+                }
             }
             decimal cantidad = 0m;
             if (!decimal.TryParse(this.txtCantidad.Text, out cantidad))
             {
                 msg.AppendLine("La cantidad debe tener formato numérico. ");
             }
+            else
+            {
+                if (cantidad > Convert.ToDecimal(this.txtStock.Text))
+                {
+                    msg.AppendLine("La cantidad supera al stock disponible. ");
+                }
+            }
+
             if (msg.Length > 0)
             {
                 MessageBox.Show(msg.ToString());

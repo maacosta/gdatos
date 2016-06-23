@@ -160,7 +160,7 @@ namespace MercadoEnvio.Generar_Publicación
             }
             if (this.txtDescripcion.Text.Trim().Length < 3)
             {
-                msg.AppendLine("Ingrese una descripción válida. ");
+                msg.AppendLine("Ingrese una descripción válida (más de 3 caracteres). ");
             }
             if (((Rubro)this.ucsRubro.Entity).Id == 0)
             {

@@ -281,7 +281,7 @@
             this.txtPregunta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPregunta.Location = new System.Drawing.Point(84, 19);
-            this.txtPregunta.MaxLength = 4;
+            this.txtPregunta.MaxLength = 255;
             this.txtPregunta.Name = "txtPregunta";
             this.txtPregunta.Size = new System.Drawing.Size(307, 20);
             this.txtPregunta.TabIndex = 34;
