@@ -11,11 +11,20 @@ namespace MercadoEnvio.Dal.Impl
 {
     public class PublicacionDal : BaseDal
     {
-        public List<Publicacion> GetByDesc(string username, string texto)
+        public List<Publicacion> GetPropiasBy(string username, string texto)
         {
             object[] param = new object[] { username, texto };
 
             var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros", param).ToList();
+
+            return data;
+        }
+
+        public List<Publicacion> GetNoPropiasBy(string username, string texto, string codigosRubro)
+        {
+            object[] param = new object[] { username, texto, codigosRubro };
+
+            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_getPublicacionNoPropiaFiltros", param).ToList();
 
             return data;
         }

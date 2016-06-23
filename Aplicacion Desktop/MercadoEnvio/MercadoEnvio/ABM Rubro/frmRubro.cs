@@ -25,11 +25,30 @@ namespace MercadoEnvio.ABM_Rubro
                 return this.grvRubro.CurrentRow != null ? (Rubro)this.grvRubro.CurrentRow.DataBoundItem : null; 
             } 
         }
+        public List<Rubro> RubroList
+        {
+            get
+            {
+                List<Rubro> rl = new List<Rubro>();
+                DataGridViewSelectedRowCollection rows = this.grvRubro.SelectedRows;
+                foreach (DataGridViewRow r in rows)
+                {
+                    rl.Add((Rubro)r.DataBoundItem);
+                }
+                return rl;
+            }
+        }
 
         public frmRubro()
         {
             InitializeComponent();
             this._rubroBiz = new RubroBiz();
+        }
+
+        public bool SeleccionMultiple
+        {
+            get { return this.grvRubro.MultiSelect; }
+            set { this.grvRubro.MultiSelect = value; }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

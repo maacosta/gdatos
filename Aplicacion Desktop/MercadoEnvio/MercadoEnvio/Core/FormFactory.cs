@@ -18,17 +18,22 @@ namespace WindowsFormsApplication1.Core
             this._formList = new List<Form>();
         }
 
+        public TForm AppendChildForm<TForm>() where TForm : Form
+        {
+            return this.OpenChildForm<TForm>(false, false);
+        }
+
         public TForm OpenChildDialogForm<TForm>() where TForm : Form
         {
-            return this.OpenChildForm<TForm>(true);
+            return this.OpenChildForm<TForm>(true, true);
         }
 
         public TForm OpenChildForm<TForm>() where TForm : Form
         {
-            return this.OpenChildForm<TForm>(false);
+            return this.OpenChildForm<TForm>(false, true);
         }
 
-        private TForm OpenChildForm<TForm>(bool asDialog) where TForm : Form
+        private TForm OpenChildForm<TForm>(bool asDialog, bool openForm) where TForm : Form
         {
             TForm frm = null;
             if (!this._formList.Exists(f => f.GetType() == typeof(TForm)))
@@ -40,17 +45,20 @@ namespace WindowsFormsApplication1.Core
                     ((IFormMDI)frm).FormFactory = this;
                 }
 
-                if (asDialog)
+                if (openForm)
                 {
-                    frm.ShowDialog();
-                }
-                else
-                {
-                    this._formList.Add(frm);
-                    frm.FormClosed += frm_FormClosed;
+                    if (asDialog)
+                    {
+                        frm.ShowDialog();
+                    }
+                    else
+                    {
+                        this._formList.Add(frm);
+                        frm.FormClosed += frm_FormClosed;
 
-                    frm.MdiParent = this._mdiForm;
-                    frm.Show();
+                        frm.MdiParent = this._mdiForm;
+                        frm.Show();
+                    }
                 }
             }
             else

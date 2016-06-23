@@ -27,7 +27,7 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var list = this._publicacionBiz.GetByDesc(GlobalData.Instance.Username, this.txtTexto.Text);
+            var list = this._publicacionBiz.GetPropiasBy(GlobalData.Instance.Username, this.txtTexto.Text);
 
             this.grvPublicacion.DataSource = list;
         }

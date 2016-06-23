@@ -82,7 +82,9 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void ucsRubro_SelectionClick(object sender, EventArgs e)
         {
-            var frm = this.FormFactory.OpenChildDialogForm<frmRubro>();
+            var frm = this.FormFactory.AppendChildForm<frmRubro>();
+            frm.SeleccionMultiple = false;
+            frm.ShowDialog();
             if(frm.Rubro != null)
                 this.ucsRubro.SetObject(frm.Rubro, frm.Rubro.Codigo);
         }

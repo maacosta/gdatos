@@ -103,6 +103,12 @@
     <Compile Include="ComprarOfertar\frmComprarOfertar.Designer.cs">
       <DependentUpon>frmComprarOfertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\ucMultiSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\ucMultiSelector.Designer.cs">
+      <DependentUpon>ucMultiSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\FormFactory.cs" />
     <Compile Include="Core\GlobalData.cs" />
     <Compile Include="Core\IFormMDI.cs" />
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\frmComprarOfertar.resx">
       <DependentUpon>frmComprarOfertar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\ucMultiSelector.resx">
+      <DependentUpon>ucMultiSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\ucSelector.resx">
       <DependentUpon>ucSelector.cs</DependentUpon>

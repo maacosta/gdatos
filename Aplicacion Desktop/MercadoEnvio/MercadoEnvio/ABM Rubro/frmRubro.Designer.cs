@@ -47,6 +47,7 @@
             this.grvRubro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvRubro.Location = new System.Drawing.Point(12, 116);
             this.grvRubro.Name = "grvRubro";
+            this.grvRubro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvRubro.Size = new System.Drawing.Size(424, 234);
             this.grvRubro.TabIndex = 7;
             // 

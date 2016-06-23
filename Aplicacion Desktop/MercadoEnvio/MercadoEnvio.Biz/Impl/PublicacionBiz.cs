@@ -17,9 +17,14 @@ namespace MercadoEnvio.Biz.Impl
             this._publicacionDal = new PublicacionDal();
         }
 
-        public List<Publicacion> GetByDesc(string username, string texto)
+        public List<Publicacion> GetPropiasBy(string username, string texto)
         {
-            return this._publicacionDal.GetByDesc(username, texto);
+            return this._publicacionDal.GetPropiasBy(username, texto);
+        }
+
+        public List<Publicacion> GetNoPropiasBy(string username, string texto, string codigosRubro)
+        {
+            return this._publicacionDal.GetNoPropiasBy(username, texto, codigosRubro);
         }
 
         public Publicacion InsPublicacion(Publicacion publicacion)

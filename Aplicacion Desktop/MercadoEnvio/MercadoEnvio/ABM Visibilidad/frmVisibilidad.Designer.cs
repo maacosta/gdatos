@@ -57,7 +57,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grvVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvVisibilidad.Location = new System.Drawing.Point(12, 116);
+            this.grvVisibilidad.MultiSelect = false;
             this.grvVisibilidad.Name = "grvVisibilidad";
+            this.grvVisibilidad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvVisibilidad.Size = new System.Drawing.Size(424, 234);
             this.grvVisibilidad.TabIndex = 12;
             // 
