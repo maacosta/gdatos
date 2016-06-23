@@ -2,6 +2,7 @@
 using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.ABM_Usuario;
 using MercadoEnvio.ABM_Visibilidad;
+using MercadoEnvio.Biz.Impl;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Facturas;
 using MercadoEnvio.Generar_Publicación;
@@ -22,12 +23,16 @@ namespace WindowsFormsApplication1
 {
     public partial class frmContenedor : Form
     {
+        private PublicacionBiz _publicacionBiz;
+        private FacturacionBiz _facturacionBiz;
         private FormFactory _formFactory;
 
         public frmContenedor()
         {
             InitializeComponent();
             this._formFactory = new FormFactory(this);
+            this._publicacionBiz = new PublicacionBiz();
+            this._facturacionBiz = new FacturacionBiz();
         }
 
         private void Contenedor_Load(object sender, EventArgs e)
@@ -46,6 +51,15 @@ namespace WindowsFormsApplication1
                 this.comprarOfertarToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ComprarOfertar_V);
                 this.facturasToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ConsultaFacturas_V);
                 this.listadoEstadísticoToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ListadoEstadistico_V);
+            }
+
+            //verificar publicaciones finalizadas (de subastas)
+            var publicacionesFinalizadas = this._publicacionBiz.GetFinalizadasBy(GlobalData.Instance.Username, GlobalData.Instance.FechaSistema);
+            if (publicacionesFinalizadas != null && publicacionesFinalizadas.Count > 0)
+            {
+                MessageBox.Show(string.Format("Se detectaron {0} publicaciones vencidas. Se procede a generar la correspondiente facturación.", publicacionesFinalizadas.Count));
+                int cantFact = this._facturacionBiz.GenerarFacturacionSubasta(publicacionesFinalizadas);
+                MessageBox.Show(string.Format("Se generaron {0} facturas.", cantFact));
             }
         }
 

@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\CompraOferta.cs" />
+    <Compile Include="Entity\FacturacionItem.cs" />
+    <Compile Include="Entity\Facturacion.cs" />
     <Compile Include="Entity\Permiso.cs" />
     <Compile Include="Entity\Publicacion.cs" />
     <Compile Include="Entity\PublicacionPregunta.cs" />

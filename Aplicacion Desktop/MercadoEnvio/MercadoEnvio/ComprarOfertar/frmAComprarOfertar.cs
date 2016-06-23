@@ -21,6 +21,7 @@ namespace MercadoEnvio.ComprarOfertar
         private CompraOferta _compraOferta;
         private PublicacionPregunta _publicacionPregunta;
         private CompraOfertaBiz _compraOfertaBiz;
+        private FacturacionBiz _facturacionBiz;
         private PublicacionPreguntaBiz _publicacionPreguntaBiz;
 
         public FormFactory FormFactory { get; set; }
@@ -30,6 +31,7 @@ namespace MercadoEnvio.ComprarOfertar
             InitializeComponent();
 
             this._compraOfertaBiz = new CompraOfertaBiz();
+            this._facturacionBiz = new FacturacionBiz();
             this._publicacionPreguntaBiz = new PublicacionPreguntaBiz();
         }
 
@@ -166,9 +168,14 @@ namespace MercadoEnvio.ComprarOfertar
             this.TransformarACompraOferta();
 
             if (this._compraOferta.Tipo == ((char)TipoCompraOferta.Compra).ToString())
+            {
                 this._compraOfertaBiz.InsCompra(this._compraOferta);
+                this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta);
+            }
             else
+            {
                 this._compraOfertaBiz.InsOferta(this._compraOferta);
+            }
 
             this.Close();
         }

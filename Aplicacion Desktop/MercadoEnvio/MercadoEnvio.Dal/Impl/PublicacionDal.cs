@@ -29,6 +29,15 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
+        public List<Publicacion> GetFinalizadasBy(string username, DateTime fechaSistema)
+        {
+            object[] param = new object[] { username, fechaSistema };
+
+            var data = this._db.ExecuteSprocAccessor<Publicacion>("LOS_DE_ADELANTE.sp_publicacion_getFinalizadaFiltros", param).ToList();
+
+            return data;
+        }
+
         public Publicacion InsPublicacion(string tipoPublicacion, string estado, string descripcion, decimal stock, DateTime fechaInicio, DateTime fechaVencimiento, decimal precio, decimal costo, bool permitirPreguntas, bool incluirEnvio, int idRubro, int idVisibilidad, string username)
         {
             object[] param = new object[] { tipoPublicacion, estado, descripcion, stock, fechaInicio, fechaVencimiento, precio, costo, permitirPreguntas, incluirEnvio, idRubro, idVisibilidad, username };

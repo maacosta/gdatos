@@ -27,6 +27,11 @@ namespace MercadoEnvio.Biz.Impl
             return this._publicacionDal.GetNoPropiasBy(username, texto, codigosRubro);
         }
 
+        public List<Publicacion> GetFinalizadasBy(string username, DateTime fechaSistema)
+        {
+            return this._publicacionDal.GetFinalizadasBy(username, fechaSistema);
+        }
+
         public Publicacion InsPublicacion(Publicacion publicacion)
         {
             return this._publicacionDal.InsPublicacion(
