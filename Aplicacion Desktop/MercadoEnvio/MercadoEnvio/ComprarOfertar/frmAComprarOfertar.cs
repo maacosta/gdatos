@@ -19,7 +19,9 @@ namespace MercadoEnvio.ComprarOfertar
     {
         private Publicacion _publicacion;
         private CompraOferta _compraOferta;
+        private PublicacionPregunta _publicacionPregunta;
         private CompraOfertaBiz _compraOfertaBiz;
+        private PublicacionPreguntaBiz _publicacionPreguntaBiz;
 
         public FormFactory FormFactory { get; set; }
 
@@ -28,6 +30,7 @@ namespace MercadoEnvio.ComprarOfertar
             InitializeComponent();
 
             this._compraOfertaBiz = new CompraOfertaBiz();
+            this._publicacionPreguntaBiz = new PublicacionPreguntaBiz();
         }
 
         public void SetPublicacion(Publicacion publicacion)
@@ -36,7 +39,7 @@ namespace MercadoEnvio.ComprarOfertar
             this.TransformarPublicacionAControles();
         }
 
-        private bool EsValido()
+        private bool EsCompraOfertaValido()
         {
             StringBuilder msg = new StringBuilder();
 
@@ -50,6 +53,24 @@ namespace MercadoEnvio.ComprarOfertar
             {
                 msg.AppendLine("La cantidad debe tener formato numérico. ");
             }
+            if (msg.Length > 0)
+            {
+                MessageBox.Show(msg.ToString());
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool EsPreguntaValido()
+        {
+            StringBuilder msg = new StringBuilder();
+
+            if (this.txtPregunta.Text.Length > 3)
+            {
+                msg.AppendLine("La pregunta debe ser válida (más de 3 caracteres). ");
+            }
+
             if (msg.Length > 0)
             {
                 MessageBox.Show(msg.ToString());
@@ -114,9 +135,17 @@ namespace MercadoEnvio.ComprarOfertar
             return tipoCO;
         }
 
+        private void TransformarAPublicacionPregunta()
+        {
+            this._publicacionPregunta = new PublicacionPregunta();
+            this._publicacionPregunta.IdPublicacion = this._publicacion.Id;
+            this._publicacionPregunta.Pregunta = this.txtPregunta.Text; ;
+            this._publicacionPregunta.Usuario = GlobalData.Instance.Username;
+        }
+
         private void btnComprarOfertar_Click(object sender, EventArgs e)
         {
-            if (!this.EsValido())
+            if (!this.EsCompraOfertaValido())
                 return;
 
             this.TransformarACompraOferta();
@@ -125,6 +154,18 @@ namespace MercadoEnvio.ComprarOfertar
                 this._compraOfertaBiz.InsCompra(this._compraOferta);
             else
                 this._compraOfertaBiz.InsOferta(this._compraOferta);
+
+            this.Close();
+        }
+
+        private void btnPreguntar_Click(object sender, EventArgs e)
+        {
+            if (!this.EsPreguntaValido())
+                return;
+
+            this.TransformarAPublicacionPregunta();
+
+            this._publicacionPreguntaBiz.InsPregunta(this._publicacionPregunta);
 
             this.Close();
         }

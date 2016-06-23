@@ -42,6 +42,7 @@
     <Compile Include="Entity\CompraOferta.cs" />
     <Compile Include="Entity\Permiso.cs" />
     <Compile Include="Entity\Publicacion.cs" />
+    <Compile Include="Entity\PublicacionPregunta.cs" />
     <Compile Include="Entity\Rol.cs" />
     <Compile Include="Entity\Rubro.cs" />
     <Compile Include="Entity\UsuarioLogin.cs" />

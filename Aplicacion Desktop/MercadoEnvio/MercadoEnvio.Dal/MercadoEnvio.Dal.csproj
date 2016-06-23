@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Impl\CompraOfertaDal.cs" />
     <Compile Include="Impl\PublicacionDal.cs" />
+    <Compile Include="Impl\PublicacionPreguntaDal.cs" />
     <Compile Include="Impl\VisibilidadDal.cs" />
     <Compile Include="Impl\PermisoDal.cs" />
     <Compile Include="Impl\RolDal.cs" />

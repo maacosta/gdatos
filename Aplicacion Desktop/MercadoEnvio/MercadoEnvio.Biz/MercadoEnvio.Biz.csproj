@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Impl\CompraOfertaBiz.cs" />
     <Compile Include="Impl\PublicacionBiz.cs" />
+    <Compile Include="Impl\PublicacionPreguntaBiz.cs" />
     <Compile Include="Impl\VisibilidadBiz.cs" />
     <Compile Include="Impl\LoginBiz.cs" />
     <Compile Include="Impl\RolBiz.cs" />

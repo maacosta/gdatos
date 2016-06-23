@@ -304,6 +304,7 @@
             this.btnPreguntar.TabIndex = 9;
             this.btnPreguntar.Text = "&Preguntar";
             this.btnPreguntar.UseVisualStyleBackColor = true;
+            this.btnPreguntar.Click += new System.EventHandler(this.btnPreguntar_Click);
             // 
             // frmAComprarOfertar
             // 
