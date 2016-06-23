@@ -17,18 +17,6 @@ namespace MercadoEnvio.Generar_Publicación
 {
     public partial class frmAMPublicacion : Form, IFormMDI
     {
-        private enum TipoPublicacion
-        {
-            Compra_Inmediata = 'C',
-            Subasta = 'S'
-        }
-        private enum Estado
-        {
-            Borrador = 'B',
-            Activa = 'A',
-            Pausada = 'P',
-            Finalizada = 'F'
-        }
         private Publicacion _publicacion;
         private PublicacionBiz _publicacionBiz;
         private string[] _tipoPublicacionList;
@@ -126,16 +114,19 @@ namespace MercadoEnvio.Generar_Publicación
         private void btnActivar_Click(object sender, EventArgs e)
         {
             this._publicacionBiz.UpdPublicacionEstado(this._publicacion.Id, ((char)Estado.Activa).ToString());
+            this.Close();
         }
 
         private void btnPausar_Click(object sender, EventArgs e)
         {
             this._publicacionBiz.UpdPublicacionEstado(this._publicacion.Id, ((char)Estado.Pausada).ToString());
+            this.Close();
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             this._publicacionBiz.UpdPublicacionEstado(this._publicacion.Id, ((char)Estado.Finalizada).ToString());
+            this.Close();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -149,6 +140,8 @@ namespace MercadoEnvio.Generar_Publicación
                 this._publicacionBiz.InsPublicacion(this._publicacion);
             else
                 this._publicacionBiz.UpdPublicacion(this._publicacion);
+
+            this.Close();
         }
 
         private bool EsValido()

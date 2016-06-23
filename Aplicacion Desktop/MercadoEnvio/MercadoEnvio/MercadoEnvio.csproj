@@ -97,12 +97,19 @@
     <Compile Include="Calificar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\frmAComprarOfertar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\frmAComprarOfertar.Designer.cs">
+      <DependentUpon>frmAComprarOfertar.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarOfertar\frmComprarOfertar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ComprarOfertar\frmComprarOfertar.Designer.cs">
       <DependentUpon>frmComprarOfertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Enums.cs" />
     <Compile Include="Core\ucMultiSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\frmVisibilidad.resx">
       <DependentUpon>frmVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\frmAComprarOfertar.resx">
+      <DependentUpon>frmAComprarOfertar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\frmComprarOfertar.resx">
       <DependentUpon>frmComprarOfertar.cs</DependentUpon>

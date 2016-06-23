@@ -1,5 +1,6 @@
 ﻿using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,6 +49,18 @@ namespace MercadoEnvio.ComprarOfertar
                 this.ucmsRubro.CleanObjects();
                 frm.RubroList.ForEach(r => this.ucmsRubro.SetObject(r, r.Codigo));
             }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (this.grvPublicacion.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar un item");
+                return;
+            }
+
+            var frm = this.FormFactory.OpenChildForm<frmAComprarOfertar>();
+            frm.SetPublicacion((Publicacion)this.grvPublicacion.CurrentRow.DataBoundItem);
         }
     }
 }
