@@ -12,11 +12,13 @@ namespace MercadoEnvio.Biz.Impl
     {
         private FacturacionDal _facturacionDal;
         private CompraOfertaDal _compraOfertaDal;
+        private PublicacionDal _publicacionDal;
 
         public FacturacionBiz()
         {
             this._facturacionDal = new FacturacionDal();
             this._compraOfertaDal = new CompraOfertaDal();
+            this._publicacionDal = new PublicacionDal();
         }
 
         public void GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
@@ -24,14 +26,22 @@ namespace MercadoEnvio.Biz.Impl
             this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);
         }
 
-        public int GenerarFacturacionSubasta(List<Publicacion> publicacionList, DateTime fechaSistema)
+        public int GenerarFacturacionSubasta(List<Publicacion> publicacionList, DateTime fechaSistema, string estadoFinalizado)
         {
             int cantFact = 0;
             foreach (Publicacion p in publicacionList)
             {
                 var oferta = this._compraOfertaDal.GetMaximaOfertaBy(p.Id);
-                this.GenerarFacturacion(p, oferta, fechaSistema);
-                cantFact++;
+                if (oferta != null)
+                {
+                    this.GenerarFacturacion(p, oferta, fechaSistema);
+                    this._publicacionDal.UpdPublicacionEstado(p.Id, estadoFinalizado);
+                    cantFact++;
+                }
+                else
+                {
+                    this._publicacionDal.UpdPublicacionEstado(p.Id, estadoFinalizado);
+                }
             }
             return cantFact;
         }
