@@ -17,10 +17,18 @@ BEGIN
 
 	select @idUsuario = Id from LOS_DE_ADELANTE.Usuario where Username = @username
 
-	insert into LOS_DE_ADELANTE.CompraOferta (IdPublicacion, IdUsuario, Tipo, Fecha, Cantidad, Monto)
-	values (@idPublicacion, @idUsuario, 'O', @fechaSistema, 1, @monto)
+	begin tran
 
-	set @id = SCOPE_IDENTITY()
+		insert into LOS_DE_ADELANTE.CompraOferta (IdPublicacion, IdUsuario, Tipo, Fecha, Cantidad, Monto)
+		values (@idPublicacion, @idUsuario, 'O', @fechaSistema, 1, @monto)
+
+		set @id = SCOPE_IDENTITY()
+
+		update LOS_DE_ADELANTE.Publicacion
+		set Precio = @monto
+		where Id = @idPublicacion
+
+	commit tran
 
 	select 
 		co.Id, 
