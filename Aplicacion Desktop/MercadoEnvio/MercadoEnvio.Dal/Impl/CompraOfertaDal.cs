@@ -20,18 +20,22 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
-        public void InsCompra(int idPublicacion, DateTime fechaSistema, decimal cantidad, string username)
+        public CompraOferta InsCompra(int idPublicacion, DateTime fechaSistema, decimal cantidad, string username)
         {
             object[] param = new object[] { idPublicacion, fechaSistema, cantidad, username };
 
-            this._db.ExecuteNonQuery("LOS_DE_ADELANTE.sp_comprarofertar_insComprar", param);
+            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_insCompra", param).First();
+
+            return data;
         }
 
-        public void InsOferta(int idPublicacion, DateTime fechaSistema, decimal monto, string username)
+        public CompraOferta InsOferta(int idPublicacion, DateTime fechaSistema, decimal monto, string username)
         {
             object[] param = new object[] { idPublicacion, fechaSistema, monto, username };
 
-            this._db.ExecuteNonQuery("LOS_DE_ADELANTE.sp_comprarofertar_insOfertar", param);
+            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_insOferta", param).First();
+
+            return data;
         }
     }
 }

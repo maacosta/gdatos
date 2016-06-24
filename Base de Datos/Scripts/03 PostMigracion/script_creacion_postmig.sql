@@ -1,6 +1,7 @@
 /*
 Secuencias
 */
+
 CREATE SEQUENCE [LOS_DE_ADELANTE].[sq_publicacion] 
  AS [bigint]
  START WITH 71079
@@ -10,13 +11,22 @@ CREATE SEQUENCE [LOS_DE_ADELANTE].[sq_publicacion]
  CACHE 
 GO
 
+CREATE SEQUENCE [LOS_DE_ADELANTE].[sq_factura] 
+ AS [numeric](18, 0)
+ START WITH 180040
+ INCREMENT BY 1
+ MINVALUE 100000
+ MAXVALUE 999999
+ CACHE 
+GO
+
 /*
 Inicialización de datos
 */
 
 Set Nocount On
 
---username: admin, password: admin
+--username: admin, password: w23e
 SET IDENTITY_INSERT LOS_DE_ADELANTE.Usuario ON
 GO 
 INSERT INTO LOS_DE_ADELANTE.Usuario ([Id], [Username], [PassHash], [PassSalt]) --[Nombre],

@@ -17,18 +17,18 @@ namespace MercadoEnvio.Biz.Impl
             this._compraOfertaDal = new CompraOfertaDal();
         }
 
-        public void InsCompra(CompraOferta compra)
+        public CompraOferta InsCompra(CompraOferta compra)
         {
-            this._compraOfertaDal.InsCompra(
+            return this._compraOfertaDal.InsCompra(
                 compra.IdPublicacion,
                 compra.Fecha,
                 compra.Cantidad,
                 compra.Usuario);
         }
 
-        public void InsOferta(CompraOferta oferta)
+        public CompraOferta InsOferta(CompraOferta oferta)
         {
-            this._compraOfertaDal.InsOferta(
+            return this._compraOfertaDal.InsOferta(
                 oferta.IdPublicacion,
                 oferta.Fecha,
                 oferta.Monto,

@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
             if (publicacionesFinalizadas != null && publicacionesFinalizadas.Count > 0)
             {
                 MessageBox.Show(string.Format("Se detectaron {0} publicaciones vencidas. Se procede a generar la correspondiente facturación.", publicacionesFinalizadas.Count));
-                int cantFact = this._facturacionBiz.GenerarFacturacionSubasta(publicacionesFinalizadas);
+                int cantFact = this._facturacionBiz.GenerarFacturacionSubasta(publicacionesFinalizadas, GlobalData.Instance.FechaSistema);
                 MessageBox.Show(string.Format("Se generaron {0} facturas.", cantFact));
             }
         }

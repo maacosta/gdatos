@@ -169,8 +169,8 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (this._compraOferta.Tipo == ((char)TipoCompraOferta.Compra).ToString())
             {
-                this._compraOfertaBiz.InsCompra(this._compraOferta);
-                this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta);
+                this._compraOferta = this._compraOfertaBiz.InsCompra(this._compraOferta);
+                this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta, GlobalData.Instance.FechaSistema);
             }
             else
             {

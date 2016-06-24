@@ -19,19 +19,18 @@ namespace MercadoEnvio.Biz.Impl
             this._compraOfertaDal = new CompraOfertaDal();
         }
 
-        public void GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta)
+        public void GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
         {
-            Facturacion factura = new Facturacion();
-
+            this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);
         }
 
-        public int GenerarFacturacionSubasta(List<Publicacion> publicacionList)
+        public int GenerarFacturacionSubasta(List<Publicacion> publicacionList, DateTime fechaSistema)
         {
             int cantFact = 0;
             foreach (Publicacion p in publicacionList)
             {
                 var oferta = this._compraOfertaDal.GetMaximaOfertaBy(p.Id);
-                this.GenerarFacturacion(p, oferta);
+                this.GenerarFacturacion(p, oferta, fechaSistema);
                 cantFact++;
             }
             return cantFact;
