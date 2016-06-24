@@ -22,7 +22,7 @@ namespace cmdhelper
             _breakLineTolerance = 100;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             if (this._args.Length < 2)
             {
@@ -43,7 +43,7 @@ namespace cmdhelper
                     if (!File.Exists(path))
                         this.OnMessageDispatch("El archivo indicado no se encontró", MessageType.Error);
 
-                    this.processGo(path);
+                    this.ProcessGo(path);
                     break;
                 default:
                     this.OnMessageDispatch("Parámetros inexistente", MessageType.Error);
@@ -52,7 +52,7 @@ namespace cmdhelper
             }
         }
 
-        private void processGo(string path)
+        private void ProcessGo(string path)
         {
             try
             {

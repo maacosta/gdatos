@@ -20,6 +20,8 @@ namespace cmdhelper
         }
 
 
+        public abstract void Execute();
+
         protected void OnMessageDispatch(string message, MessageType type)
         {
             if (this.MessageDispatch != null) this.MessageDispatch(message, type);

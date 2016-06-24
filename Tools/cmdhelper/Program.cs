@@ -14,23 +14,32 @@ namespace cmdhelper
     {
         static void Main(string[] args)
         {
-            //args = new string[] { "splitscript", "go", @"C:\tfs\GDatos\Base de Datos\gd_esquema.Maestra.Table.sql" };
+            //args = new string[] { "joinscript", @"C:\tfs\GDatos\Base de Datos\Scripts" };
 
             if (args.Length == 0)
+            {
                 PrintMessage("Especifique un comando", MessageType.Error);
+                return;
+            }
 
-
+            CommandBase cmd = null;
             switch (args[0])
             {
                 case "splitscript":
-                    SplitScript cmd = new SplitScript(args);
-                    cmd.MessageDispatch += new MessageDispatcher(PrintMessage);
-                    cmd.Execute();
+                    cmd = new SplitScript(args);
+                    break;
+                case "joinscript":
+                    cmd = new JoinScript(args);
                     break;
                 default:
                     PrintMessage("Comando inexistente", MessageType.Error);
                     PrintMessage("Comandos disponibles: splitscript", MessageType.Info);
                     break;
+            }
+            if (cmd != null)
+            {
+                cmd.MessageDispatch += new MessageDispatcher(PrintMessage);
+                cmd.Execute();
             }
         }
 
