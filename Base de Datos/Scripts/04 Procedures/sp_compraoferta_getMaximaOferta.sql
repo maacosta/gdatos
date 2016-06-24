@@ -22,6 +22,7 @@ BEGIN
 		inner join LOS_DE_ADELANTE.Publicacion p on co.IdPublicacion = p.Id
 		inner join LOS_DE_ADELANTE.Usuario u on co.IdUsuario = u.Id
 	where co.IdPublicacion = @idPublicacion
+		and co.Tipo = 'O'
 	order by co.Monto desc
 
 END
