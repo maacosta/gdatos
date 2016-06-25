@@ -2,6 +2,7 @@
 using MercadoEnvio.ABM_Visibilidad;
 using MercadoEnvio.Biz.Impl;
 using MercadoEnvio.Common.Entity;
+using MercadoEnvio.Facturas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -170,7 +171,10 @@ namespace MercadoEnvio.ComprarOfertar
             if (this._compraOferta.Tipo == ((char)TipoCompraOferta.Compra).ToString())
             {
                 this._compraOferta = this._compraOfertaBiz.InsCompra(this._compraOferta);
-                this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta, GlobalData.Instance.FechaSistema);
+                var facturacion = this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta, GlobalData.Instance.FechaSistema);
+
+                var frm = this.FormFactory.OpenChildForm<frmFacturas>();
+                frm.SetFacturacion(facturacion);
             }
             else
             {

@@ -77,5 +77,29 @@ BEGIN
 		where Id = @idCompraOferta
 		
 	commit transaction
+
+	--devolver factura
+	select
+		f.Id,
+		f.IdFormaPago,
+		fp.Descripcion FormaPago,
+		f.Numero,
+		f.Fecha,
+		f.Total,
+		u.Username Usuario
+	from LOS_DE_ADELANTE.Factura f
+		inner join LOS_DE_ADELANTE.Usuario u on f.IdUsuario = u.Id
+		inner join LOS_DE_ADELANTE.FormaPago fp on f.IdFormaPago = fp.Id
+	where f.Id = @idFactura
+
+	select
+		fi.IdFactura,
+		fi.Id,
+		fi.IdCompraOferta,
+		fi.Monto,
+		fi.Cantidad
+	from LOS_DE_ADELANTE.FacturaItem fi
+	where fi.IdFactura = @idFactura
+
 END
 GO

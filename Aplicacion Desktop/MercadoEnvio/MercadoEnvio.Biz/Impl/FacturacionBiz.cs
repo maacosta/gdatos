@@ -21,9 +21,9 @@ namespace MercadoEnvio.Biz.Impl
             this._publicacionDal = new PublicacionDal();
         }
 
-        public void GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
+        public Facturacion GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
         {
-            this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);
+            return this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);
         }
 
         public int GenerarFacturacionSubasta(List<Publicacion> publicacionList, DateTime fechaSistema, string estadoFinalizado)
