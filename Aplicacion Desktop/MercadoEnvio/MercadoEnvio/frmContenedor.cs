@@ -3,6 +3,7 @@ using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.ABM_Usuario;
 using MercadoEnvio.ABM_Visibilidad;
 using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Calificar;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Facturas;
 using MercadoEnvio.Generar_Publicación;
@@ -111,6 +112,11 @@ namespace WindowsFormsApplication1
         private void listadoEstadísticoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this._formFactory.OpenChildForm<frmListadoEstadistico>();
+        }
+
+        private void calificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this._formFactory.OpenChildForm<frmCalificar>();
         }
     }
 }

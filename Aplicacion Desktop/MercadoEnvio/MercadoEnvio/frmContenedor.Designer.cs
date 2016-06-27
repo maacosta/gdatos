@@ -42,6 +42,7 @@
             this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoEstadísticoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuME.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,8 @@
             this.historialClienteToolStripMenuItem,
             this.comprarOfertarToolStripMenuItem,
             this.facturasToolStripMenuItem,
-            this.listadoEstadísticoToolStripMenuItem});
+            this.listadoEstadísticoToolStripMenuItem,
+            this.calificarToolStripMenuItem});
             this.módulosToolStripMenuItem.Name = "módulosToolStripMenuItem";
             this.módulosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.módulosToolStripMenuItem.Text = "&Módulos";
@@ -157,6 +159,13 @@
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Text = "&Seguridad";
             // 
+            // calificarToolStripMenuItem
+            // 
+            this.calificarToolStripMenuItem.Name = "calificarToolStripMenuItem";
+            this.calificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calificarToolStripMenuItem.Text = "C&alificar";
+            this.calificarToolStripMenuItem.Click += new System.EventHandler(this.calificarToolStripMenuItem_Click);
+            // 
             // frmContenedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,5 +200,6 @@
         private System.Windows.Forms.ToolStripMenuItem comprarOfertarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoEstadísticoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calificarToolStripMenuItem;
     }
 }

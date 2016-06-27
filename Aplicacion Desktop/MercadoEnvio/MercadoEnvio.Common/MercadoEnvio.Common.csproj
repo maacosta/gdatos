@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Entity\CompraOferta.cs" />
     <Compile Include="Entity\CompraOfertaHistorial.cs" />
+    <Compile Include="Entity\PublicacionCalificacion.cs" />
     <Compile Include="Entity\FacturacionItem.cs" />
     <Compile Include="Entity\Facturacion.cs" />
     <Compile Include="Entity\Permiso.cs" />

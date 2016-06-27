@@ -91,11 +91,11 @@
     <Compile Include="ABM Visibilidad\frmVisibilidad.Designer.cs">
       <DependentUpon>frmVisibilidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calificar\Form1.cs">
+    <Compile Include="Calificar\frmCalificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calificar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calificar\frmCalificar.Designer.cs">
+      <DependentUpon>frmCalificar.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarOfertar\frmAComprarOfertar.cs">
       <SubType>Form</SubType>
@@ -187,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\frmVisibilidad.resx">
       <DependentUpon>frmVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\frmCalificar.resx">
+      <DependentUpon>frmCalificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\frmAComprarOfertar.resx">
       <DependentUpon>frmAComprarOfertar.cs</DependentUpon>

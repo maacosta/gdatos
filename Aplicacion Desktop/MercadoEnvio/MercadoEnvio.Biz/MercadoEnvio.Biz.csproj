@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Impl\CompraOfertaBiz.cs" />
+    <Compile Include="Impl\PublicacionCalificacionBiz.cs" />
     <Compile Include="Impl\FacturacionBiz.cs" />
     <Compile Include="Impl\PublicacionBiz.cs" />
     <Compile Include="Impl\PublicacionPreguntaBiz.cs" />
