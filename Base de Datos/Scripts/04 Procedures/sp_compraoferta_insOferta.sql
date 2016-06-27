@@ -5,7 +5,7 @@ go
 CREATE PROCEDURE LOS_DE_ADELANTE.sp_compraoferta_insOferta
 (
 	@idPublicacion int,
-	@fechaSistema int,
+	@fechaSistema datetime,
 	@monto numeric(18, 2),
 	@username nvarchar(50)
 )

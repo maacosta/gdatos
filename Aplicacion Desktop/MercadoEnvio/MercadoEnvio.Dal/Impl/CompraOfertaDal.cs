@@ -15,7 +15,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { idPublicacion };
 
-            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_comprarofertar_getMaximaOferta", param).FirstOrDefault();
+            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_getMaximaOferta", param).FirstOrDefault();
 
             return data;
         }
