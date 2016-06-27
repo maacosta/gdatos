@@ -20,6 +20,15 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
+        public List<CompraOfertaHistorial> GetByOpcion(string username, int opcion)
+        {
+            object[] param = new object[] { username, opcion };
+
+            var data = this._db.ExecuteSprocAccessor<CompraOfertaHistorial>("LOS_DE_ADELANTE.sp_compraoferta_getCompraOfertaFiltrosOpcion", param).ToList();
+
+            return data;
+        }
+
         public CompraOferta InsCompra(int idPublicacion, DateTime fechaSistema, decimal cantidad, string username)
         {
             object[] param = new object[] { idPublicacion, fechaSistema, cantidad, username };

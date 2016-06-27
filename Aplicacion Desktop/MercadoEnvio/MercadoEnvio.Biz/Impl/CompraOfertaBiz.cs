@@ -17,6 +17,11 @@ namespace MercadoEnvio.Biz.Impl
             this._compraOfertaDal = new CompraOfertaDal();
         }
 
+        public List<CompraOfertaHistorial> GetByOpcion(string username, int opcion)
+        {
+            return this._compraOfertaDal.GetByOpcion(username, opcion);
+        }
+
         public CompraOferta InsCompra(CompraOferta compra)
         {
             return this._compraOfertaDal.InsCompra(
