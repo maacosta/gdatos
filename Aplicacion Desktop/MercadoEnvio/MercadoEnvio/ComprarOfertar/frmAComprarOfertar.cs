@@ -53,7 +53,7 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                if (monto <= Convert.ToDecimal(this.txtPrecio.Text))
+                if (((TipoPublicacion)this._publicacion.TipoPublicacion[0]) == TipoPublicacion.Subasta && monto <= Convert.ToDecimal(this.txtPrecio.Text))
                 {
                     msg.AppendLine("El monto debe ser superior al precio publicado. ");
                 }
@@ -101,17 +101,17 @@ namespace MercadoEnvio.ComprarOfertar
         private void TransformarPublicacionAControles()
         {
             this.txtCodigo.Text = this._publicacion.Codigo;
-            this.txtTipoPublicacion.Text = ((TipoPublicacion)Enum.Parse(typeof(TipoPublicacion), this._publicacion.TipoPublicacion)).ToString();
+            this.txtTipoPublicacion.Text = ((TipoPublicacion)this._publicacion.TipoPublicacion[0]).ToString();
             this.txtDescripcion.Text = this._publicacion.Descripcion;
             this.txtStock.Text = this._publicacion.Stock.ToString();
             this.txtPrecio.Text = this._publicacion.Precio.ToString();
 
-            if ((TipoPublicacion)Enum.Parse(typeof(TipoPublicacion), this._publicacion.TipoPublicacion) == TipoPublicacion.Compra_Inmediata)
+            if ((TipoPublicacion)this._publicacion.TipoPublicacion[0] == TipoPublicacion.Compra_Inmediata)
             {
                 this.txtMonto.Enabled = false;
                 this.txtMonto.Text = "0";
             }
-            else if ((TipoPublicacion)Enum.Parse(typeof(TipoPublicacion), this._publicacion.TipoPublicacion) == TipoPublicacion.Subasta)
+            else if ((TipoPublicacion)this._publicacion.TipoPublicacion[0] == TipoPublicacion.Subasta)
             {
                 this.txtCantidad.Enabled = false;
                 this.txtCantidad.Text = "1";
@@ -139,7 +139,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             string tipoCO = string.Empty;
 
-            TipoPublicacion tp = (TipoPublicacion)Enum.Parse(typeof(TipoPublicacion), this._publicacion.TipoPublicacion);
+            TipoPublicacion tp = (TipoPublicacion)this._publicacion.TipoPublicacion[0];
             switch (tp)
             {
                 case TipoPublicacion.Compra_Inmediata:

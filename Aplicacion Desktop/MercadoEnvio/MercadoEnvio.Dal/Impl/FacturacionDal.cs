@@ -39,7 +39,7 @@ namespace MercadoEnvio.Dal.Impl
                     Id = reader.GetInt32(0),
                     IdFormaPago = reader.GetInt32(1),
                     FormaPago = reader.GetString(2),
-                    Numero = reader.GetInt32(3),
+                    Numero = reader.GetDecimal(3),
                     Fecha = reader.GetDateTime(4),
                     Total = reader.GetDecimal(5),
                     Usuario = reader.GetString(6)

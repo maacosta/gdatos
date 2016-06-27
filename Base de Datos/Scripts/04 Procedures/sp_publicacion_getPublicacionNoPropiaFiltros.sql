@@ -1,11 +1,12 @@
-IF (OBJECT_ID('LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros') IS NOT NULL)
-	Drop Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros
+IF (OBJECT_ID('LOS_DE_ADELANTE.sp_publicacion_getPublicacionNoPropiaFiltros') IS NOT NULL)
+	Drop Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionNoPropiaFiltros
 go
 
-Create Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionPropiaFiltros 
+Create Procedure LOS_DE_ADELANTE.sp_publicacion_getPublicacionNoPropiaFiltros 
 (
 	@username nvarchar(50), 
-	@texto nvarchar(255)
+	@texto nvarchar(255),
+	@codigosRubro nvarchar(255)
 ) As
 Begin
 
@@ -32,8 +33,10 @@ Begin
 		inner join LOS_DE_ADELANTE.Rubro r on r.Id = p.IdRubro
 		inner join LOS_DE_ADELANTE.Visibilidad v on v.Id = p.IdVisibilidad
 		inner join LOS_DE_ADELANTE.Usuario u on u.Id = p.IdUsuario
-	where (Username = @username or @username IS NULL)
-		AND  (p.Descripcion LIKE '%' + @texto + '%' or @texto IS NULL)
+	where u.Username != @username
+		and (p.Estado in ('A', 'P'))
+		and (p.Descripcion LIKE '%' + @texto + '%' or @texto = '')
+		and (r.Codigo in (select convert(numeric(18, 0), Data) from LOS_DE_ADELANTE.fn_Split(@codigosRubro, ',')) or @codigosRubro = '')
 
 End
 

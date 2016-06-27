@@ -54,12 +54,15 @@ namespace MercadoEnvio.Generar_Publicación
             this.ucsRubro.SetObject(new Rubro(), string.Empty);
             this.ucsVisibilidad.SetObject(new Visibilidad(), string.Empty);
             this.chkIncluirEnvio.Checked = false;
+
+            this.SetEstado(Estado.Borrador.ToString());
         }
 
         public void SetNewPublicacion()
         {
             this._publicacion = new Publicacion();
             this._publicacion.Id = 0;
+            this._publicacion.Usuario = GlobalData.Instance.Username;
         }
 
         public void SetPublicacion(Publicacion publicacion)
@@ -183,8 +186,9 @@ namespace MercadoEnvio.Generar_Publicación
         private void TransformarAControles()
         {
             this.txtCodigo.Text = this._publicacion.Codigo;
-            this.cmbTipoPublicacion.SelectedItem = this._tipoPublicacionList.First(i => i == this._publicacion.TipoPublicacion);
-            this.txtEstado.Text = ((Estado)Enum.Parse(typeof(Estado), this._publicacion.Estado)).ToString();
+            this.cmbTipoPublicacion.SelectedItem = this._tipoPublicacionList.First(i => i == ((TipoPublicacion)this._publicacion.TipoPublicacion[0]).ToString());
+            this.txtEstado.Text = ((Estado)this._publicacion.Estado[0]).ToString();
+            this.SetEstado(this.txtEstado.Text);
             this.chkPermitirPreguntas.Checked = this._publicacion.PermitirPreguntas;
             this.txtDescripcion.Text = this._publicacion.Descripcion;
             this.txtStock.Text = this._publicacion.Stock.ToString();
@@ -219,11 +223,9 @@ namespace MercadoEnvio.Generar_Publicación
             this.InicializarDatos();
         }
 
-        private void txtEstado_TextChanged(object sender, EventArgs e)
+        private void SetEstado(string estado)
         {
-            var txt = (TextBox)sender;
-
-            if (txt.Text == Estado.Borrador.ToString())
+            if (estado == Estado.Borrador.ToString())
             {
                 if (this._publicacion.Id == 0)
                 {
@@ -246,19 +248,19 @@ namespace MercadoEnvio.Generar_Publicación
                 this.btnLimpiar.Enabled = false;
                 this.btnGuardar.Enabled = false;
             }
-            if (txt.Text == Estado.Activa.ToString())
+            if (estado == Estado.Activa.ToString())
             {
                 this.btnActivar.Enabled = false;
                 this.btnPausar.Enabled = true;
                 this.btnFinalizar.Enabled = true;
             }
-            else if (txt.Text == Estado.Pausada.ToString())
+            else if (estado == Estado.Pausada.ToString())
             {
                 this.btnActivar.Enabled = true;
                 this.btnPausar.Enabled = false;
                 this.btnFinalizar.Enabled = true;
             }
-            else if (txt.Text == Estado.Finalizada.ToString())
+            else if (estado == Estado.Finalizada.ToString())
             {
                 this.btnActivar.Enabled = false;
                 this.btnPausar.Enabled = false;

@@ -1,9 +1,10 @@
-IF (OBJECT_ID('LOS_DE_ADELANTE.sp_publicacion_insPublicacion') IS NOT NULL)
-	drop PROCEDURE LOS_DE_ADELANTE.sp_publicacion_insPublicacion
+IF (OBJECT_ID('LOS_DE_ADELANTE.sp_publicacion_updPublicacion') IS NOT NULL)
+	drop PROCEDURE LOS_DE_ADELANTE.sp_publicacion_updPublicacion
 go
 
-CREATE PROCEDURE LOS_DE_ADELANTE.sp_publicacion_insPublicacion
+CREATE PROCEDURE LOS_DE_ADELANTE.sp_publicacion_updPublicacion
 (
+	@idPublicacion int,
 	@tipoPublicacion char, 
 	@estado char, 
 	@descripcion nvarchar(255), 
@@ -21,19 +22,26 @@ CREATE PROCEDURE LOS_DE_ADELANTE.sp_publicacion_insPublicacion
 AS
 BEGIN		
 	declare @idUsuario int
-	declare @codigo numeric(18, 0)
-	declare @id int
 
 	select @idUsuario = Id from LOS_DE_ADELANTE.Usuario where Username = @username
 
 	begin tran
 
-		set @codigo = next value for LOS_DE_ADELANTE.sq_publicacion
-
-		insert into LOS_DE_ADELANTE.Publicacion (Codigo, TipoPublicacion, Estado, Descripcion, Stock, FechaInicio, FechaVencimiento, Precio, Costo, PermitirPreguntas, IncluirEnvio, IdRubro, IdVisibilidad, IdUsuario)
-		values (@codigo, @tipoPublicacion, @estado, @descripcion, @stock, @fechaInicio, @fechaVencimiento, @precio, @costo, @permitirPreguntas, @incluirEnvio, @idRubro, @idVisibilidad, @idUsuario)
-
-		set @id = SCOPE_IDENTITY()
+		update LOS_DE_ADELANTE.Publicacion
+		set TipoPublicacion = @tipoPublicacion, 
+			Estado = @estado, 
+			Descripcion = @descripcion, 
+			Stock = @stock, 
+			FechaInicio = @fechaInicio, 
+			FechaVencimiento = @fechaVencimiento, 
+			Precio = @precio, 
+			Costo = @costo, 
+			PermitirPreguntas = @permitirPreguntas, 
+			IncluirEnvio = @incluirEnvio, 
+			IdRubro = @idRubro, 
+			IdVisibilidad = @idVisibilidad, 
+			IdUsuario = @idUsuario
+		where Id = @idPublicacion
 
 	commit tran
 
@@ -60,7 +68,7 @@ BEGIN
 		inner join LOS_DE_ADELANTE.Rubro r on r.Id = p.IdRubro
 		inner join LOS_DE_ADELANTE.Visibilidad v on v.Id = p.IdVisibilidad
 		inner join LOS_DE_ADELANTE.Usuario u on u.Id = p.IdUsuario
-	where p.Id = @id
+	where p.Id = @idPublicacion
 
 END
 go

@@ -24,7 +24,11 @@ namespace MercadoEnvio.Biz.Impl
 
         public List<Publicacion> GetNoPropiasBy(string username, string texto, string codigosRubro)
         {
-            return this._publicacionDal.GetNoPropiasBy(username, texto, codigosRubro);
+            var codRubro = codigosRubro.Trim();
+            var coma = codRubro.LastIndexOf(",");
+            if (coma != -1 && codRubro.Length - 1 == coma) codRubro = codRubro.Substring(0, codRubro.Length - 1);
+
+            return this._publicacionDal.GetNoPropiasBy(username, texto, codRubro);
         }
 
         public List<Publicacion> GetFinalizadasBy(string username, DateTime fechaSistema)
