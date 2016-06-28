@@ -25,7 +25,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { nombre, apellido, dni, email };
 
-            var data = this._db.ExecuteSprocAccessor<Cliente>("LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroCliente", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Cliente>("LOS_DE_ADELANTE.sp_usuario_getClienteFiltros", param).ToList();
 
             return data;
         }
@@ -34,7 +34,7 @@ namespace MercadoEnvio.Dal.Impl
         {
             object[] param = new object[] { razonSocial, cuit, email };
 
-            var data = this._db.ExecuteSprocAccessor<Empresa>("LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroEmpresa", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Empresa>("LOS_DE_ADELANTE.sp_usuario_getEmpresaFiltros", param).ToList();
 
             return data;
         }

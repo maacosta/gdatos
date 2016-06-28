@@ -1,8 +1,8 @@
-IF (OBJECT_ID('LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroEmpresa') IS NOT NULL)
-	drop PROCEDURE LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroEmpresa
+IF (OBJECT_ID('LOS_DE_ADELANTE.sp_usuario_getEmpresaFiltros') IS NOT NULL)
+	drop PROCEDURE LOS_DE_ADELANTE.sp_usuario_getEmpresaFiltros
 go
 
-CREATE PROCEDURE LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroEmpresa
+CREATE PROCEDURE LOS_DE_ADELANTE.sp_usuario_getEmpresaFiltros
 (
 	@razonSocial nvarchar(255), 
 	@cuit nvarchar(50), 
