@@ -1,4 +1,5 @@
-﻿using MercadoEnvio.Dal.Impl;
+﻿using MercadoEnvio.Common.Entity;
+using MercadoEnvio.Dal.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace MercadoEnvio.Biz.Impl
         public RolBiz()
         {
             this._rolDal = new RolDal();
+        }
+
+        public List<Rol> GetBy(string texto)
+        {
+            return this._rolDal.GetBy(texto);
         }
     }
 }

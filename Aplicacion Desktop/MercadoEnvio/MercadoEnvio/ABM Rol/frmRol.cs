@@ -23,5 +23,11 @@ namespace MercadoEnvio.ABM_Rol
             InitializeComponent();
             this._rolBiz = new RolBiz();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var roles = this._rolBiz.GetBy(this.textBox1.Text);
+            this.grvRol.DataSource = roles;
+        }
     }
 }

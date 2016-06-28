@@ -11,11 +11,11 @@ namespace MercadoEnvio.Dal.Impl
 {
     public class RolDal : BaseDal
     {
-        public List<Rol> GetByUser(int idUser)
+        public List<Rol> GetBy(string texto)
         {
-            object[] param = new object[] { idUser };
+            object[] param = new object[] { texto };
 
-            var data = this._db.ExecuteSprocAccessor<Rol>("spGetRolByUserId", param).ToList();
+            var data = this._db.ExecuteSprocAccessor<Rol>("LOS_DE_ADELANTE.sp_rol_getRolesFiltros", param).ToList();
 
             return data;
         }
