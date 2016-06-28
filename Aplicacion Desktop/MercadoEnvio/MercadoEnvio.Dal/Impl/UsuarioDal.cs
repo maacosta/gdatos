@@ -21,6 +21,24 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
+        public List<Cliente> GetByCliente(string nombre, string apellido, decimal dni, string email)
+        {
+            object[] param = new object[] { nombre, apellido, dni, email };
+
+            var data = this._db.ExecuteSprocAccessor<Cliente>("LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroCliente", param).ToList();
+
+            return data;
+        }
+
+        public List<Empresa> GetByEmpresa(string razonSocial, string cuit, string email)
+        {
+            object[] param = new object[] { razonSocial, cuit, email };
+
+            var data = this._db.ExecuteSprocAccessor<Empresa>("LOS_DE_ADELANTE.sp_usuario_getUsuarioFiltroEmpresa", param).ToList();
+
+            return data;
+        }
+
         public void SetFechaBaja(string username, DateTime fechaSistema)
         {
             object[] param = new object[] { username, fechaSistema };
