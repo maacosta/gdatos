@@ -1,4 +1,6 @@
-﻿using MercadoEnvio.Common.Entity;
+﻿using MercadoEnvio.ABM_Rol;
+using MercadoEnvio.Biz.Impl;
+using MercadoEnvio.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class frmAMUsuario : Form, IFormMDI
     {
+        private RolBiz _rolBiz;
         private Usuario _usuario;
         private bool _esCliente;
         private List<string> _tipoDoc;
@@ -23,6 +26,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         public frmAMUsuario()
         {
             InitializeComponent();
+            this._rolBiz = new RolBiz();
         }
 
         private void frmAMUsuario_Load(object sender, EventArgs e)
@@ -60,6 +64,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             this.txtUsuario.Text = usuario.Username;
             //cargar roles
+            var roles = this._rolBiz.GetByUsuario(usuario.Username);
+            roles.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
+            
             this.txtEmail.Text = usuario.Mail;
             this.txtTelefono.Text = usuario.Telefono;
             this.txtCalle.Text = usuario.Calle;
@@ -86,6 +93,22 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this.txtCiudad.Text = empresa.Ciudad;
             this.txtContacto.Text = empresa.NombreContacto;
             this.txtRubroPrincipal.Text = empresa.RubroPrincipal;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucmsRol_SelectionClick(object sender, EventArgs e)
+        {
+            var frm = this.FormFactory.AppendChildForm<frmRol>();
+            frm.ShowDialog();
+            if (frm.RolList.Count > 0)
+            {
+                this.ucmsRol.CleanObjects();
+                frm.RolList.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
+            }
         }
 
     }

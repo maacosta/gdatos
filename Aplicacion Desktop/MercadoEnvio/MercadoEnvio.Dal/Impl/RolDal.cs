@@ -20,6 +20,13 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
+        public List<Rol> GetByUsuario(string username)
+        {
+            object[] param = new object[] { username };
 
+            var data = this._db.ExecuteSprocAccessor<Rol>("LOS_DE_ADELANTE.sp_rol_getRolesFiltrosUsuario", param).ToList();
+
+            return data;
+        }
     }
 }

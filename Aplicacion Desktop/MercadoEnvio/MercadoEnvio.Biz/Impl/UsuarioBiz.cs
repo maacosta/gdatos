@@ -28,5 +28,15 @@ namespace MercadoEnvio.Biz.Impl
         {
             return this._usuarioDal.GetByEmpresa(razonSocial, cuit, email);
         }
+
+        public void InsCliente(Cliente cliente)
+        {
+
+        }
+
+        public void InsEmpresa(Empresa empresa)
+        {
+
+        }
     }
 }

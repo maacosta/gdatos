@@ -8,6 +8,11 @@ namespace MercadoEnvio.Common.Entity
 {
     public class Usuario
     {
+        public Usuario()
+        {
+            this.Roles = new List<Rol>();
+        }
+
         public int Id { get; set; }
 		public string Username { get; set; }
         public string PassSalt { get; set; }
@@ -19,6 +24,7 @@ namespace MercadoEnvio.Common.Entity
         public string Depto { get; set; }
         public string CodigoPostal { get; set; }
         public string Localidad { get; set; }
+        public List<Rol> Roles { get; set; }
     }
 
     public class Cliente : Usuario

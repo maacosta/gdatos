@@ -31,7 +31,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbRol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClaveRepetir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -78,6 +77,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.ucmsRol = new WindowsFormsApplication1.Core.ucMultiSelector();
             this.groupBox1.SuspendLayout();
             this.grbCliente.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
@@ -91,8 +91,9 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 9;
-            this.btnGuardar.Text = "Buscar";
+            this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnLimpiar
             // 
@@ -107,7 +108,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.cmbRol);
+            this.groupBox1.Controls.Add(this.ucmsRol);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtClaveRepetir);
             this.groupBox1.Controls.Add(this.label3);
@@ -121,14 +122,6 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Usuario";
-            // 
-            // cmbRol
-            // 
-            this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Location = new System.Drawing.Point(84, 100);
-            this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(307, 21);
-            this.cmbRol.TabIndex = 9;
             // 
             // label4
             // 
@@ -587,6 +580,14 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Email";
             // 
+            // ucmsRol
+            // 
+            this.ucmsRol.Location = new System.Drawing.Point(84, 103);
+            this.ucmsRol.Name = "ucmsRol";
+            this.ucmsRol.Size = new System.Drawing.Size(307, 20);
+            this.ucmsRol.TabIndex = 7;
+            this.ucmsRol.SelectionClick += new System.EventHandler(this.ucmsRol_SelectionClick);
+            // 
             // frmAMUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -618,7 +619,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmbRol;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtClaveRepetir;
         private System.Windows.Forms.Label label3;
@@ -665,5 +665,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.Label label22;
+        private Core.ucMultiSelector ucmsRol;
     }
 }

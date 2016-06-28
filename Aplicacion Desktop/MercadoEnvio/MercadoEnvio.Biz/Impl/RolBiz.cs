@@ -21,5 +21,10 @@ namespace MercadoEnvio.Biz.Impl
         {
             return this._rolDal.GetBy(texto);
         }
+
+        public List<Rol> GetByUsuario(string username)
+        {
+            return this._rolDal.GetByUsuario(username);
+        }
     }
 }
