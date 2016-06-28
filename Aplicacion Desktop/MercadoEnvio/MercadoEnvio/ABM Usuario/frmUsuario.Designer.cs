@@ -32,13 +32,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.grbCliente = new System.Windows.Forms.GroupBox();
-            this.grbEmpresa = new System.Windows.Forms.GroupBox();
-            this.txtEmailE = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtCUIT = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtRazonSocial = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtEmailC = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDni = new System.Windows.Forms.TextBox();
@@ -47,9 +40,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.grbEmpresa = new System.Windows.Forms.GroupBox();
+            this.txtEmailE = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCUIT = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtRazonSocial = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbRol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvUsuario)).BeginInit();
             this.grbCliente.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
@@ -63,7 +64,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grvUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvUsuario.Location = new System.Drawing.Point(12, 244);
+            this.grvUsuario.MultiSelect = false;
             this.grvUsuario.Name = "grvUsuario";
+            this.grvUsuario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvUsuario.Size = new System.Drawing.Size(410, 163);
             this.grvUsuario.TabIndex = 7;
             // 
@@ -86,6 +89,7 @@
             this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // grbCliente
             // 
@@ -105,77 +109,6 @@
             this.grbCliente.TabIndex = 4;
             this.grbCliente.TabStop = false;
             this.grbCliente.Text = "Filtros";
-            // 
-            // grbEmpresa
-            // 
-            this.grbEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbEmpresa.Controls.Add(this.txtEmailE);
-            this.grbEmpresa.Controls.Add(this.label7);
-            this.grbEmpresa.Controls.Add(this.txtCUIT);
-            this.grbEmpresa.Controls.Add(this.label8);
-            this.grbEmpresa.Controls.Add(this.txtRazonSocial);
-            this.grbEmpresa.Controls.Add(this.label9);
-            this.grbEmpresa.Location = new System.Drawing.Point(12, -172);
-            this.grbEmpresa.Name = "grbEmpresa";
-            this.grbEmpresa.Size = new System.Drawing.Size(410, 137);
-            this.grbEmpresa.TabIndex = 12;
-            this.grbEmpresa.TabStop = false;
-            this.grbEmpresa.Text = "Filtros";
-            // 
-            // txtEmailE
-            // 
-            this.txtEmailE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmailE.Location = new System.Drawing.Point(84, 74);
-            this.txtEmailE.Name = "txtEmailE";
-            this.txtEmailE.Size = new System.Drawing.Size(307, 20);
-            this.txtEmailE.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 77);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Email";
-            // 
-            // txtCUIT
-            // 
-            this.txtCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCUIT.Location = new System.Drawing.Point(84, 48);
-            this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(307, 20);
-            this.txtCUIT.TabIndex = 3;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 51);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "CUIT";
-            // 
-            // txtRazonSocial
-            // 
-            this.txtRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRazonSocial.Location = new System.Drawing.Point(84, 22);
-            this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(307, 20);
-            this.txtRazonSocial.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 25);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Razón Social";
             // 
             // txtEmailC
             // 
@@ -249,6 +182,77 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
+            // grbEmpresa
+            // 
+            this.grbEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbEmpresa.Controls.Add(this.txtEmailE);
+            this.grbEmpresa.Controls.Add(this.label7);
+            this.grbEmpresa.Controls.Add(this.txtCUIT);
+            this.grbEmpresa.Controls.Add(this.label8);
+            this.grbEmpresa.Controls.Add(this.txtRazonSocial);
+            this.grbEmpresa.Controls.Add(this.label9);
+            this.grbEmpresa.Location = new System.Drawing.Point(12, -172);
+            this.grbEmpresa.Name = "grbEmpresa";
+            this.grbEmpresa.Size = new System.Drawing.Size(410, 137);
+            this.grbEmpresa.TabIndex = 12;
+            this.grbEmpresa.TabStop = false;
+            this.grbEmpresa.Text = "Filtros";
+            // 
+            // txtEmailE
+            // 
+            this.txtEmailE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmailE.Location = new System.Drawing.Point(84, 74);
+            this.txtEmailE.Name = "txtEmailE";
+            this.txtEmailE.Size = new System.Drawing.Size(307, 20);
+            this.txtEmailE.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 77);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Email";
+            // 
+            // txtCUIT
+            // 
+            this.txtCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCUIT.Location = new System.Drawing.Point(84, 48);
+            this.txtCUIT.Name = "txtCUIT";
+            this.txtCUIT.Size = new System.Drawing.Size(307, 20);
+            this.txtCUIT.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 51);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "CUIT";
+            // 
+            // txtRazonSocial
+            // 
+            this.txtRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRazonSocial.Location = new System.Drawing.Point(84, 22);
+            this.txtRazonSocial.Name = "txtRazonSocial";
+            this.txtRazonSocial.Size = new System.Drawing.Size(307, 20);
+            this.txtRazonSocial.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Razón Social";
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -283,11 +287,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Rol";
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(93, 215);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionar.TabIndex = 13;
+            this.btnSeleccionar.Text = "&Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 419);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.grbEmpresa);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grvUsuario);
@@ -332,5 +347,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

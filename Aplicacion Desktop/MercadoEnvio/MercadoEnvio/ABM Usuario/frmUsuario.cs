@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.ABM_Usuario;
 using WindowsFormsApplication1.Core;
 
 namespace MercadoEnvio.ABM_Usuario
@@ -72,6 +73,23 @@ namespace MercadoEnvio.ABM_Usuario
                     this.grvUsuario.DataSource = empresas;
                     break;
             }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            var frm = this.FormFactory.OpenChildForm<frmAMUsuario>();
+            frm.SetUsuario((Usuario)this.grvUsuario.CurrentRow.DataBoundItem);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtNombre.Text = string.Empty;
+            this.txtApellido.Text = string.Empty;
+            this.txtDni.Text = string.Empty;
+            this.txtEmailC.Text = string.Empty;
+            this.txtRazonSocial.Text = string.Empty;
+            this.txtCUIT.Text = string.Empty;
+            this.txtEmailE.Text = string.Empty;
         }
     }
 }

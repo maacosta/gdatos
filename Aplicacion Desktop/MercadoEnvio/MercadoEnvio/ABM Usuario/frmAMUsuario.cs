@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MercadoEnvio.Common.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,79 @@ namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class frmAMUsuario : Form, IFormMDI
     {
+        private Usuario _usuario;
+        private bool _esCliente;
+        private List<string> _tipoDoc;
+
         public FormFactory FormFactory { get; set; }
 
         public frmAMUsuario()
         {
             InitializeComponent();
         }
+
+        private void frmAMUsuario_Load(object sender, EventArgs e)
+        {
+            this._tipoDoc = new List<string>()
+            {
+                "LE","LC","DNI"
+            };
+
+            this.cmbTipoDocumento.DataSource = this._tipoDoc;
+        }
+
+        public void SetUsuario(Usuario usuario)
+        {
+            this._usuario = usuario;
+
+            this.LoadUsuario(usuario);
+            if (usuario is Cliente)
+            {
+                this._esCliente = true;
+                this.grbCliente.Location = new Point(12, 154);
+                this.grbEmpresa.Location = new Point(12, -164);
+                this.LoadCliente((Cliente)usuario);
+            }
+            else if (usuario is Empresa)
+            {
+                this._esCliente = false;
+                this.grbCliente.Location = new Point(12, -164);
+                this.grbEmpresa.Location = new Point(12, 154);
+                this.LoadEmpresa((Empresa)usuario);
+            }
+        }
+
+        private void LoadUsuario(Usuario usuario)
+        {
+            this.txtUsuario.Text = usuario.Username;
+            //cargar roles
+            this.txtEmail.Text = usuario.Mail;
+            this.txtTelefono.Text = usuario.Telefono;
+            this.txtCalle.Text = usuario.Calle;
+            this.txtNumero.Text = usuario.Numero.HasValue ? usuario.Numero.Value.ToString() : string.Empty;
+            this.txtDepartamento.Text = usuario.Depto;
+            this.txtPiso.Text = usuario.Piso.HasValue ? usuario.Piso.Value.ToString() : string.Empty;
+            this.txtCP.Text = usuario.CodigoPostal;
+            this.txtLocalidad.Text = usuario.Localidad;
+        }
+
+        private void LoadCliente(Cliente cliente)
+        {
+            this.txtNombre.Text = cliente.Nombre;
+            this.txtApellido.Text = cliente.Apellido;
+            this.txtDNI.Text = cliente.Dni.ToString();
+            this.cmbTipoDocumento.SelectedItem = this._tipoDoc.FirstOrDefault(i => i == cliente.TipoDocumento);
+            this.dtpFechaNacimiento.Value = cliente.FechaNacimiento.HasValue ? cliente.FechaNacimiento.Value : DateTime.Now;
+        }
+
+        private void LoadEmpresa(Empresa empresa)
+        {
+            this.txtRazonSocial.Text = empresa.RazonSocial;
+            this.txtCUIT.Text = empresa.Cuit;
+            this.txtCiudad.Text = empresa.Ciudad;
+            this.txtContacto.Text = empresa.NombreContacto;
+            this.txtRubroPrincipal.Text = empresa.RubroPrincipal;
+        }
+
     }
 }

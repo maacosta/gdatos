@@ -51,7 +51,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDNI = new System.Windows.Forms.TextBox();
@@ -62,6 +62,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtLocalidad = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.txtCP = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txtPiso = new System.Windows.Forms.TextBox();
@@ -76,8 +78,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grbCliente.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
@@ -199,8 +199,7 @@
             // 
             this.grbCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbCliente.Controls.Add(this.grbEmpresa);
-            this.grbCliente.Controls.Add(this.dateTimePicker1);
+            this.grbCliente.Controls.Add(this.dtpFechaNacimiento);
             this.grbCliente.Controls.Add(this.cmbTipoDocumento);
             this.grbCliente.Controls.Add(this.label5);
             this.grbCliente.Controls.Add(this.txtDNI);
@@ -231,7 +230,7 @@
             this.grbEmpresa.Controls.Add(this.label13);
             this.grbEmpresa.Controls.Add(this.txtRazonSocial);
             this.grbEmpresa.Controls.Add(this.label14);
-            this.grbEmpresa.Location = new System.Drawing.Point(0, 0);
+            this.grbEmpresa.Location = new System.Drawing.Point(428, 154);
             this.grbEmpresa.Name = "grbEmpresa";
             this.grbEmpresa.Size = new System.Drawing.Size(410, 160);
             this.grbEmpresa.TabIndex = 12;
@@ -328,14 +327,14 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "Razón Social";
             // 
-            // dateTimePicker1
+            // dtpFechaNacimiento
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dtpFechaNacimiento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(84, 129);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(307, 20);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(84, 129);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(307, 20);
+            this.dtpFechaNacimiento.TabIndex = 14;
             // 
             // cmbTipoDocumento
             // 
@@ -443,6 +442,24 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos adicionales";
+            // 
+            // txtLocalidad
+            // 
+            this.txtLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLocalidad.Location = new System.Drawing.Point(84, 152);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(307, 20);
+            this.txtLocalidad.TabIndex = 19;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 155);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(53, 13);
+            this.label22.TabIndex = 18;
+            this.label22.Text = "Localidad";
             // 
             // txtCP
             // 
@@ -570,29 +587,12 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Email";
             // 
-            // txtLocalidad
-            // 
-            this.txtLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLocalidad.Location = new System.Drawing.Point(84, 152);
-            this.txtLocalidad.Name = "txtLocalidad";
-            this.txtLocalidad.Size = new System.Drawing.Size(307, 20);
-            this.txtLocalidad.TabIndex = 19;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(16, 155);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 13);
-            this.label22.TabIndex = 18;
-            this.label22.Text = "Localidad";
-            // 
             // frmAMUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 550);
+            this.Controls.Add(this.grbEmpresa);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grbCliente);
             this.Controls.Add(this.btnGuardar);
@@ -600,6 +600,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAMUsuario";
             this.Text = "frmAMUsuario";
+            this.Load += new System.EventHandler(this.frmAMUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbCliente.ResumeLayout(false);
@@ -655,7 +656,7 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.TextBox txtCP;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtPiso;
