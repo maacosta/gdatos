@@ -68,6 +68,7 @@ declare @idmax int
 
 --Usuario
 
+print '## LOS_DE_ADELANTE.Usuario'
 insert into LOS_DE_ADELANTE.Usuario
 	(Id, Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal) 
 select id, dni, mail, calle, numero, piso, depto, cp 
@@ -75,6 +76,7 @@ from #TCliente
 
 set @idmax = SCOPE_IDENTITY()
 
+print '## LOS_DE_ADELANTE.Cliente'
 insert into LOS_DE_ADELANTE.Cliente 
 	(IdUsuario, Dni, TipoDocumento, Apellido, Nombre, FechaNacimiento, FechaCreacion)  
 select distinct 
@@ -83,11 +85,13 @@ from #TCliente
 
 --Empresa
 
+print '## LOS_DE_ADELANTE.Usuario'
 insert into LOS_DE_ADELANTE.Usuario
 	(Id, Username, Mail, Calle, Numero, Piso, Depto, CodigoPostal) 
 select id+@idmax, cuit, mail, calle, numero, piso, depto, cp 
 from #TEmpresa
-  
+
+print '## LOS_DE_ADELANTE.Empresa'  
 insert into LOS_DE_ADELANTE.Empresa 
 	(IdUsuario, Cuit, RazonSocial, FechaCreacion)
 select 	Id+@idmax, cuit, razonsocial, fechacreacion 

@@ -28,6 +28,7 @@ where Factura_Nro is not null and Publ_Empresa_Cuit is not null
 
 --Factura a Clientes
 
+print '## LOS_DE_ADELANTE.Factura'
 insert into LOS_DE_ADELANTE.Factura
 	(IdUsuario, IdFormaPago, Numero, Fecha, Total)
 select c.IdUsuario, fp.Id, fc.Factura_Nro, fc.Factura_Fecha, fc.Factura_Total
@@ -37,6 +38,7 @@ from #TFacturaC fc
 
 --Factura a Empresas
 
+print '## LOS_DE_ADELANTE.Factura'
 insert into LOS_DE_ADELANTE.Factura
 	(IdUsuario, IdFormaPago, Numero, Fecha, Total)
 select e.IdUsuario, fp.Id, fe.Factura_Nro, fe.Factura_Fecha, fe.Factura_Total

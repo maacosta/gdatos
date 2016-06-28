@@ -7,6 +7,7 @@ from gd_esquema.Maestra
 where Publicacion_Rubro_Descripcion is not null
 ) r
 
+print '## LOS_DE_ADELANTE.Rubro'
 insert into LOS_DE_ADELANTE.Rubro
 	(Codigo, DescCorta, DescLarga) 
 select codigo, [desc], [desc]

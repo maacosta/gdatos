@@ -1,3 +1,4 @@
+print '## LOS_DE_ADELANTE.Visibilidad'
 insert into LOS_DE_ADELANTE.Visibilidad (Codigo, Descripcion, Precio, Porcentaje, PorcentajeEnvio)
 select distinct 
 	Publicacion_Visibilidad_Cod, 

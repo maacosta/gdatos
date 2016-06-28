@@ -25,9 +25,10 @@ where Publicacion_Cod is not null and Oferta_Fecha is not null
 ) co
 go
 
+print '## LOS_DE_ADELANTE.CompraOferta'
 insert into LOS_DE_ADELANTE.CompraOferta 
 	(IdPublicacion, IdUsuario, Tipo, Fecha, Cantidad, Monto)
-select p.Id, c.IdUsuario, tipo, fecha, cantidad, monto
+select p.Id, c.IdUsuario, co.tipo, co.fecha, co.cantidad, co.monto
 from #TCompraOferta co
 	inner join LOS_DE_ADELANTE.Publicacion p on co.codigo = p.Codigo
 	inner join LOS_DE_ADELANTE.Cliente c on co.dni = c.Dni

@@ -5,7 +5,7 @@ select p.* into #TPublicacion
 from (
 select distinct 
 	publicacion_cod codigo, 
-	dbo.fn_mig_getTipoPublicacion(Publicacion_Tipo) tipoPublicacion, 
+	LOS_DE_ADELANTE.fn_mig_getTipoPublicacion(Publicacion_Tipo) tipoPublicacion, 
 	'F' estado, 
 	Publicacion_Descripcion descripcion,
 	Publicacion_Stock stock,
@@ -20,6 +20,7 @@ from gd_esquema.maestra
 where [Publicacion_Cod] is not null
 ) p
 
+print '## LOS_DE_ADELANTE.Publicacion'
 insert into LOS_DE_ADELANTE.Publicacion 
 	(Codigo, TipoPublicacion, Estado, Descripcion, Stock, FechaInicio, FechaVencimiento, Precio, IdRubro, IdVisibilidad, IdUsuario)
 select 
