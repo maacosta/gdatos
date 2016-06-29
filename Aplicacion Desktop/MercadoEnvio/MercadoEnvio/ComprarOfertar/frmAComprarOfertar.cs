@@ -100,6 +100,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void TransformarPublicacionAControles()
         {
+            this.txtUsuario.Text = this._publicacion.Usuario;
             this.txtCodigo.Text = this._publicacion.Codigo;
             this.txtTipoPublicacion.Text = ((TipoPublicacion)this._publicacion.TipoPublicacion[0]).ToString();
             this.txtDescripcion.Text = this._publicacion.Descripcion;
