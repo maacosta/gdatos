@@ -52,6 +52,7 @@ namespace WindowsFormsApplication1
                 this.comprarOfertarToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ComprarOfertar_V);
                 this.facturasToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ConsultaFacturas_V);
                 this.listadoEstadísticoToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ListadoEstadistico_V);
+                this.calificarToolStripMenuItem.Visible = GlobalData.Instance.EstaPermitido(TipoFuncionalidad.CalificacionVendedor_A);
             }
 
             //verificar publicaciones finalizadas (de subastas)
@@ -117,6 +118,13 @@ namespace WindowsFormsApplication1
         private void calificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this._formFactory.OpenChildForm<frmCalificar>();
+        }
+
+        private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = this._formFactory.AppendChildForm<frmIngresar>();
+            frm.SetUsuario(GlobalData.Instance.Username);
+            frm.ShowDialog();
         }
     }
 }
