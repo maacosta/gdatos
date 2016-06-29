@@ -56,6 +56,7 @@
             // 
             this.txtClave.Location = new System.Drawing.Point(66, 52);
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(290, 20);
             this.txtClave.TabIndex = 1;
             // 
@@ -119,6 +120,7 @@
             // 
             this.txtRepetir.Location = new System.Drawing.Point(65, 78);
             this.txtRepetir.Name = "txtRepetir";
+            this.txtRepetir.PasswordChar = '*';
             this.txtRepetir.Size = new System.Drawing.Size(290, 20);
             this.txtRepetir.TabIndex = 6;
             this.txtRepetir.Visible = false;

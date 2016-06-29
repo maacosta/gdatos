@@ -51,6 +51,7 @@
             this.cmbRol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnCambiarClave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvUsuario)).BeginInit();
             this.grbCliente.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
@@ -77,7 +78,7 @@
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 6;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -87,7 +88,7 @@
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 5;
-            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Text = "&Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
@@ -297,11 +298,22 @@
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
+            // btnCambiarClave
+            // 
+            this.btnCambiarClave.Location = new System.Drawing.Point(174, 215);
+            this.btnCambiarClave.Name = "btnCambiarClave";
+            this.btnCambiarClave.Size = new System.Drawing.Size(86, 23);
+            this.btnCambiarClave.TabIndex = 14;
+            this.btnCambiarClave.Text = "&Cambiar Clave";
+            this.btnCambiarClave.UseVisualStyleBackColor = true;
+            this.btnCambiarClave.Click += new System.EventHandler(this.btnCambiarClave_Click);
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 419);
+            this.Controls.Add(this.btnCambiarClave);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.grbEmpresa);
             this.Controls.Add(this.groupBox2);
@@ -348,5 +360,6 @@
         private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.Button btnCambiarClave;
     }
 }

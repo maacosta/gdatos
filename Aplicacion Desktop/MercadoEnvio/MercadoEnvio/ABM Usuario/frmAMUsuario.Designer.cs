@@ -32,10 +32,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtClaveRepetir = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtClave = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grbCliente = new System.Windows.Forms.GroupBox();
@@ -87,7 +83,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(347, 518);
+            this.btnGuardar.Location = new System.Drawing.Point(347, 464);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 9;
@@ -97,7 +93,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 518);
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 464);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 8;
@@ -110,15 +106,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.ucmsRol);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtClaveRepetir);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtClave);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtUsuario);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 136);
+            this.groupBox1.Size = new System.Drawing.Size(410, 82);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Usuario";
@@ -126,55 +118,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 103);
+            this.label4.Location = new System.Drawing.Point(16, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Rol";
-            // 
-            // txtClaveRepetir
-            // 
-            this.txtClaveRepetir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClaveRepetir.Location = new System.Drawing.Point(84, 74);
-            this.txtClaveRepetir.Name = "txtClaveRepetir";
-            this.txtClaveRepetir.PasswordChar = '*';
-            this.txtClaveRepetir.Size = new System.Drawing.Size(307, 20);
-            this.txtClaveRepetir.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Clave (repetir)";
-            // 
-            // txtClave
-            // 
-            this.txtClave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClave.Location = new System.Drawing.Point(84, 48);
-            this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(307, 20);
-            this.txtClave.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Clave";
             // 
             // txtUsuario
             // 
             this.txtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsuario.Location = new System.Drawing.Point(84, 22);
+            this.txtUsuario.MaxLength = 50;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(307, 20);
             this.txtUsuario.TabIndex = 1;
@@ -202,7 +157,7 @@
             this.grbCliente.Controls.Add(this.txtNombre);
             this.grbCliente.Controls.Add(this.label8);
             this.grbCliente.Controls.Add(this.label21);
-            this.grbCliente.Location = new System.Drawing.Point(12, 154);
+            this.grbCliente.Location = new System.Drawing.Point(12, 100);
             this.grbCliente.Name = "grbCliente";
             this.grbCliente.Size = new System.Drawing.Size(410, 160);
             this.grbCliente.TabIndex = 10;
@@ -223,7 +178,7 @@
             this.grbEmpresa.Controls.Add(this.label13);
             this.grbEmpresa.Controls.Add(this.txtRazonSocial);
             this.grbEmpresa.Controls.Add(this.label14);
-            this.grbEmpresa.Location = new System.Drawing.Point(428, 154);
+            this.grbEmpresa.Location = new System.Drawing.Point(428, 100);
             this.grbEmpresa.Name = "grbEmpresa";
             this.grbEmpresa.Size = new System.Drawing.Size(410, 160);
             this.grbEmpresa.TabIndex = 12;
@@ -235,6 +190,7 @@
             this.txtRubroPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRubroPrincipal.Location = new System.Drawing.Point(84, 126);
+            this.txtRubroPrincipal.MaxLength = 10;
             this.txtRubroPrincipal.Name = "txtRubroPrincipal";
             this.txtRubroPrincipal.Size = new System.Drawing.Size(307, 20);
             this.txtRubroPrincipal.TabIndex = 13;
@@ -253,6 +209,7 @@
             this.txtContacto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContacto.Location = new System.Drawing.Point(84, 100);
+            this.txtContacto.MaxLength = 50;
             this.txtContacto.Name = "txtContacto";
             this.txtContacto.Size = new System.Drawing.Size(307, 20);
             this.txtContacto.TabIndex = 11;
@@ -271,6 +228,7 @@
             this.txtCiudad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCiudad.Location = new System.Drawing.Point(84, 74);
+            this.txtCiudad.MaxLength = 50;
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(307, 20);
             this.txtCiudad.TabIndex = 5;
@@ -289,6 +247,7 @@
             this.txtCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCUIT.Location = new System.Drawing.Point(84, 48);
+            this.txtCUIT.MaxLength = 50;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(307, 20);
             this.txtCUIT.TabIndex = 3;
@@ -307,6 +266,7 @@
             this.txtRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRazonSocial.Location = new System.Drawing.Point(84, 22);
+            this.txtRazonSocial.MaxLength = 255;
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(307, 20);
             this.txtRazonSocial.TabIndex = 1;
@@ -326,11 +286,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(84, 129);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.ShowCheckBox = true;
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(307, 20);
             this.dtpFechaNacimiento.TabIndex = 14;
             // 
             // cmbTipoDocumento
             // 
+            this.cmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoDocumento.FormattingEnabled = true;
             this.cmbTipoDocumento.Location = new System.Drawing.Point(84, 100);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
@@ -351,6 +313,7 @@
             this.txtDNI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDNI.Location = new System.Drawing.Point(84, 74);
+            this.txtDNI.MaxLength = 8;
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(307, 20);
             this.txtDNI.TabIndex = 5;
@@ -429,7 +392,7 @@
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.txtEmail);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Location = new System.Drawing.Point(12, 320);
+            this.groupBox2.Location = new System.Drawing.Point(12, 266);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(410, 192);
             this.groupBox2.TabIndex = 10;
@@ -441,6 +404,7 @@
             this.txtLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLocalidad.Location = new System.Drawing.Point(84, 152);
+            this.txtLocalidad.MaxLength = 255;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(307, 20);
             this.txtLocalidad.TabIndex = 19;
@@ -459,6 +423,7 @@
             this.txtCP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCP.Location = new System.Drawing.Point(84, 126);
+            this.txtCP.MaxLength = 50;
             this.txtCP.Name = "txtCP";
             this.txtCP.Size = new System.Drawing.Size(307, 20);
             this.txtCP.TabIndex = 17;
@@ -476,6 +441,7 @@
             // 
             this.txtPiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPiso.Location = new System.Drawing.Point(284, 100);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(107, 20);
             this.txtPiso.TabIndex = 15;
@@ -495,6 +461,7 @@
             this.txtDepartamento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDepartamento.Location = new System.Drawing.Point(84, 100);
+            this.txtDepartamento.MaxLength = 50;
             this.txtDepartamento.Name = "txtDepartamento";
             this.txtDepartamento.Size = new System.Drawing.Size(107, 20);
             this.txtDepartamento.TabIndex = 13;
@@ -512,6 +479,7 @@
             // 
             this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumero.Location = new System.Drawing.Point(284, 74);
+            this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(107, 20);
             this.txtNumero.TabIndex = 11;
@@ -531,6 +499,7 @@
             this.txtCalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCalle.Location = new System.Drawing.Point(84, 74);
+            this.txtCalle.MaxLength = 255;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(107, 20);
             this.txtCalle.TabIndex = 5;
@@ -549,6 +518,7 @@
             this.txtTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTelefono.Location = new System.Drawing.Point(84, 48);
+            this.txtTelefono.MaxLength = 50;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(307, 20);
             this.txtTelefono.TabIndex = 3;
@@ -567,6 +537,7 @@
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.Location = new System.Drawing.Point(84, 22);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(307, 20);
             this.txtEmail.TabIndex = 1;
@@ -582,7 +553,7 @@
             // 
             // ucmsRol
             // 
-            this.ucmsRol.Location = new System.Drawing.Point(84, 103);
+            this.ucmsRol.Location = new System.Drawing.Point(84, 48);
             this.ucmsRol.Name = "ucmsRol";
             this.ucmsRol.Size = new System.Drawing.Size(307, 20);
             this.ucmsRol.TabIndex = 7;
@@ -592,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 550);
+            this.ClientSize = new System.Drawing.Size(434, 496);
             this.Controls.Add(this.grbEmpresa);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grbCliente);
@@ -620,10 +591,6 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtClaveRepetir;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtClave;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox grbCliente;

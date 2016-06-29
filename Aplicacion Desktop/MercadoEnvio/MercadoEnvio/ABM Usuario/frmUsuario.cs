@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1;
 using WindowsFormsApplication1.ABM_Usuario;
 using WindowsFormsApplication1.Core;
 
@@ -16,7 +17,10 @@ namespace MercadoEnvio.ABM_Usuario
 {
     public partial class frmUsuario : Form, IFormMDI
     {
-        private RolBiz _rolBiz;
+        private List<string> _tipoUsuarios;
+        const string CLIENTE = "Cliente";
+        const string EMPRESA = "Empresa";
+
         private UsuarioBiz _usuarioBiz;
 
         public FormFactory FormFactory { get; set; }
@@ -24,59 +28,55 @@ namespace MercadoEnvio.ABM_Usuario
         public frmUsuario()
         {
             InitializeComponent();
-            this._rolBiz = new RolBiz();
             this._usuarioBiz = new UsuarioBiz();
         }
 
         private void frmUsuario_Load(object sender, EventArgs e)
         {
-            var roles = this._rolBiz.GetBy(string.Empty);
-            this.cmbRol.DataSource = roles;
-            this.cmbRol.DisplayMember = "Nombre";
+            this._tipoUsuarios = new List<string>()
+            {
+                CLIENTE, EMPRESA
+            };
+            this.cmbRol.DataSource = this._tipoUsuarios;
         }
 
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.grbCliente.Enabled = true;
-            this.grbEmpresa.Enabled = true;
-            this.btnBuscar.Enabled = true;
-            switch (((Rol)this.cmbRol.SelectedItem).Id)
+            if (this.cmbRol.SelectedValue.ToString() == CLIENTE)
             {
-                case 1:
-                    this.grbCliente.Enabled = false;
-                    this.grbEmpresa.Enabled = false;
-                    this.btnBuscar.Enabled = false;
-                    break;
-                case 2:
-                    this.grbCliente.Location = new Point(12, 72);
-                    this.grbEmpresa.Location = new Point(12, -172);
-                    break;
-                case 3:
-                    this.grbCliente.Location = new Point(12, -172);
-                    this.grbEmpresa.Location = new Point(12, 72);
-                    break;
+                this.grbCliente.Location = new Point(12, 72);
+                this.grbEmpresa.Location = new Point(12, -172);
+            }
+            else if (this.cmbRol.SelectedValue.ToString() == EMPRESA)
+            {
+                this.grbCliente.Location = new Point(12, -172);
+                this.grbEmpresa.Location = new Point(12, 72);
             }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            switch (((Rol)this.cmbRol.SelectedItem).Id)
+            if (this.cmbRol.SelectedValue.ToString() == CLIENTE)
             {
-                case 2:
-                    decimal dni = 0;
-                    decimal.TryParse(this.txtDni.Text, out dni);
-                    var clientes = this._usuarioBiz.GetByCliente(this.txtNombre.Text, this.txtApellido.Text, dni, this.txtEmailC.Text);
-                    this.grvUsuario.DataSource = clientes;
-                    break;
-                case 3:
-                    var empresas = this._usuarioBiz.GetByEmpresa(this.txtRazonSocial.Text, this.txtCUIT.Text, this.txtEmailE.Text);
-                    this.grvUsuario.DataSource = empresas;
-                    break;
+                decimal dni = 0;
+                decimal.TryParse(this.txtDni.Text, out dni);
+                var clientes = this._usuarioBiz.GetByCliente(this.txtNombre.Text, this.txtApellido.Text, dni, this.txtEmailC.Text);
+                this.grvUsuario.DataSource = clientes;
+            }
+            else if (this.cmbRol.SelectedValue.ToString() == EMPRESA)
+            {
+                var empresas = this._usuarioBiz.GetByEmpresa(this.txtRazonSocial.Text, this.txtCUIT.Text, this.txtEmailE.Text);
+                this.grvUsuario.DataSource = empresas;
             }
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            if (this.grvUsuario.CurrentRow.DataBoundItem == null)
+            {
+                MessageBox.Show("Seleccione un item.");
+                return;
+            }
             var frm = this.FormFactory.OpenChildForm<frmAMUsuario>();
             frm.SetUsuario((Usuario)this.grvUsuario.CurrentRow.DataBoundItem);
         }
@@ -90,6 +90,19 @@ namespace MercadoEnvio.ABM_Usuario
             this.txtRazonSocial.Text = string.Empty;
             this.txtCUIT.Text = string.Empty;
             this.txtEmailE.Text = string.Empty;
+        }
+
+        private void btnCambiarClave_Click(object sender, EventArgs e)
+        {
+            if (this.grvUsuario.CurrentRow.DataBoundItem == null)
+            {
+                MessageBox.Show("Seleccione un item.");
+                return;
+            }
+            var usuario = (Usuario)this.grvUsuario.CurrentRow.DataBoundItem;
+            var frm = this.FormFactory.AppendChildForm<frmIngresar>();
+            frm.SetUsuario(usuario.Username);
+            frm.ShowDialog();
         }
     }
 }

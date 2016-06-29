@@ -31,12 +31,40 @@ namespace MercadoEnvio.Biz.Impl
 
         public void InsCliente(Cliente cliente)
         {
+            var usuario = this.InsUsuario((Usuario)cliente);
 
+            this._usuarioDal.InsCliente(usuario.Id, cliente.Dni, cliente.TipoDocumento, cliente.Apellido, cliente.Nombre, cliente.FechaNacimiento, cliente.FechaCreacion);
         }
 
         public void InsEmpresa(Empresa empresa)
         {
+            var usuario = this.InsUsuario((Usuario)empresa);
 
+            this._usuarioDal.InsEmpresa(usuario.Id, empresa.Cuit, empresa.RazonSocial, empresa.Ciudad, empresa.NombreContacto, empresa.RubroPrincipal, empresa.FechaCreacion);
+        }
+
+        private Usuario InsUsuario(Usuario usuario)
+        {
+            return this._usuarioDal.InsUsuario(usuario.Username, usuario.Mail, usuario.Telefono, usuario.Calle, usuario.Numero, usuario.Piso, usuario.Depto, usuario.CodigoPostal, usuario.Localidad);
+        }
+
+        public void UpdCliente(Cliente cliente)
+        {
+            this.UpdUsuario((Usuario)cliente);
+
+            this._usuarioDal.UpdCliente(cliente.Id, cliente.Dni, cliente.TipoDocumento, cliente.Apellido, cliente.Nombre, cliente.FechaNacimiento);
+        }
+
+        public void UpdEmpresa(Empresa empresa)
+        {
+            this.UpdUsuario((Usuario)empresa);
+
+            this._usuarioDal.UpdEmpresa(empresa.Id, empresa.Cuit, empresa.RazonSocial, empresa.Ciudad, empresa.NombreContacto, empresa.RubroPrincipal);
+        }
+
+        private void UpdUsuario(Usuario usuario)
+        {
+            this._usuarioDal.UpdUsuario(usuario.Username, usuario.Mail, usuario.Telefono, usuario.Calle, usuario.Numero, usuario.Piso, usuario.Depto, usuario.CodigoPostal, usuario.Localidad);
         }
     }
 }

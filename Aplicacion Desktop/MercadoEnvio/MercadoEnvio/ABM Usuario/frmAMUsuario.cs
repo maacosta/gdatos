@@ -1,6 +1,7 @@
 ﻿using MercadoEnvio.ABM_Rol;
 using MercadoEnvio.Biz.Impl;
 using MercadoEnvio.Common.Entity;
+using MercadoEnvio.Common.FunctionalException;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
     public partial class frmAMUsuario : Form, IFormMDI
     {
         private RolBiz _rolBiz;
+        private UsuarioBiz _usuarioBiz;
+
         private Usuario _usuario;
+        private List<Rol> _roles;
         private bool _esCliente;
         private List<string> _tipoDoc;
 
@@ -27,6 +31,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             InitializeComponent();
             this._rolBiz = new RolBiz();
+            this._usuarioBiz = new UsuarioBiz();
         }
 
         private void frmAMUsuario_Load(object sender, EventArgs e)
@@ -39,6 +44,18 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this.cmbTipoDocumento.DataSource = this._tipoDoc;
         }
 
+        public void SetNuevoCliente()
+        {
+            this._usuario = new Cliente();
+            this.SetUsuario(this._usuario);
+        }
+
+        public void SetNuevaEmpresa()
+        {
+            this._usuario = new Empresa();
+            this.SetUsuario(this._usuario);
+        }
+
         public void SetUsuario(Usuario usuario)
         {
             this._usuario = usuario;
@@ -47,7 +64,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             if (usuario is Cliente)
             {
                 this._esCliente = true;
-                this.grbCliente.Location = new Point(12, 154);
+                this.grbCliente.Location = new Point(12, 100);
                 this.grbEmpresa.Location = new Point(12, -164);
                 this.LoadCliente((Cliente)usuario);
             }
@@ -55,17 +72,18 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 this._esCliente = false;
                 this.grbCliente.Location = new Point(12, -164);
-                this.grbEmpresa.Location = new Point(12, 154);
+                this.grbEmpresa.Location = new Point(12, 100);
                 this.LoadEmpresa((Empresa)usuario);
             }
         }
 
         private void LoadUsuario(Usuario usuario)
         {
+            this.txtUsuario.ReadOnly = true;
             this.txtUsuario.Text = usuario.Username;
             //cargar roles
-            var roles = this._rolBiz.GetByUsuario(usuario.Username);
-            roles.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
+            this._roles = this._rolBiz.GetByUsuario(usuario.Username);
+            this._roles.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
             
             this.txtEmail.Text = usuario.Mail;
             this.txtTelefono.Text = usuario.Telefono;
@@ -97,7 +115,87 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (!this.EsValido())
+                return;
 
+            this.TransformarAUsuario();
+
+            try
+            {
+                if (this._esCliente)
+                {
+                    if (this._usuario.Id == 0)
+                        this._usuarioBiz.InsCliente(this._usuario as Cliente);
+                    else
+                        this._usuarioBiz.UpdCliente(this._usuario as Cliente);
+                }
+                else
+                {
+                    if (this._usuario.Id == 0)
+                        this._usuarioBiz.InsEmpresa(this._usuario as Empresa);
+                    else
+                        this._usuarioBiz.UpdEmpresa(this._usuario as Empresa);
+                }
+            }
+            catch (ClienteException cliEx)
+            {
+                switch (cliEx.ExceptionType)
+                {
+                    case ClienteTypeExcep.TipoDniYaExistente:
+                        MessageBox.Show("El Tipo Documento y DNI ya existen.");
+                        break;
+                }
+            }
+            catch (UsuarioException usrEx)
+            {
+                switch (usrEx.ExceptionType)
+                {
+                    case UsuarioTypeExcep.UsuarioYaExiste:
+                        MessageBox.Show("El Usuario ya existe.");
+                        break;
+                }
+            }
+        }
+
+        private bool EsValido()
+        {
+            return true;
+        }
+
+        private void TransformarAUsuario()
+        {
+            this._usuario.Username = this.txtUsuario.Text;
+            //cargar roles
+            var roles = this._rolBiz.GetByUsuario(this._usuario.Username);
+            roles.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
+
+            this._usuario.Mail = this.txtEmail.Text;
+            this._usuario.Telefono = this.txtTelefono.Text;
+            this._usuario.Calle = this.txtCalle.Text;
+            if (!string.IsNullOrWhiteSpace(this.txtNumero.Text)) this._usuario.Numero = Convert.ToDecimal(this.txtNumero.Text);
+            this._usuario.Depto = this.txtDepartamento.Text;
+            if (!string.IsNullOrWhiteSpace(this.txtPiso.Text)) this._usuario.Piso = Convert.ToDecimal(this.txtPiso.Text);
+            this._usuario.CodigoPostal = this.txtCP.Text;
+            this._usuario.Localidad = this.txtLocalidad.Text;
+
+            if (this._esCliente)
+            {
+                var cliente = (Cliente)this._usuario;
+                cliente.Nombre = this.txtNombre.Text;
+                cliente.Apellido = this.txtApellido.Text;
+                cliente.Dni = Convert.ToDecimal(this.txtDNI.Text);
+                cliente.TipoDocumento = this.cmbTipoDocumento.SelectedValue.ToString();
+                if(this.dtpFechaNacimiento.Checked) cliente.FechaNacimiento = this.dtpFechaNacimiento.Value;
+            }
+            else
+            {
+                var empresa = (Empresa)this._usuario;
+                empresa.RazonSocial = this.txtRazonSocial.Text;
+                empresa.Cuit = this.txtCUIT.Text;
+                empresa.Ciudad = this.txtCiudad.Text;
+                empresa.NombreContacto = this.txtContacto.Text;
+                empresa.RubroPrincipal = this.txtRubroPrincipal.Text;
+            }
         }
 
         private void ucmsRol_SelectionClick(object sender, EventArgs e)

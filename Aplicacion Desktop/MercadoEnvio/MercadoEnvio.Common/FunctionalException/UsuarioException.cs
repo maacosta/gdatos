@@ -10,7 +10,8 @@ namespace MercadoEnvio.Common.FunctionalException
     {
         IntentosDeLoginFallidos_UsuarioBloqueado,
         UsuarioInexistente,
-        ClaveIncorrecta
+        ClaveIncorrecta,
+        UsuarioYaExiste
     }
 
     public class UsuarioException : Exception

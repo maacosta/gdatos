@@ -21,6 +21,15 @@ namespace MercadoEnvio.Biz.Impl
             this._permisoDal = new PermisoDal();
         }
 
+        public void CreateLoginData(string user, string password)
+        {
+            string salt;
+            var hash = this.ComputeHash(password, out salt);
+            var res = this.GetHashing(password, salt);
+
+            this._usuarioDal.UpdLoginData(user, hash, salt);
+        }
+
         public List<Rol> Login(string user, string password, DateTime fechaSistema)
         {
             var loginData = this._usuarioDal.GetLoginData(user);
