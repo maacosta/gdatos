@@ -195,5 +195,14 @@ namespace MercadoEnvio.ComprarOfertar
 
             this.Close();
         }
+
+        private void frmAComprarOfertar_Load(object sender, EventArgs e)
+        {
+            if (!GlobalData.Instance.EstaPermitido(TipoFuncionalidad.ComprarOfertar_ABM))
+            {
+                this.btnComprarOfertar.Enabled = false;
+                this.btnPreguntar.Enabled = false;
+            }
+        }
     }
 }

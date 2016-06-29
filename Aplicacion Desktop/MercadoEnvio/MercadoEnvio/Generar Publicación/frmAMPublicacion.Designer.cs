@@ -428,6 +428,7 @@
             this.MinimumSize = new System.Drawing.Size(450, 500);
             this.Name = "frmAMPublicacion";
             this.Text = "frmAMPublicacion";
+            this.Load += new System.EventHandler(this.frmAMPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbEmpresa.ResumeLayout(false);

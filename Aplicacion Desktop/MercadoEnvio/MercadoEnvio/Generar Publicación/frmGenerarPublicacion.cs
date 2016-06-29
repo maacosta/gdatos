@@ -54,5 +54,13 @@ namespace MercadoEnvio.Generar_Publicación
             var frm = this.FormFactory.OpenChildForm<frmAMPublicacion>();
             frm.SetNewPublicacion();
         }
+
+        private void frmGenerarPublicacion_Load(object sender, EventArgs e)
+        {
+            if (!GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Publicacipn_ABM))
+            {
+                this.btnNuevo.Enabled = false;
+            }
+        }
     }
 }

@@ -71,6 +71,7 @@ INSERT INTO LOS_DE_ADELANTE.Rol (Id, Nombre)
 	VALUES (3, 'Empresa')
 
 --roles permisos
+--Administrativo
 INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
 	VALUES (1, 1)
 INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
@@ -91,6 +92,28 @@ INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
 	VALUES (1, 12)
 INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
 	VALUES (1, 13)
+--Cliente
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (2, 8)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (2, 9)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (2, 10)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (2, 11)
+--Empresa
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 4)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 5)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 6)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 7)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 8)
+INSERT INTO LOS_DE_ADELANTE.RolPermiso (IdRol, IdPermiso)
+	VALUES (3, 12)
 
 --Usuario Rol
 INSERT INTO LOS_DE_ADELANTE.UsuarioRol (IdUsuario, IdRol)

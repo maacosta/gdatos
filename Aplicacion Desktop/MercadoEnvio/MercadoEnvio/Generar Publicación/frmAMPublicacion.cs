@@ -267,5 +267,16 @@ namespace MercadoEnvio.Generar_Publicación
                 this.btnFinalizar.Enabled = false;
             }
         }
+
+        private void frmAMPublicacion_Load(object sender, EventArgs e)
+        {
+            if (!GlobalData.Instance.EstaPermitido(TipoFuncionalidad.Publicacipn_ABM))
+            {
+                this.btnActivar.Enabled = false;
+                this.btnPausar.Enabled = false;
+                this.btnFinalizar.Enabled = false;
+                this.btnGuardar.Enabled = false;
+            }
+        }
     }
 }

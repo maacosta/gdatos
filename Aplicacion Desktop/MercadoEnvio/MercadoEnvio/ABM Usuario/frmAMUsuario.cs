@@ -143,6 +143,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                         this._usuarioBiz.UpdEmpresa(this._usuario as Empresa);
                 }
                 this._rolBiz.SetRolesToUsuario(this._usuario.Username, this.ucmsRol.EntityList.Select(i => (Rol)i.Key).ToList());
+
                 this.Close();
             }
             catch (ClienteException cliEx)

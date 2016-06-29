@@ -86,6 +86,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grvPublicacion.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.grvPublicacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grvPublicacion.Size = new System.Drawing.Size(424, 264);
             this.grvPublicacion.TabIndex = 12;
             // 
@@ -164,6 +165,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmGenerarPublicacion";
             this.Text = "Generar Publicación";
+            this.Load += new System.EventHandler(this.frmGenerarPublicacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvPublicacion)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
