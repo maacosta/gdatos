@@ -46,13 +46,19 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         public void SetNuevoCliente()
         {
-            this._usuario = new Cliente();
+            this._usuario = new Cliente()
+            {
+                FechaCreacion = GlobalData.Instance.FechaSistema
+            };
             this.SetUsuario(this._usuario);
         }
 
         public void SetNuevaEmpresa()
         {
-            this._usuario = new Empresa();
+            this._usuario = new Empresa()
+            {
+                FechaCreacion = GlobalData.Instance.FechaSistema
+            };
             this.SetUsuario(this._usuario);
         }
 
@@ -79,7 +85,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void LoadUsuario(Usuario usuario)
         {
-            this.txtUsuario.ReadOnly = true;
+            if(usuario.Id != 0) this.txtUsuario.ReadOnly = true;
             this.txtUsuario.Text = usuario.Username;
             //cargar roles
             this._roles = this._rolBiz.GetByUsuario(usuario.Username);
@@ -136,6 +142,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
                     else
                         this._usuarioBiz.UpdEmpresa(this._usuario as Empresa);
                 }
+                this._rolBiz.SetRolesToUsuario(this._usuario.Username, this.ucmsRol.EntityList.Select(i => (Rol)i.Key).ToList());
+                this.Close();
             }
             catch (ClienteException cliEx)
             {
@@ -159,6 +167,42 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private bool EsValido()
         {
+            StringBuilder str = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(this.txtUsuario.Text))
+                str.AppendLine("El usuario es obligatorio. ");
+
+            int piso;
+            if (!int.TryParse(this.txtPiso.Text, out piso))
+                str.AppendLine("El Piso debe ser numérico. ");
+
+            int numero;
+            if (!int.TryParse(this.txtNumero.Text, out numero))
+                str.AppendLine("El Número debe ser numérico. ");
+
+            if (this._esCliente)
+            {
+                Int64 dni;
+                if (string.IsNullOrWhiteSpace(this.txtDNI.Text))
+                    str.AppendLine("El DNI es obligatorio. ");
+                else if (!Int64.TryParse(this.txtDNI.Text, out dni))
+                    str.AppendLine("El DNI debe ser numérico. ");
+
+
+                if (this.cmbTipoDocumento.SelectedItem == null)
+                    str.AppendLine("El Tipo Documento es obligatorio. ");
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(this.txtRazonSocial.Text))
+                    str.AppendLine("La Razón Social es obligatoria. ");
+            }
+
+            if (str.Length > 0)
+            {
+                MessageBox.Show(str.ToString());
+                return false;
+            }
             return true;
         }
 
@@ -185,7 +229,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 cliente.Apellido = this.txtApellido.Text;
                 cliente.Dni = Convert.ToDecimal(this.txtDNI.Text);
                 cliente.TipoDocumento = this.cmbTipoDocumento.SelectedValue.ToString();
-                if(this.dtpFechaNacimiento.Checked) cliente.FechaNacimiento = this.dtpFechaNacimiento.Value;
+                cliente.FechaNacimiento = this.dtpFechaNacimiento.Checked ? this.dtpFechaNacimiento.Value : (DateTime?)null;
             }
             else
             {

@@ -26,5 +26,10 @@ namespace MercadoEnvio.Biz.Impl
         {
             return this._rolDal.GetByUsuario(username);
         }
+
+        public void SetRolesToUsuario(string username, List<Rol> roles)
+        {
+            this._rolDal.SetRolesToUsuario(username, roles);
+        }
     }
 }

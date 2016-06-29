@@ -46,11 +46,13 @@ namespace MercadoEnvio.ABM_Usuario
             {
                 this.grbCliente.Location = new Point(12, 72);
                 this.grbEmpresa.Location = new Point(12, -172);
+                this.btnNuevo.Text = "&Nuevo Cliente";
             }
             else if (this.cmbRol.SelectedValue.ToString() == EMPRESA)
             {
                 this.grbCliente.Location = new Point(12, -172);
                 this.grbEmpresa.Location = new Point(12, 72);
+                this.btnNuevo.Text = "&Nueva Empresa";
             }
         }
 
@@ -103,6 +105,19 @@ namespace MercadoEnvio.ABM_Usuario
             var frm = this.FormFactory.AppendChildForm<frmIngresar>();
             frm.SetUsuario(usuario.Username);
             frm.ShowDialog();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            var frm = this.FormFactory.OpenChildForm<frmAMUsuario>();
+            if (this.cmbRol.SelectedValue.ToString() == CLIENTE)
+            {
+                frm.SetNuevoCliente();
+            }
+            else if (this.cmbRol.SelectedValue.ToString() == EMPRESA)
+            {
+                frm.SetNuevaEmpresa();
+            }
         }
     }
 }

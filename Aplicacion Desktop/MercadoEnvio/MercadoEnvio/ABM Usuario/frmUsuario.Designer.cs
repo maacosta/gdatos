@@ -52,6 +52,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.btnCambiarClave = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvUsuario)).BeginInit();
             this.grbCliente.SuspendLayout();
             this.grbEmpresa.SuspendLayout();
@@ -68,13 +69,13 @@
             this.grvUsuario.MultiSelect = false;
             this.grvUsuario.Name = "grvUsuario";
             this.grvUsuario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grvUsuario.Size = new System.Drawing.Size(410, 163);
+            this.grvUsuario.Size = new System.Drawing.Size(489, 163);
             this.grvUsuario.TabIndex = 7;
             // 
             // btnBuscar
             // 
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscar.Location = new System.Drawing.Point(347, 215);
+            this.btnBuscar.Location = new System.Drawing.Point(426, 215);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 6;
@@ -106,7 +107,7 @@
             this.grbCliente.Controls.Add(this.label1);
             this.grbCliente.Location = new System.Drawing.Point(12, 72);
             this.grbCliente.Name = "grbCliente";
-            this.grbCliente.Size = new System.Drawing.Size(410, 137);
+            this.grbCliente.Size = new System.Drawing.Size(489, 137);
             this.grbCliente.TabIndex = 4;
             this.grbCliente.TabStop = false;
             this.grbCliente.Text = "Filtros";
@@ -117,7 +118,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmailC.Location = new System.Drawing.Point(84, 100);
             this.txtEmailC.Name = "txtEmailC";
-            this.txtEmailC.Size = new System.Drawing.Size(307, 20);
+            this.txtEmailC.Size = new System.Drawing.Size(386, 20);
             this.txtEmailC.TabIndex = 11;
             // 
             // label5
@@ -135,7 +136,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDni.Location = new System.Drawing.Point(84, 74);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(307, 20);
+            this.txtDni.Size = new System.Drawing.Size(386, 20);
             this.txtDni.TabIndex = 5;
             // 
             // label3
@@ -153,7 +154,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtApellido.Location = new System.Drawing.Point(84, 48);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(307, 20);
+            this.txtApellido.Size = new System.Drawing.Size(386, 20);
             this.txtApellido.TabIndex = 3;
             // 
             // label2
@@ -171,7 +172,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombre.Location = new System.Drawing.Point(84, 22);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(307, 20);
+            this.txtNombre.Size = new System.Drawing.Size(386, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // label1
@@ -195,7 +196,7 @@
             this.grbEmpresa.Controls.Add(this.label9);
             this.grbEmpresa.Location = new System.Drawing.Point(12, -172);
             this.grbEmpresa.Name = "grbEmpresa";
-            this.grbEmpresa.Size = new System.Drawing.Size(410, 137);
+            this.grbEmpresa.Size = new System.Drawing.Size(489, 137);
             this.grbEmpresa.TabIndex = 12;
             this.grbEmpresa.TabStop = false;
             this.grbEmpresa.Text = "Filtros";
@@ -206,7 +207,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmailE.Location = new System.Drawing.Point(84, 74);
             this.txtEmailE.Name = "txtEmailE";
-            this.txtEmailE.Size = new System.Drawing.Size(307, 20);
+            this.txtEmailE.Size = new System.Drawing.Size(386, 20);
             this.txtEmailE.TabIndex = 5;
             // 
             // label7
@@ -224,7 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCUIT.Location = new System.Drawing.Point(84, 48);
             this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(307, 20);
+            this.txtCUIT.Size = new System.Drawing.Size(386, 20);
             this.txtCUIT.TabIndex = 3;
             // 
             // label8
@@ -242,7 +243,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRazonSocial.Location = new System.Drawing.Point(84, 22);
             this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(307, 20);
+            this.txtRazonSocial.Size = new System.Drawing.Size(386, 20);
             this.txtRazonSocial.TabIndex = 1;
             // 
             // label9
@@ -262,7 +263,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(410, 54);
+            this.groupBox2.Size = new System.Drawing.Size(489, 54);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rol a buscar";
@@ -275,7 +276,7 @@
             this.cmbRol.FormattingEnabled = true;
             this.cmbRol.Location = new System.Drawing.Point(84, 19);
             this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(307, 21);
+            this.cmbRol.Size = new System.Drawing.Size(386, 21);
             this.cmbRol.TabIndex = 11;
             this.cmbRol.SelectedIndexChanged += new System.EventHandler(this.cmbRol_SelectedIndexChanged);
             // 
@@ -308,11 +309,22 @@
             this.btnCambiarClave.UseVisualStyleBackColor = true;
             this.btnCambiarClave.Click += new System.EventHandler(this.btnCambiarClave_Click);
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(266, 215);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(104, 23);
+            this.btnNuevo.TabIndex = 15;
+            this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 419);
+            this.ClientSize = new System.Drawing.Size(513, 419);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnCambiarClave);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.grbEmpresa);
@@ -361,5 +373,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button btnCambiarClave;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

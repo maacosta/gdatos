@@ -28,5 +28,12 @@ namespace MercadoEnvio.Dal.Impl
 
             return data;
         }
+
+        public void SetRolesToUsuario(string username, List<Rol> roles)
+        {
+            object[] param = new object[] { username, string.Join(", ", roles.Select(i => i.Id)) };
+
+            this._db.ExecuteNonQuery("LOS_DE_ADELANTE.sp_rol_setRolesToUsuario", param);
+        }
     }
 }
