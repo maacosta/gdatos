@@ -9,7 +9,11 @@ CREATE PROCEDURE LOS_DE_ADELANTE.sp_publicacioncalificacion_getCalificacionFiltr
 )
 AS
 BEGIN		
+	declare @idUsuario int
 
+	select @idUsuario = Id from LOS_DE_ADELANTE.Usuario where Username = @username
+
+	--muestra las publicaciones calificadas del usuario
 	if @opcion = 1
 		select top 5
 			pc.Id, 
@@ -21,26 +25,27 @@ BEGIN
 			u.Username Usuario
 		from LOS_DE_ADELANTE.PublicacionCalificacion pc
 			inner join LOS_DE_ADELANTE.Publicacion p on pc.IdPublicacion = p.Id
-			inner join LOS_DE_ADELANTE.Usuario u on pc.IdUsuario = u.Id
-		where u.Username = @username
+			inner join LOS_DE_ADELANTE.Usuario u on p.IdUsuario = u.Id
+		where pc.IdUsuario = @idUsuario
 		order by pc.Fecha desc
 	
+	--muestra las publicaciones con compras hechas por el usuario sin calificar
 	if @opcion = 2
 		select distinct
 			isnull(pc.Id, 0) Id, 
 			p.Id IdPublicacion, 
 			p.Codigo CodigoPublicacion, 
-			pc.Fecha,
+			co.Fecha,
 			isnull(pc.Calificacion, 0) Calificacion, 
 			isnull(pc.Comentario, '') Comentario,
 			u.Username Usuario
 		from LOS_DE_ADELANTE.Publicacion p
-			inner join LOS_DE_ADELANTE.CompraOferta co on co.IdPublicacion = p.Id
-			inner join LOS_DE_ADELANTE.Usuario u on co.IdUsuario = u.Id
-			inner join LOS_DE_ADELANTE.FacturaItem fi on fi.IdCompraOferta = co.Id
+			inner join LOS_DE_ADELANTE.CompraOferta co on co.IdPublicacion = p.Id and co.Tipo = 'C'
+			inner join LOS_DE_ADELANTE.Usuario u on p.IdUsuario = u.Id
 			left join LOS_DE_ADELANTE.PublicacionCalificacion pc on pc.IdPublicacion = p.Id
-		where u.Username = @username
+		where co.IdUsuario = @idUsuario
 			and pc.Id is null
+		order by co.Fecha asc
 
 END
 go
