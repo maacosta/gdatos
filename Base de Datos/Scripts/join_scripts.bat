@@ -1,0 +1,1 @@
+C:\tfs\GDatos\Tools\cmdhelper\bin\Debug\cmdhelper joinscript "C:\tfs\GDatos\Base de Datos\Scripts"
