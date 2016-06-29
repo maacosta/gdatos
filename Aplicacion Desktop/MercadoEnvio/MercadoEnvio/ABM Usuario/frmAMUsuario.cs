@@ -174,11 +174,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 str.AppendLine("El usuario es obligatorio. ");
 
             int piso;
-            if (!int.TryParse(this.txtPiso.Text, out piso))
+            if (!string.IsNullOrWhiteSpace(this.txtPiso.Text) && !int.TryParse(this.txtPiso.Text, out piso))
                 str.AppendLine("El Piso debe ser numérico. ");
 
             int numero;
-            if (!int.TryParse(this.txtNumero.Text, out numero))
+            if (!string.IsNullOrWhiteSpace(this.txtNumero.Text) && !int.TryParse(this.txtNumero.Text, out numero))
                 str.AppendLine("El Número debe ser numérico. ");
 
             if (this._esCliente)
@@ -217,9 +217,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this._usuario.Mail = this.txtEmail.Text;
             this._usuario.Telefono = this.txtTelefono.Text;
             this._usuario.Calle = this.txtCalle.Text;
-            if (!string.IsNullOrWhiteSpace(this.txtNumero.Text)) this._usuario.Numero = Convert.ToDecimal(this.txtNumero.Text);
+            this._usuario.Numero = !string.IsNullOrWhiteSpace(this.txtNumero.Text) ? Convert.ToDecimal(this.txtNumero.Text) : (decimal?)null;
             this._usuario.Depto = this.txtDepartamento.Text;
-            if (!string.IsNullOrWhiteSpace(this.txtPiso.Text)) this._usuario.Piso = Convert.ToDecimal(this.txtPiso.Text);
+            this._usuario.Piso = !string.IsNullOrWhiteSpace(this.txtPiso.Text) ? Convert.ToDecimal(this.txtPiso.Text) : (decimal?)null;
             this._usuario.CodigoPostal = this.txtCP.Text;
             this._usuario.Localidad = this.txtLocalidad.Text;
 
