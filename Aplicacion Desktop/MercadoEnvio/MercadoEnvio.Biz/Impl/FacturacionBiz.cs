@@ -21,6 +21,11 @@ namespace MercadoEnvio.Biz.Impl
             this._publicacionDal = new PublicacionDal();
         }
 
+        public List<Facturacion> GetBy(DateTime? fechaDesde, DateTime? fechaHasta, decimal? montoDesde, decimal? montoHasta, string textoDetalle, string usuarioComprador, string usuario)
+        {
+            return this._facturacionDal.GetBy(fechaDesde, fechaHasta, montoDesde, montoHasta, textoDetalle, usuarioComprador, usuario);
+        }
+
         public Facturacion GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
         {
             return this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);

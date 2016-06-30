@@ -316,7 +316,7 @@
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(450, 490);
             this.Name = "frmAComprarOfertar";
-            this.Text = "frmAComprarOfertar";
+            this.Text = "Comprar / Ofertar";
             this.Load += new System.EventHandler(this.frmAComprarOfertar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

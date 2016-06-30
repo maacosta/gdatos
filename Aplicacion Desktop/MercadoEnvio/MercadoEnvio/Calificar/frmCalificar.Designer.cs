@@ -157,7 +157,7 @@
             this.Controls.Add(this.grvCalificacion);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmCalificar";
-            this.Text = "Form1";
+            this.Text = "Calificaciones del cliente";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvCalificacion)).EndInit();
             this.groupBox1.ResumeLayout(false);

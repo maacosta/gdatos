@@ -15,7 +15,6 @@ namespace MercadoEnvio.Facturas
 {
     public partial class frmFacturas : Form, IFormMDI
     {
-        private Facturacion _facturacion;
         private FacturacionBiz _facturacionBiz;
 
         public FormFactory FormFactory { get; set; }
@@ -23,24 +22,52 @@ namespace MercadoEnvio.Facturas
         public frmFacturas()
         {
             InitializeComponent();
-
             this._facturacionBiz = new FacturacionBiz();
         }
 
-        public void SetFacturacion(Facturacion facturacion)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            this._facturacion = facturacion;
-            this.TransformarAControles();
+            decimal mdi = 0m, mhi = 0m;
+            if (!string.IsNullOrWhiteSpace(this.txtImporteDesde.Text) && !decimal.TryParse(this.txtImporteDesde.Text, out mdi))
+            {
+                MessageBox.Show("El importe desde debe ser numérico.");
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(this.txtImporteHasta.Text) && !decimal.TryParse(this.txtImporteHasta.Text, out mhi))
+            {
+                MessageBox.Show("El importe hasta debe ser numérico.");
+                return;
+            }
+            DateTime? fd = this.dtpFechaDesde.Checked ? this.dtpFechaDesde.Value : (DateTime?)null;
+            DateTime? fh = this.dtpFechaHasta.Checked ? this.dtpFechaHasta.Value : (DateTime?)null;
+            decimal? md = mdi != 0m ? mdi : (decimal?)null;
+            decimal? mh = mhi != 0m ? mhi : (decimal?)null;
+            string det = !string.IsNullOrWhiteSpace(this.txtDetalle.Text) ? this.txtDetalle.Text.Trim() : null;
+            string usrComp = !string.IsNullOrWhiteSpace(this.txtUsuario.Text) ? this.txtUsuario.Text.Trim() : null;
+
+            var facturas = this._facturacionBiz.GetBy(fd, fh, md, mh, det, usrComp, GlobalData.Instance.Username);
+            this.grvFactura.DataSource = facturas;
         }
 
-        private void TransformarAControles()
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            this.txtNumero.Text = this._facturacion.Numero.ToString();
-            this.txtFormaPago.Text = this._facturacion.FormaPago;
-            this.dtpFecha.Value = this._facturacion.Fecha;
-            this.txtTotal.Text = this._facturacion.Total.ToString();
+            this.dtpFechaDesde.Checked = false;
+            this.dtpFechaHasta.Checked = false;
+            this.txtImporteDesde.Text = string.Empty;
+            this.txtImporteHasta.Text = string.Empty;
+            this.txtDetalle.Text = string.Empty;
+            this.txtUsuario.Text = string.Empty;
+        }
 
-            this.grvDetalle.DataSource = this._facturacion.Items;
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (this.grvFactura.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar un item");
+                return;
+            }
+            var frm = this.FormFactory.OpenChildForm<frmFactura>();
+            frm.SetFacturacion((Facturacion)this.grvFactura.CurrentRow.DataBoundItem);
         }
     }
 }

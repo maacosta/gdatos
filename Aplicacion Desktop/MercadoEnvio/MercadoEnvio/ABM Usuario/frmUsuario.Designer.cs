@@ -334,7 +334,7 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.grbCliente);
             this.Name = "frmUsuario";
-            this.Text = "ABM Usuario";
+            this.Text = "Usuario Listado";
             this.Load += new System.EventHandler(this.frmUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvUsuario)).EndInit();
             this.grbCliente.ResumeLayout(false);

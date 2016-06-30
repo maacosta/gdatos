@@ -174,7 +174,7 @@ namespace MercadoEnvio.ComprarOfertar
                 this._compraOferta = this._compraOfertaBiz.InsCompra(this._compraOferta);
                 var facturacion = this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta, GlobalData.Instance.FechaSistema);
 
-                var frm = this.FormFactory.OpenChildForm<frmFacturas>();
+                var frm = this.FormFactory.OpenChildForm<frmFactura>();
                 frm.SetFacturacion(facturacion);
             }
             else

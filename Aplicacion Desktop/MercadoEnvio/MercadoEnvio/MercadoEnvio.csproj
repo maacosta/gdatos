@@ -126,17 +126,23 @@
     <Compile Include="Core\ucSelector.Designer.cs">
       <DependentUpon>ucSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Facturas\frmFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturas\frmFacturas.Designer.cs">
+      <DependentUpon>frmFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmContenedor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmContenedor.Designer.cs">
       <DependentUpon>frmContenedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Facturas\frmFacturas.cs">
+    <Compile Include="Facturas\frmFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturas\frmFacturas.Designer.cs">
-      <DependentUpon>frmFacturas.cs</DependentUpon>
+    <Compile Include="Facturas\frmFactura.Designer.cs">
+      <DependentUpon>frmFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="frmIngresar.cs">
       <SubType>Form</SubType>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\ucSelector.resx">
       <DependentUpon>ucSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturas\frmFacturas.resx">
       <DependentUpon>frmFacturas.cs</DependentUpon>

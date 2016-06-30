@@ -11,6 +11,17 @@ namespace MercadoEnvio.Dal.Impl
 {
     public class FacturacionDal : BaseDal
     {
+        public List<Facturacion> GetBy(DateTime? fechaDesde, DateTime? fechaHasta, decimal? montoDesde, decimal? montoHasta, string textoDetalle, string usuarioComprador, string usuario)
+        {
+            var mapper = new FacturacionResultSetMapper();
+
+            object[] param = new object[] { fechaDesde, fechaHasta, montoDesde, montoHasta, textoDetalle, usuarioComprador, usuario };
+
+            var data = this._db.ExecuteSprocAccessor<Facturacion>("LOS_DE_ADELANTE.sp_factura_getFacturaFiltros", mapper, param).ToList();
+
+            return data;
+        }
+
         public Facturacion InsFacturacion(int idPublicacion, int idCompraOferta, DateTime fechaSistema)
         {
             var mapper = new FacturacionResultSetMapper();
