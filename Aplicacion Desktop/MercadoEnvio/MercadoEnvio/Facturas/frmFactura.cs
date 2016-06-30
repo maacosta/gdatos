@@ -39,6 +39,10 @@ namespace MercadoEnvio.Facturas
             this.txtFormaPago.Text = this._facturacion.FormaPago;
             this.dtpFecha.Value = this._facturacion.Fecha;
             this.txtTotal.Text = this._facturacion.Total.ToString();
+            this.txtCodigoPublicacion.Text = this._facturacion.CodigoPublicacion.ToString();
+            this.txtDescripcion.Text = this._facturacion.Descripcion;
+            this.dtpFechaCompra.Value = this._facturacion.FechaCompra;
+            this.txtUsuarioComprador.Text = this._facturacion.UsuarioComprador;
 
             this.grvDetalle.DataSource = this._facturacion.Items;
         }

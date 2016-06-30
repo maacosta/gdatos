@@ -42,6 +42,14 @@
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtUsuarioComprador = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCodigoPublicacion = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtpFechaCompra = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvDetalle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -79,13 +87,21 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grvDetalle.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.grvDetalle.Size = new System.Drawing.Size(324, 232);
+            this.grvDetalle.Size = new System.Drawing.Size(629, 232);
             this.grvDetalle.TabIndex = 14;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.dtpFechaCompra);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txtUsuarioComprador);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtDescripcion);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtCodigoPublicacion);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.dtpFecha);
             this.groupBox1.Controls.Add(this.txtTotal);
             this.groupBox1.Controls.Add(this.label4);
@@ -96,28 +112,25 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 137);
+            this.groupBox1.Size = new System.Drawing.Size(629, 137);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cabecera";
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFecha.Checked = false;
             this.dtpFecha.Location = new System.Drawing.Point(84, 74);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(221, 20);
+            this.dtpFecha.Size = new System.Drawing.Size(211, 20);
             this.dtpFecha.TabIndex = 8;
             // 
             // txtTotal
             // 
-            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.Location = new System.Drawing.Point(84, 100);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(221, 20);
+            this.txtTotal.Size = new System.Drawing.Size(211, 20);
             this.txtTotal.TabIndex = 7;
             // 
             // label4
@@ -140,12 +153,10 @@
             // 
             // txtFormaPago
             // 
-            this.txtFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFormaPago.Location = new System.Drawing.Point(84, 48);
             this.txtFormaPago.Name = "txtFormaPago";
             this.txtFormaPago.ReadOnly = true;
-            this.txtFormaPago.Size = new System.Drawing.Size(221, 20);
+            this.txtFormaPago.Size = new System.Drawing.Size(211, 20);
             this.txtFormaPago.TabIndex = 3;
             // 
             // label2
@@ -159,12 +170,10 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumero.Location = new System.Drawing.Point(84, 22);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.ReadOnly = true;
-            this.txtNumero.Size = new System.Drawing.Size(221, 20);
+            this.txtNumero.Size = new System.Drawing.Size(211, 20);
             this.txtNumero.TabIndex = 1;
             // 
             // label1
@@ -185,15 +194,91 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Detalle";
             // 
-            // frmFacturas
+            // txtUsuarioComprador
+            // 
+            this.txtUsuarioComprador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUsuarioComprador.Location = new System.Drawing.Point(398, 100);
+            this.txtUsuarioComprador.Name = "txtUsuarioComprador";
+            this.txtUsuarioComprador.ReadOnly = true;
+            this.txtUsuarioComprador.Size = new System.Drawing.Size(211, 20);
+            this.txtUsuarioComprador.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(330, 103);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Comprador";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescripcion.Location = new System.Drawing.Point(398, 48);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.ReadOnly = true;
+            this.txtDescripcion.Size = new System.Drawing.Size(211, 20);
+            this.txtDescripcion.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(330, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Descripcion";
+            // 
+            // txtCodigoPublicacion
+            // 
+            this.txtCodigoPublicacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCodigoPublicacion.Location = new System.Drawing.Point(398, 22);
+            this.txtCodigoPublicacion.Name = "txtCodigoPublicacion";
+            this.txtCodigoPublicacion.ReadOnly = true;
+            this.txtCodigoPublicacion.Size = new System.Drawing.Size(211, 20);
+            this.txtCodigoPublicacion.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(330, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Publicacion";
+            // 
+            // dtpFechaCompra
+            // 
+            this.dtpFechaCompra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFechaCompra.Checked = false;
+            this.dtpFechaCompra.Location = new System.Drawing.Point(398, 74);
+            this.dtpFechaCompra.Name = "dtpFechaCompra";
+            this.dtpFechaCompra.Size = new System.Drawing.Size(211, 20);
+            this.dtpFechaCompra.TabIndex = 16;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(330, 77);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(76, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Fecha Compra";
+            // 
+            // frmFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 412);
+            this.ClientSize = new System.Drawing.Size(653, 412);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.grvDetalle);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmFacturas";
+            this.Name = "frmFactura";
             this.Text = "Factura";
             ((System.ComponentModel.ISupportInitialize)(this.grvDetalle)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -216,5 +301,13 @@
         private System.Windows.Forms.TextBox txtFormaPago;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtpFechaCompra;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtUsuarioComprador;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtCodigoPublicacion;
+        private System.Windows.Forms.Label label8;
     }
 }

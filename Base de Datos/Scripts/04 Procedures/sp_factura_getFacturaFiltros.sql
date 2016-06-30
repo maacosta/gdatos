@@ -24,7 +24,13 @@ BEGIN
 		f.Numero,
 		f.Fecha,
 		f.Total,
-		u.Username Usuario
+		p.Id IdPublicacion,
+		p.Codigo CodigoPublicacion,
+		p.Descripcion,
+		u.Username Usuario,
+		co.Id IdCompra,
+		co.Fecha FechaCompra,
+		u2.Username UsuarioComprador
 	into #TFacturas
 	from LOS_DE_ADELANTE.Factura f
 		inner join LOS_DE_ADELANTE.Usuario u on f.IdUsuario = u.Id
@@ -48,7 +54,13 @@ BEGIN
 		Numero,
 		Fecha,
 		Total,
-		Usuario
+		IdPublicacion,
+		CodigoPublicacion,
+		Descripcion,
+		Usuario,
+		IdCompra,
+		FechaCompra,
+		UsuarioComprador
 	from #TFacturas
 
 	select distinct

@@ -79,17 +79,27 @@ BEGIN
 	commit transaction
 
 	--devolver factura
-	select
+	select distinct
 		f.Id,
 		f.IdFormaPago,
 		fp.Descripcion FormaPago,
 		f.Numero,
 		f.Fecha,
 		f.Total,
-		u.Username Usuario
+		p.Id IdPublicacion,
+		p.Codigo CodigoPublicacion,
+		p.Descripcion,
+		u.Username Usuario,
+		co.Id IdCompra,
+		co.Fecha FechaCompra,
+		u2.Username UsuarioComprador
 	from LOS_DE_ADELANTE.Factura f
 		inner join LOS_DE_ADELANTE.Usuario u on f.IdUsuario = u.Id
 		inner join LOS_DE_ADELANTE.FormaPago fp on f.IdFormaPago = fp.Id
+		inner join LOS_DE_ADELANTE.FacturaItem fi on f.Id = fi.IdFactura
+		inner join LOS_DE_ADELANTE.CompraOferta co on co.Id = fi.IdCompraOferta
+		inner join LOS_DE_ADELANTE.Usuario u2 on co.IdUsuario = u2.Id
+		inner join LOS_DE_ADELANTE.Publicacion p on co.IdPublicacion = p.Id
 	where f.Id = @idFactura
 
 	select

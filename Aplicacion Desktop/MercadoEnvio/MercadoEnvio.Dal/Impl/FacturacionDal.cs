@@ -53,7 +53,13 @@ namespace MercadoEnvio.Dal.Impl
                     Numero = reader.GetDecimal(3),
                     Fecha = reader.GetDateTime(4),
                     Total = reader.GetDecimal(5),
-                    Usuario = reader.GetString(6)
+                    IdPublicacion = reader.GetInt32(6),
+                    CodigoPublicacion = reader.GetDecimal(7),
+                    Descripcion = reader.GetString(8),
+                    Usuario = reader.GetString(9),
+                    IdCompra = reader.GetInt32(10),
+                    FechaCompra = reader.GetDateTime(11),
+                    UsuarioComprador = reader.GetString(12)
                 };
                 modelList.Add(model.Id, model);
             }
