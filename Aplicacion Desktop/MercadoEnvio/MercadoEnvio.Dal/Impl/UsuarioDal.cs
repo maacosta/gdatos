@@ -121,5 +121,44 @@ namespace MercadoEnvio.Dal.Impl
 
             return data;
         }
+
+        #region Estadisticas
+
+        public List<EstVendProd> GetVendedoresProductosBy(int anio, int trimestre)
+        {
+            object[] param = new object[] { anio, trimestre };
+
+            var data = this._db.ExecuteSprocAccessor<EstVendProd>("LOS_DE_ADELANTE.sp_usuario_getVendedoresProductos", param).ToList();
+
+            return data;
+        }
+
+        public List<EstCompProd> GetClientesProductosBy(int anio, int trimestre)
+        {
+            object[] param = new object[] { anio, trimestre };
+
+            var data = this._db.ExecuteSprocAccessor<EstCompProd>("LOS_DE_ADELANTE.sp_usuario_getClientesProductos", param).ToList();
+
+            return data;
+        }
+
+        public List<EstVendFact> GetVendedoresFacturasBy(int anio, int trimestre)
+        {
+            object[] param = new object[] { anio, trimestre };
+
+            var data = this._db.ExecuteSprocAccessor<EstVendFact>("LOS_DE_ADELANTE.sp_usuario_getVendedoresFacturas", param).ToList();
+
+            return data;
+        }
+
+        public List<EstVendMontoFact> GetVendedoresMontoFacturadoBy(int anio, int trimestre)
+        {
+            object[] param = new object[] { anio, trimestre };
+
+            var data = this._db.ExecuteSprocAccessor<EstVendMontoFact>("LOS_DE_ADELANTE.sp_usuario_getVendedoresMontoFacturado", param).ToList();
+
+            return data;
+        }
+        #endregion
     }
 }

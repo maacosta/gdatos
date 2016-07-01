@@ -75,6 +75,11 @@ BEGIN
 		update LOS_DE_ADELANTE.CompraOferta
 		set Tipo = 'C'
 		where Id = @idCompraOferta
+
+		--actualizar publicacion subasta para descontar el stock
+		update LOS_DE_ADELANTE.Publicacion
+		set Stock = Stock - @cantidadCO
+		where Id = @idPublicacion and TipoPublicacion = 'S'
 		
 	commit transaction
 

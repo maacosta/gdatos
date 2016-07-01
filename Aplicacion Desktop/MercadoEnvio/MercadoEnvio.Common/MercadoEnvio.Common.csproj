@@ -41,6 +41,10 @@
   <ItemGroup>
     <Compile Include="Entity\CompraOferta.cs" />
     <Compile Include="Entity\CompraOfertaHistorial.cs" />
+    <Compile Include="Entity\EstVendMontoFact.cs" />
+    <Compile Include="Entity\EstVendFact.cs" />
+    <Compile Include="Entity\EstCompProd.cs" />
+    <Compile Include="Entity\EstVendProd.cs" />
     <Compile Include="Entity\Usuario.cs" />
     <Compile Include="Entity\PublicacionCalificacion.cs" />
     <Compile Include="Entity\FacturacionItem.cs" />
