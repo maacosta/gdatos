@@ -446,6 +446,11 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Fluent.DatabaseConfigurationExtension.Microsoft#Practices#EnterpriseLibrary#Common#IFluentInterface#GetType">
+            <summary>
+             Base class to help build database-specific configurations extensions for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.DataConfigurationSourceBuilderExtensions"/>.
+            </summary>
+        </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Fluent.DatabaseConfigurationExtension.ThatIs">
             <summary>
              Specify the type of database.
@@ -467,7 +472,7 @@
             and potentially other sources of configuration.
             </summary>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.#ctor(System.Configuration.ConnectionStringSettings,System.Func{System.String,System.Configuration.ConfigurationSection})">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.#ctor(System.Configuration.ConnectionStringSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
              Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData"/> class with a connection string and a configuration
              source.
@@ -476,11 +481,12 @@
             <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> from which additional information can 
              be retrieved if necessary.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.BuildDatabase">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.GetRegistrations">
             <summary>
-            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> represented by this configuration object.
+            Creates a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing the database represented by 
+            this configuration object.
             </summary>
-            <returns>A database.</returns>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing a database.</returns>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.ConnectionStringSettings">
             <summary>
@@ -489,7 +495,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.ConfigurationSource">
             <summary>
-             Gets the function to access configuration information.
+             Gets the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> for the database data.
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseData.Name">
@@ -551,8 +557,13 @@
             </summary>
             <remarks>
             As the DataAccessBlock relies on a number of configuration sections (such as connectionStrings), this
-            config settings provides an abstraction over all these to simplify creating database objects.
+            config settings provides an abstraction over all these to simplify creating <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> entries.
             </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.#ctor">
+            <summary>
+            Default constructor, used when creating registrations for containers.
+            </summary>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.#ctor(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
@@ -560,12 +571,6 @@
             with the given <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/>.
             </summary>
             <remarks>This constructor is primarily for test convenience.</remarks>
-        </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.#ctor(System.Func{System.String,System.Configuration.ConfigurationSection})">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings"/> class
-            with the given configuraiton access function.
-            </summary>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.GetConnectionStringSettings(System.String)">
             <summary>
@@ -581,19 +586,28 @@
             <exception cref="T:System.ArgumentException">if <paramref name="name"/> is <see langword="null"/> (<b>Nothing</b> in Visual Basic) or empty.</exception>
             <exception cref="T:System.Configuration.ConfigurationErrorsException">if the connection string object is not found, or if it does not specify a provider name.</exception>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.GetDatabase(System.String)">
-            <summary>
-            Gets the object describing the database instance with name <paramref name="name"/> in the configuration source.
-            </summary>
-            <param name="name">The name of the database.</param>
-            <returns>A configuration object</returns>
-        </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.GetProviderMapping(System.String)">
             <summary>
             This method is made public for unit testing purposes.
             </summary>
             <param name="dbProviderName"></param>
             <returns></returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.GetRegistrations(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
+            <summary>
+            Creates <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> entries based on <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings"/>
+            </summary>
+            <returns>A set of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> entries.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.GetUpdatedRegistrations(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
+            <summary>
+            Return the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> objects needed to reconfigure
+            the container after a configuration source has changed.
+            </summary>
+            <remarks>If there are no reregistrations, return an empty sequence.</remarks>
+            <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> containing
+            the configuration information.</param>
+            <returns>The sequence of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> objects.</returns>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSyntheticConfigSettings.DefaultDatabase">
             <summary>
@@ -922,7 +936,7 @@
             <see cref="T:System.Configuration.ConnectionStringSettings"/>.
             </summary>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,System.Func{System.String,System.Configuration.ConfigurationSection})">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
              Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData"/> class with a connection string and a configuration
              source.
@@ -931,17 +945,301 @@
             <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> from which additional information can 
              be retrieved if necessary.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData.BuildDatabase">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData.GetRegistrations">
             <summary>
-            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> represented by this configuration object.
+            Creates a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase"/> represented by 
+            this configuration object.
             </summary>
-            <returns>
-            A database.
-            </returns>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing a database.</returns>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.GenericDatabaseData.ProviderName">
             <summary>
             Gets the name of the ADO.NET provider for the represented database.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider">
+            <summary>
+            Provides an implementation for <see cref="T:System.Configuration.ConnectionStringsSection"/> that performs
+            policy override processing for the section, performing appropriate logging of
+            policy processing errors, from policy override processing for configuration objects
+            contained by the section.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.ConnectionStringPropertyName">
+            <summary>
+            The name of the connection string property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.ProviderNamePropertyName">
+            <summary>
+            The name of the provider property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.#ctor(System.Collections.Generic.IDictionary{System.Type,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.ConfigurationElementManageabilityProvider})">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider"/> class with the sub providers.
+            </summary>
+            <param name="subProviders">A set of sub providers.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.AddAdministrativeTemplateDirectives(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder,System.Configuration.ConnectionStringsSection,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource,System.String)">
+            <summary>
+            Adds the ADM instructions that describe the policies that can be used to override the configuration
+            information represented by a configuration section.
+            </summary>
+            <param name="contentBuilder">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder"/> to which the Adm instructions are to be appended.</param>
+            <param name="configurationSection">The configuration section instance.</param>
+            <param name="configurationSource">The configuration source from where to get additional configuration
+            information, if necessary.</param>
+            <param name="sectionKey">The root key for the section's policies.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationSection(System.Configuration.ConnectionStringsSection,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s properties with the Group Policy values from 
+            the registry.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="policyKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationElements(System.Configuration.ConnectionStringsSection,System.Boolean,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s configuration elements' properties 
+            with the Group Policy values from the registry, if any.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="readGroupPolicies"><see langword="true"/> if Group Policy overrides must be applied; otherwise, 
+            <see langword="false"/>.</param>
+            <param name="machineKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the machine level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+            <param name="userKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the user level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.SectionCategoryName">
+            <summary>
+            Gets the name of the category that represents the whole configuration section.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.ConnectionStringsManageabilityProvider.SectionName">
+            <summary>
+            Gets the name of the managed configuration section.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider">
+            <summary>
+            Provides an implementation for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings"/> that performs
+            policy override processing for the section, performing appropriate logging of
+            policy processing errors, from policy override processing for configuration objects
+            contained by the section.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.DefaultDatabasePropertyName">
+            <summary>
+            The name of the default database property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.ProviderMappingsKeyName">
+            <summary>
+            The name of the provider mappings property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.DatabaseTypePropertyName">
+            <summary>
+            The name of the database type property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.#ctor(System.Collections.Generic.IDictionary{System.Type,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.ConfigurationElementManageabilityProvider})">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider"/> class with the sub providers.
+            </summary>
+            <param name="subProviders">A set of sub providers.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.AddAdministrativeTemplateDirectives(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder,Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource,System.String)">
+            <summary>
+            Adds the ADM instructions that describe the policies that can be used to override the configuration
+            information represented by a configuration section.
+            </summary>
+            <param name="contentBuilder">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder"/> to which the Adm instructions are to be appended.</param>
+            <param name="configurationSection">The configuration section instance.</param>
+            <param name="configurationSource">The configuration source from where to get additional configuration
+            information, if necessary.</param>
+            <param name="sectionKey">The root key for the section's policies.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationSection(Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s properties with the Group Policy values from 
+            the registry.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="policyKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationElements(Microsoft.Practices.EnterpriseLibrary.Data.Configuration.DatabaseSettings,System.Boolean,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s configuration elements' properties 
+            with the Group Policy values from the registry, if any.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="readGroupPolicies"><see langword="true"/> if Group Policy overrides must be applied; otherwise, 
+            <see langword="false"/>.</param>
+            <param name="machineKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the machine level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+            <param name="userKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the user level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.SectionCategoryName">
+            <summary>
+            Gets the name of the category that represents the whole configuration section.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.DatabaseSettingsManageabilityProvider.SectionName">
+            <summary>
+            Gets the name of the managed configuration section.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider">
+            <summary>
+            Provides an implementation for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleConnectionSettings"/> that performs
+            policy override processing for the section, performing appropriate logging of
+            policy processing errors, from policy override processing for configuration objects
+            contained by the section.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.PackagesPropertyName">
+            <summary>
+            The name of the packages property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.#ctor(System.Collections.Generic.IDictionary{System.Type,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.ConfigurationElementManageabilityProvider})">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider"/> class witha a set of sub providers.
+            </summary>
+            <param name="subProviders">A set of sub providers.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.AddAdministrativeTemplateDirectives(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder,Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleConnectionSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource,System.String)">
+            <summary>
+            Adds the ADM instructions that describe the policies that can be used to override the configuration
+            information represented by a configuration section.
+            </summary>
+            <param name="contentBuilder">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.Adm.AdmContentBuilder"/> to which the Adm instructions are to be appended.</param>
+            <param name="configurationSection">The configuration section instance.</param>
+            <param name="configurationSource">The configuration source from where to get additional configuration
+            information, if necessary.</param>
+            <param name="sectionKey">The root key for the section's policies.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationElements(Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleConnectionSettings,System.Boolean,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s configuration elements' properties 
+            with the Group Policy values from the registry, if any.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="readGroupPolicies"><see langword="true"/> if Group Policy overrides must be applied; otherwise, 
+            <see langword="false"/>.</param>
+            <param name="machineKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the machine level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+            <param name="userKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides for the 
+            configuration section at the user level, or <see langword="null"/> 
+            if there is no such registry key.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.OverrideWithGroupPoliciesForConfigurationSection(Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleConnectionSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey)">
+            <summary>
+            Overrides the <paramref name="configurationSection"/>'s properties with the Group Policy values from 
+            the registry.
+            </summary>
+            <param name="configurationSection">The configuration section that must be managed.</param>
+            <param name="policyKey">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Manageability.IRegistryKey"/> which holds the Group Policy overrides.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.SectionCategoryName">
+            <summary>
+            Gets the name of the category that represents the whole configuration section.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.OracleConnectionSettingsManageabilityProvider.SectionName">
+            <summary>
+            Gets the name of the managed configuration section.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ConnectionStringConnectionStringPartName">
+            <summary>
+              Looks up a localized string similar to Connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ConnectionStringPolicyNameTemplate">
+            <summary>
+              Looks up a localized string similar to Specify settings for connection &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ConnectionStringProviderNamePartName">
+            <summary>
+              Looks up a localized string similar to Provider name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ConnectionStringsCategoryName">
+            <summary>
+              Looks up a localized string similar to Connection strings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.DatabaseCategoryName">
+            <summary>
+              Looks up a localized string similar to Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.DatabaseSettingsDefaultDatabasePartName">
+            <summary>
+              Looks up a localized string similar to Default database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.DatabaseSettingsPolicyName">
+            <summary>
+              Looks up a localized string similar to Specify Database Block Settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.OracleConnectionPackagesPartName">
+            <summary>
+              Looks up a localized string similar to Package mappings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.OracleConnectionPolicyNameTemplate">
+            <summary>
+              Looks up a localized string similar to Specify settings for Oracle connection &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.OracleConnectionsCategoryName">
+            <summary>
+              Looks up a localized string similar to Oracle packages.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ProviderMappingDatabaseTypePartName">
+            <summary>
+              Looks up a localized string similar to Database type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ProviderMappingPolicyNameTemplate">
+            <summary>
+              Looks up a localized string similar to Specify settings for provider &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Manageability.Properties.Resources.ProviderMappingsCategoryName">
+            <summary>
+              Looks up a localized string similar to Provider mappings.
             </summary>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseConnectionWrapper">
@@ -1597,6 +1895,175 @@
                             </param><exception cref="T:System.IndexOutOfRangeException">No column with the specified name was found. 
                             </exception><filterpriority>2</filterpriority>
         </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider">
+            <summary>
+            Interface that defines the events that are raised for instrumentation
+            of the Data Access Application Block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider.FireCommandExecutedEvent(System.DateTime)">
+            <summary>
+            Fires the CommandExecuted event.
+            </summary>
+            <param name="startTime">The time the command started its execution.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider.FireCommandFailedEvent(System.String,System.String,System.Exception)">
+            <summary>
+            Fires the CommandFailed event.
+            </summary>
+            <param name="commandText">The text of the command that failed its execution.</param>
+            <param name="connectionString">The connection string of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> that executed the failed command, with credentials removed.</param>
+            <param name="exception">The exception thrown when the command failed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider.FireConnectionOpenedEvent">
+            <summary>
+            Fires the ConnectionOpened event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider.FireConnectionFailedEvent(System.String,System.Exception)">
+            <summary>
+            Fires the ConnectionFailed event.
+            </summary>
+            <param name="connectionString">The connection string that caused the failed connection, with credentials removed.</param>
+            <param name="exception">The exception thrown when the connection failed.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider">
+            <summary>
+            An implementation of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider"/> that raises
+            the instrumentation events to the event log and performance counters.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.CounterCategoryName">
+            <summary>
+            Name of the performance counter category updated by this provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.TotalConnectionOpenedCounter">
+            <summary>
+            Instance name for the "connections opened" performance counter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.TotalConnectionFailedCounter">
+            <summary>
+            Name for the "connections failed" performance counter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.TotalCommandsExecutedCounter">
+            <summary>
+            Name for the "commands executed" performance counter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.TotalCommandsFailedCounter">
+            <summary>
+            Name for the "commands failed" performance counter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.#ctor(System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider"/> class.
+            </summary>
+            <param name="instanceName">The name of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance this instrumentation Provider is created for.</param>
+            <param name="performanceCountersEnabled"><b>true</b> if performance counters should be updated.</param>
+            <param name="eventLoggingEnabled"><b>true</b> if event log entries should be written.</param>
+            <param name="applicationInstanceName">The application instance name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.#ctor(System.String,System.Boolean,System.Boolean,Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.IPerformanceCounterNameFormatter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider"/> class.
+            </summary>
+            <param name="instanceName">The name of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance this instrumentation Provider is created for.</param>
+            <param name="performanceCountersEnabled"><b>true</b> if performance counters should be updated.</param>
+            <param name="eventLoggingEnabled"><b>true</b> if event log entries should be written.</param>
+            <param name="nameFormatter">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.IPerformanceCounterNameFormatter"/> that is used to creates unique name for each <see cref="T:System.Diagnostics.PerformanceCounter"/> instance.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireConnectionOpenedEvent">
+            <summary>
+            This method supports the Enterprise Library infrastructure and is not intended to be used directly from your code.
+            Default handler for the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireConnectionOpenedEvent"/> event.
+            </summary>
+            <remarks>
+            Increments the "Connections Opened/sec" and the "Total Connections Opened" performance counter 
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireCommandExecutedEvent(System.DateTime)">
+            <summary>
+            This method supports the Enterprise Library infrastructure and is not intended to be used directly from your code.
+            Default handler for the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireCommandExecutedEvent(System.DateTime)"/> event.
+            </summary>
+            <remarks>
+            Increments the "Commands Executed/sec" performance counter.
+            </remarks>
+            <param name="startTime">Time the command was executed</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireConnectionFailedEvent(System.String,System.Exception)">
+            <summary>
+            This method supports the Enterprise Library infrastructure and is not intended to be used directly from your code.
+            Default handler for the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireConnectionFailedEvent(System.String,System.Exception)"/> event.
+            </summary>
+            <remarks>
+            Increments the "Connections Failed/sec" performance counter and writes 
+            an error entry to the event log.
+            </remarks>
+            <param name="connectionString">The connection string that caused the failed connection, with credentials removed.</param>
+            <param name="exception">The exception thrown when the connection failed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireCommandFailedEvent(System.String,System.String,System.Exception)">
+            <summary>
+            This method supports the Enterprise Library infrastructure and is not intended to be used directly from your code.
+            Default handler for the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.FireCommandFailedEvent(System.String,System.String,System.Exception)"/> event.
+            </summary>
+            <remarks>
+            Increments the "Commands Failed/sec" performance counter and writes 
+            an error entry to the event log.
+            </remarks>
+            <param name="commandText">The text of the command that failed its execution.</param>
+            <param name="connectionString">The connection string of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> that executed the failed command, with credentials removed.</param>
+            <param name="exception">The exception thrown when the command failed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.ClearCounterCache">
+            <summary>
+            This method supports the Enterprise Library infrastructure and is not intended to be used directly from your code.
+            Clears the cached performance counter instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NewDataInstrumentationProvider.CreatePerformanceCounters(System.String[])">
+            <summary>
+            Creates the performance counters to instrument the caching events for the specified instance names.
+            </summary>
+            <param name="instanceNames">The instance names for the performance counters.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NullDataInstrumentationProvider">
+            <summary>
+            An implementation of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider"/> that
+            does nothing with the instrumentation events.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NullDataInstrumentationProvider.FireCommandExecutedEvent(System.DateTime)">
+            <summary>
+            Fires the CommandExecuted event.
+            </summary>
+            <param name="startTime">The time the command started its execution.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NullDataInstrumentationProvider.FireCommandFailedEvent(System.String,System.String,System.Exception)">
+            <summary>
+            Fires the CommandFailed event.
+            </summary>
+            <param name="commandText">The text of the command that failed its execution.</param>
+            <param name="connectionString">The connection string of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> that executed the failed command, with credentials removed.</param>
+            <param name="exception">The exception thrown when the command failed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NullDataInstrumentationProvider.FireConnectionOpenedEvent">
+            <summary>
+            Fires the ConnectionOpened event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.NullDataInstrumentationProvider.FireConnectionFailedEvent(System.String,System.Exception)">
+            <summary>
+            Fires the ConnectionFailed event.
+            </summary>
+            <param name="connectionString">The connection string that caused the failed connection, with credentials removed.</param>
+            <param name="exception">The exception thrown when the connection failed.</param>
+        </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.IParameterMapper">
             <summary>
             Interface used to interpret parameters passed to an <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.DataAccessor`1.Execute(System.Object[])"/> method
@@ -1762,7 +2229,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataDescription">
             <summary>
-              Looks up a localized string similar to A connection to an Oracle database that includes additional information such as the package to use..
+              Looks up a localized string similar to 225 - A connection to an Oracle database that includes additional information such as the package to use..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataDisplayName">
@@ -1772,7 +2239,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataNameDescription">
             <summary>
-              Looks up a localized string similar to The name of the Oracle Connection..
+              Looks up a localized string similar to 227 - The name of the Oracle Connection..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataNameDisplayName">
@@ -1782,7 +2249,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataPackagesDescription">
             <summary>
-              Looks up a localized string similar to The Oracle connection packages that define information specific to Oracle databases and this connection..
+              Looks up a localized string similar to 229 - The Oracle connection packages that define information specific to Oracle databases and this connection..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionDataPackagesDisplayName">
@@ -1792,7 +2259,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionSettingsDescription">
             <summary>
-              Looks up a localized string similar to Settings specific to Oracle connections, such as information on Oracle packages..
+              Looks up a localized string similar to 231 - Settings specific to Oracle connections, such as information on Oracle packages..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionSettingsDisplayName">
@@ -1802,7 +2269,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionSettingsOracleConnectionsDataDescription">
             <summary>
-              Looks up a localized string similar to Connections to Oracle databases..
+              Looks up a localized string similar to 233 - Connections to Oracle databases..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OracleConnectionSettingsOracleConnectionsDataDisplayName">
@@ -1812,7 +2279,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataDescription">
             <summary>
-              Looks up a localized string similar to The Oracle package to use when calling stored procedures in this Oracle database..
+              Looks up a localized string similar to 235 - The Oracle package to use when calling stored procedures in this Oracle database..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataDisplayName">
@@ -1822,7 +2289,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataNameDescription">
             <summary>
-              Looks up a localized string similar to The name of the Oracle Package..
+              Looks up a localized string similar to 237 - The name of the Oracle Package..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataNameDisplayName">
@@ -1832,7 +2299,7 @@
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataPrefixDescription">
             <summary>
-              Looks up a localized string similar to The prefix of the stored procedures in the specified Oracle package..
+              Looks up a localized string similar to 239 - The prefix of the stored procedures in the specified Oracle package..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.DesignResources.OraclePackageDataPrefixDisplayName">
@@ -2072,7 +2539,7 @@
             <see cref="T:System.Configuration.ConnectionStringSettings"/>.
             </summary>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.Configuration.SqlDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,System.Func{System.String,System.Configuration.ConfigurationSection})">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.Configuration.SqlDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
              Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase"/> class with a connection string and a configuration
              source.
@@ -2081,13 +2548,12 @@
             <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> from which additional information can 
              be retrieved if necessary.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.Configuration.SqlDatabaseData.BuildDatabase">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.Configuration.SqlDatabaseData.GetRegistrations">
             <summary>
-            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> represented by this configuration object.
+            Creates a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase"/> represented by 
+            this configuration object.
             </summary>
-            <returns>
-            A database.
-            </returns>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing a database.</returns>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData">
             <summary>
@@ -2095,7 +2561,7 @@
             <see cref="T:System.Configuration.ConnectionStringSettings"/> and any Oracle-specific database information.
             </summary>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,System.Func{System.String,System.Configuration.ConfigurationSection})">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
              Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData"/> class with a connection string and a configuration
              source.
@@ -2104,17 +2570,22 @@
             <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> from which Oracle-specific information 
              should be retrieved.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData.BuildDatabase">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData.GetRegistrations">
             <summary>
-            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> represented by this configuration object.
+            Creates a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.OracleDatabase"/> represented by 
+            this configuration object.
             </summary>
-            <returns>
-            A database.
-            </returns>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ContainerModel.TypeRegistration"/> instance describing a database.</returns>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleDatabaseData.PackageMappings">
             <summary>
              Gets the Oracle package mappings for the represented database.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Unity.DataAccessBlockExtension">
+            <summary>
+            Container extension to the policies required to create the Data Access Application Block's
+            objects described in the configuration file.
             </summary>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory">
@@ -2128,6 +2599,13 @@
             with the default configuration source.</para>
             </summary>
         </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory.#ctor(Microsoft.Practices.ServiceLocation.IServiceLocator)">
+            <summary>
+            Create an instance of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory"/> that resolves objects
+            using the supplied <paramref name="container"/>.
+            </summary>
+            <param name="container"><see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/> to use to resolve objects.</param>
+        </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory.#ctor(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
             <summary>
             <para>Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory"/> class 
@@ -2135,29 +2613,25 @@
             </summary>
             <param name="configurationSource">The source for configuration information.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory.#ctor(System.Func{System.String,System.Configuration.ConfigurationSection})">
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DefaultDataEventLogger">
             <summary>
-            <para>Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory"/> class 
-            with the given configuration accessor.</para>
+            The instrumentation gateway when no instances of the objects from the block are involved.
             </summary>
-            <param name="configurationAccessor">The source for configuration information.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory.CreateDefault">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DefaultDataEventLogger.#ctor(System.Boolean)">
             <summary>
-            Returns a new <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance based on the default instance configuration.
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DefaultDataEventLogger"/> class, specifying whether 
+            logging to the event log is allowed.
             </summary>
-            <returns>
-            A new Database instance.
-            </returns>
+            <param name="eventLoggingEnabled"><b>true</b> if writing to the event log is allowed, <b>false</b> otherwise.</param>
         </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory.Create(System.String)">
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DefaultDataEventLogger.LogConfigurationError(System.Exception,System.String)">
             <summary>
-            Returns a new <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance based on the configuration for <paramref name="name"/>.
+            Logs the occurrence of a configuration error for the Enterprise Library Data Access Application Block through the 
+            available instrumentation mechanisms.
             </summary>
-            <param name="name">The name of the required instance.</param>
-            <returns>
-            A new Database instance.
-            </returns>
+            <param name="instanceName">Name of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance in which the configuration error was detected.</param>
+            <param name="exception">The exception raised for the configuration error.</param>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.Configuration.OracleConnectionData">
             <summary>
@@ -2338,12 +2812,26 @@
             a reference to a concrete <see cref="P:Microsoft.Practices.EnterpriseLibrary.Data.Database.DbProviderFactory"/> object to which it forwards the creation of ADO.NET objects.
             </remarks>
         </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Database.instrumentationProvider">
+            <summary>
+            The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider"/> instance that defines the logical events used to instrument this <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> instance.
+            </summary>
+        </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Database.#ctor(System.String,System.Data.Common.DbProviderFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> class with a connection string and a <see cref="P:Microsoft.Practices.EnterpriseLibrary.Data.Database.DbProviderFactory"/>.
             </summary>
             <param name="connectionString">The connection string for the database.</param>
             <param name="dbProviderFactory">A <see cref="P:Microsoft.Practices.EnterpriseLibrary.Data.Database.DbProviderFactory"/> object.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Database.#ctor(System.String,System.Data.Common.DbProviderFactory,Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> class with a connection string,
+            a <see cref="P:Microsoft.Practices.EnterpriseLibrary.Data.Database.DbProviderFactory"/> and an <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider"/>.
+            </summary>
+            <param name="connectionString">The connection string for the database.</param>
+            <param name="dbProviderFactory">A <see cref="P:Microsoft.Practices.EnterpriseLibrary.Data.Database.DbProviderFactory"/> object.</param>
+            <param name="instrumentationProvider">Instrumentation provider to use.</param>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Database.AddInParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType)">
             <summary>
@@ -3687,57 +4175,46 @@
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory">
             <summary>
-            Contains factory methods for creating <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> objects.
+            Contains factory methods for creating Database objects.
             </summary>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.CreateDatabase">
             <summary>
-            Creates the default <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> object
+            Method for invoking a default Database object. Reads default settings
+            from the ConnectionSettings.config file.
             </summary>
             <example>
             <code>
             Database dbSvc = DatabaseFactory.CreateDatabase();
             </code>
             </example>
-            <returns>The default database</returns>
-            <exception cref="T:System.Configuration.ConfigurationErrorsException">The configuration information cannot be read.</exception>
-            <exception cref="T:System.InvalidOperationException">The database factory has not been intialized or some configuration information is missing.</exception>
+            <returns>Database</returns>
+            <exception cref="T:System.Configuration.ConfigurationException">
+            <para>An error occured while reading the configuration.</para>
+            </exception>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.CreateDatabase(System.String)">
             <summary>
-            Creates the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> object with the specified name.
+            Method for invoking a specified Database service object.  Reads service settings
+            from the ConnectionSettings.config file.
             </summary>
             <example>
             <code>
             Database dbSvc = DatabaseFactory.CreateDatabase("SQL_Customers");
             </code>
             </example>
-            <param name="name">The configuration key for database service</param>
-            <returns>The database with the specified name</returns>
-            <exception cref="T:System.Configuration.ConfigurationErrorsException">The configuration information cannot be read.</exception>
-            <exception cref="T:System.InvalidOperationException">The database factory has not been intialized or some configuration information is missing.</exception>
-        </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.SetDatabaseProviderFactory(Microsoft.Practices.EnterpriseLibrary.Data.DatabaseProviderFactory,System.Boolean)">
-            <summary>
-            Sets the provider factory for the static <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory"/>.
-            </summary>
-            <param name="factory">The provider factory.</param>
-            <param name="throwIfSet"><see langword="true"/> to thrown an exception if the factory is already set; otherwise, <see langword="false"/>. Defaults to <see langword="true"/>.</param>
-            <exception cref="T:System.InvalidOperationException">The factory is already set and <paramref name="throwIfSet"/> is <see langword="true"/>.</exception>
-        </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.SetDatabases(System.Func{Microsoft.Practices.EnterpriseLibrary.Data.Database},System.Func{System.String,Microsoft.Practices.EnterpriseLibrary.Data.Database},System.Boolean)">
-            <summary>
-            Sets the database mappings.
-            </summary>
-            <param name="createDefaultDatabase">A method that returns the default database.</param>
-            <param name="createNamedDatabase">A method that returns a database for the specified name.</param>
-            <param name="throwIfSet"><see langword="true"/> to thrown an exception if the factory is already set; otherwise, <see langword="false"/>. Defaults to <see langword="true"/>.</param>
-            <exception cref="T:System.InvalidOperationException">The factory is already set and <paramref name="throwIfSet"/> is <see langword="true"/>.</exception>
-        </member>
-        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.ClearDatabaseProviderFactory">
-            <summary>
-            Clears the provider factory for the static <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory"/>.
-            </summary>
+            <param name="name">configuration key for database service</param>
+            <returns>Database</returns>
+            <exception cref="T:System.Configuration.ConfigurationException">
+            <para><paramref name="name"/> is not defined in configuration.</para>
+            <para>- or -</para>
+            <para>An error exists in the configuration.</para>
+            <para>- or -</para>
+            <para>An error occured while reading the configuration.</para>        
+            </exception>
+            <exception cref="T:System.Reflection.TargetInvocationException">
+            <para>The constructor being called throws an exception.</para>
+            </exception>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase">
             <summary>
@@ -3756,6 +4233,15 @@
             <param name="connectionString">The connection string.</param>
             <param name="dbProviderFactory">The provider factory.</param>
         </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase.#ctor(System.String,System.Data.Common.DbProviderFactory,Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase"/> class with a connection string, 
+            a provider factory, and an instrumentation provider.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <param name="dbProviderFactory">The provider factory.</param>
+            <param name="instrumentationProvider">The instrumentation provider.</param>
+        </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase.DeriveParameters(System.Data.Common.DbCommand)">
             <summary>
             This operation is not supported in this class.
@@ -3763,6 +4249,34 @@
             <param name="discoveryCommand">The <see cref="T:System.Data.Common.DbCommand"/> to do the discovery.</param>
             <remarks>There is no generic way to do it, the operation is not implemented for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.GenericDatabase"/>.</remarks>
             <exception cref="T:System.NotSupportedException">Thrown whenever this method is called.</exception>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller">
+            <summary>
+            Represents the installer for the instrumentation events. Not intended for direct use.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller"/> class.
+            Lets the system know that the InstallUtil.exe tool will be run against this assembly
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.DataInstrumentationInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.OracleDatabase">
             <summary>
@@ -3793,6 +4307,15 @@
             </summary>
             <param name="connectionString">The connection string for the database.</param>
             <param name="packages">A list of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.IOraclePackage"/> objects.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.OracleDatabase.#ctor(System.String,System.Collections.Generic.IEnumerable{Microsoft.Practices.EnterpriseLibrary.Data.Oracle.IOraclePackage},Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.OracleDatabase"/> class with a connection string,
+            a list of Oracle packages, and an instrumentation provider.
+            </summary>
+            <param name="connectionString">The connection string for the database.</param>
+            <param name="packages">A list of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.IOraclePackage"/> objects.</param>
+            <param name="instrumentationProvider">The instrumentation provider.</param>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Oracle.OracleDatabase.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Int32,System.Data.ParameterDirection,System.Boolean,System.Byte,System.Byte,System.String,System.Data.DataRowVersion,System.Object)">
             <summary>
@@ -4209,6 +4732,14 @@
             Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase"/> class with a connection string.
             </summary>
             <param name="connectionString">The connection string.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase.#ctor(System.String,Microsoft.Practices.EnterpriseLibrary.Data.Instrumentation.IDataInstrumentationProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase"/> class with a
+            connection string and instrumentation provider.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <param name="instrumentationProvider">The instrumentation provider.</param>
         </member>
         <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.Sql.SqlDatabase.ExecuteXmlReader(System.Data.Common.DbCommand)">
             <summary>
@@ -5040,9 +5571,34 @@
               Looks up a localized string similar to Enterprise Library Data Access Application Block.
             </summary>
         </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.CommandExecutedCounterHelpResource">
+            <summary>
+              Looks up a localized string similar to Commands Executed/sec is the rate at which database commands were executed..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.CommandFailedCounterHelpResource">
+            <summary>
+              Looks up a localized string similar to Commands Failed/sec is tha rate at which database commands failed to execute..
+            </summary>
+        </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ConfigurationFailureCreatingDatabase">
             <summary>
               Looks up a localized string similar to A configuration failure occurred while creating database ‘{0}’..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ConnectionFailedCounterHelpResource">
+            <summary>
+              Looks up a localized string similar to Connections Failed/sec is the rate at which database connections failed to open..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ConnectionOpenedCounterHelpResource">
+            <summary>
+              Looks up a localized string similar to Connections Opened/sec is the rate at which database connections were opened..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.CounterCategoryHelpResourceName">
+            <summary>
+              Looks up a localized string similar to Enterprise Library Data Performance Counter Instances.
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.DefaultSqlConnctionString">
@@ -5100,21 +5656,6 @@
               Looks up a localized string similar to The configuration element type {0} does not inherit from the DatabaseData class..
             </summary>
         </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDatabaseInvalid">
-            <summary>
-              Looks up a localized string similar to The connection string for the database &apos;{0}&apos; does not exist or does not have a valid provider..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDatabaseProviderFactoryAlreadySet">
-            <summary>
-              Looks up a localized string similar to The static DatabaseFactory already has a database provider factory or custom methods set..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDatabaseProviderFactoryNotSet">
-            <summary>
-              Looks up a localized string similar to Database provider factory not set for the static DatabaseFactory. Set a provider factory invoking the DatabaseFactory.SetProviderFactory method or by specifying custom mappings by calling the DatabaseFactory.SetDatabases method..
-            </summary>
-        </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDatabaseTypeDoesNotHaveAssemblerAttribute">
             <summary>
               Looks up a localized string similar to The database type {0} for the name {1} does not have the required [DatabaseAssembler] attribute required to build the database object..
@@ -5123,11 +5664,6 @@
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDatabaseTypeDoesNotHaveRequiredConfigurationTypeAttribute">
             <summary>
               Looks up a localized string similar to The database type {0} does not have the required ConfigurationElementType attribute..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionDefaultDatabaseInvalid">
-            <summary>
-              Looks up a localized string similar to The connection string for the default database &apos;{0}&apos; does not exist or does not have a valid provider..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionMessageParameterMatchFailure">
@@ -5155,19 +5691,9 @@
               Looks up a localized string similar to The requested database {0} is not defined in configuration..
             </summary>
         </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionNoDefaultDatabaseDefined">
-            <summary>
-              Looks up a localized string similar to The configuration file does not define a default database..
-            </summary>
-        </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionNoProviderDefinedForConnectionString">
             <summary>
               Looks up a localized string similar to The requested database {0} does not have provider name set in the connection string..
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionNoValidProviderForConnectionString">
-            <summary>
-              Looks up a localized string similar to The requested database {0} does not have a valid ADO.NET provider name set in the connection string..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.ExceptionNullOrEmptyString">
@@ -5203,6 +5729,26 @@
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.Password">
             <summary>
               Looks up a localized string similar to password=,pwd=.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.TotalCommandsExecutedHelpResource">
+            <summary>
+              Looks up a localized string similar to Total Commands Executed is the total number which database commands were executed..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.TotalCommandsFailedHelpResource">
+            <summary>
+              Looks up a localized string similar to Total Commands Failed is the total number which database commands failed to execute..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.TotalConnectionFailedHelpResource">
+            <summary>
+              Looks up a localized string similar to Total Connections Failed is the total number which database connections failed to open..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.TotalConnectionOpenedHelpResource">
+            <summary>
+              Looks up a localized string similar to Total Connections Opened is the total number which database connections were opened..
             </summary>
         </member>
         <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.Properties.Resources.UserName">

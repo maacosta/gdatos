@@ -7,7 +7,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Core;
 
@@ -28,12 +27,12 @@ namespace MercadoEnvio.Facturas
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             decimal mdi = 0m, mhi = 0m;
-            if (!string.IsNullOrWhiteSpace(this.txtImporteDesde.Text) && !decimal.TryParse(this.txtImporteDesde.Text, out mdi))
+            if (!string.IsNullOrEmpty(this.txtImporteDesde.Text) && !decimal.TryParse(this.txtImporteDesde.Text, out mdi))
             {
                 MessageBox.Show("El importe desde debe ser numérico.");
                 return;
             }
-            if (!string.IsNullOrWhiteSpace(this.txtImporteHasta.Text) && !decimal.TryParse(this.txtImporteHasta.Text, out mhi))
+            if (!string.IsNullOrEmpty(this.txtImporteHasta.Text) && !decimal.TryParse(this.txtImporteHasta.Text, out mhi))
             {
                 MessageBox.Show("El importe hasta debe ser numérico.");
                 return;
@@ -42,8 +41,8 @@ namespace MercadoEnvio.Facturas
             DateTime? fh = this.dtpFechaHasta.Checked ? this.dtpFechaHasta.Value : (DateTime?)null;
             decimal? md = mdi != 0m ? mdi : (decimal?)null;
             decimal? mh = mhi != 0m ? mhi : (decimal?)null;
-            string det = !string.IsNullOrWhiteSpace(this.txtDetalle.Text) ? this.txtDetalle.Text.Trim() : null;
-            string usrComp = !string.IsNullOrWhiteSpace(this.txtUsuario.Text) ? this.txtUsuario.Text.Trim() : null;
+            string det = !string.IsNullOrEmpty(this.txtDetalle.Text) ? this.txtDetalle.Text.Trim() : null;
+            string usrComp = !string.IsNullOrEmpty(this.txtUsuario.Text) ? this.txtUsuario.Text.Trim() : null;
 
             var facturas = this._facturacionBiz.GetBy(fd, fh, md, mh, det, usrComp, GlobalData.Instance.Username);
             this.grvFactura.DataSource = facturas;

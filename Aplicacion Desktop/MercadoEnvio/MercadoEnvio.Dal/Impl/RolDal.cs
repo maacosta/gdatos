@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using MercadoEnvio.Common.Entity;
 
@@ -31,7 +30,7 @@ namespace MercadoEnvio.Dal.Impl
 
         public void SetRolesToUsuario(string username, List<Rol> roles)
         {
-            object[] param = new object[] { username, string.Join(", ", roles.Select(i => i.Id)) };
+            object[] param = new object[] { username, string.Join(", ", roles.Select(i => i.Id.ToString()).ToArray<string>()) };
 
             this._db.ExecuteNonQuery("LOS_DE_ADELANTE.sp_rol_setRolesToUsuario", param);
         }

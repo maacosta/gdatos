@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>EnterpriseLibrary.Common</id>
-    <version>6.0.1304.0</version>
-    <title>Enterprise Library - Common Infrastructure</title>
+    <version>5.0.505.0</version>
+    <title>Enterprise Library 5.0 - Common Infrastructure</title>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <licenseUrl>http://www.opensource.org/licenses/ms-pl</licenseUrl>
@@ -12,9 +12,12 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>The Enterprise Library Common assembly contains elements that are shared among multiple application blocks. By supplying a set of commonly used functions to all the application blocks, the Common assembly reduces the dependency of one application block on another.</description>
     <summary>The Enterprise Library Common assembly contains elements that are shared among multiple application blocks.</summary>
-    <tags>entlib entlib6 Enterprise Library common core LOB</tags>
+    <tags>entlib Enterprise Library common core LOB</tags>
+    <dependencies>
+      <dependency id="Unity.Interception" version="2.1" />
+    </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework3.5, .NETFramework4.0, Silverlight4.0" />
     </frameworkAssemblies>
   </metadata>
 </package>

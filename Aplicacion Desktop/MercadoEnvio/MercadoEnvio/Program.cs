@@ -1,11 +1,9 @@
-﻿using Microsoft.Practices.EnterpriseLibrary.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Core;
 
@@ -13,16 +11,12 @@ namespace WindowsFormsApplication1
 {
     static class Program
     {
-        static LogWriter _logWriter;
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            LogWriterFactory logWriterFactory = new LogWriterFactory();
-            _logWriter = logWriterFactory.Create();
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -41,19 +35,19 @@ namespace WindowsFormsApplication1
 
         static void Application_ApplicationExit(object sender, EventArgs e)
         {
-            _logWriter.Dispose();
+            
         }
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            if(_logWriter.IsLoggingEnabled())
-                _logWriter.Write(e.Exception.Message, "Unhandled Thread Exception");
+            //if(_logWriter.IsLoggingEnabled())
+                //_logWriter.Write(e.Exception.Message, "Unhandled Thread Exception");
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            if (_logWriter.IsLoggingEnabled())
-                _logWriter.Write((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
+            //if (_logWriter.IsLoggingEnabled())
+                //_logWriter.Write((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
         }
     }
 }

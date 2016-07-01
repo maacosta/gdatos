@@ -9,7 +9,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Core;
 
@@ -170,21 +169,21 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             StringBuilder str = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(this.txtUsuario.Text))
+            if (string.IsNullOrEmpty(this.txtUsuario.Text))
                 str.AppendLine("El usuario es obligatorio. ");
 
             int piso;
-            if (!string.IsNullOrWhiteSpace(this.txtPiso.Text) && !int.TryParse(this.txtPiso.Text, out piso))
+            if (!string.IsNullOrEmpty(this.txtPiso.Text) && !int.TryParse(this.txtPiso.Text, out piso))
                 str.AppendLine("El Piso debe ser numérico. ");
 
             int numero;
-            if (!string.IsNullOrWhiteSpace(this.txtNumero.Text) && !int.TryParse(this.txtNumero.Text, out numero))
+            if (!string.IsNullOrEmpty(this.txtNumero.Text) && !int.TryParse(this.txtNumero.Text, out numero))
                 str.AppendLine("El Número debe ser numérico. ");
 
             if (this._esCliente)
             {
                 Int64 dni;
-                if (string.IsNullOrWhiteSpace(this.txtDNI.Text))
+                if (string.IsNullOrEmpty(this.txtDNI.Text))
                     str.AppendLine("El DNI es obligatorio. ");
                 else if (!Int64.TryParse(this.txtDNI.Text, out dni))
                     str.AppendLine("El DNI debe ser numérico. ");
@@ -195,7 +194,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(this.txtRazonSocial.Text))
+                if (string.IsNullOrEmpty(this.txtRazonSocial.Text))
                     str.AppendLine("La Razón Social es obligatoria. ");
             }
 
@@ -217,9 +216,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this._usuario.Mail = this.txtEmail.Text;
             this._usuario.Telefono = this.txtTelefono.Text;
             this._usuario.Calle = this.txtCalle.Text;
-            this._usuario.Numero = !string.IsNullOrWhiteSpace(this.txtNumero.Text) ? Convert.ToDecimal(this.txtNumero.Text) : (decimal?)null;
+            this._usuario.Numero = !string.IsNullOrEmpty(this.txtNumero.Text) ? Convert.ToDecimal(this.txtNumero.Text) : (decimal?)null;
             this._usuario.Depto = this.txtDepartamento.Text;
-            this._usuario.Piso = !string.IsNullOrWhiteSpace(this.txtPiso.Text) ? Convert.ToDecimal(this.txtPiso.Text) : (decimal?)null;
+            this._usuario.Piso = !string.IsNullOrEmpty(this.txtPiso.Text) ? Convert.ToDecimal(this.txtPiso.Text) : (decimal?)null;
             this._usuario.CodigoPostal = this.txtCP.Text;
             this._usuario.Localidad = this.txtLocalidad.Text;
 
