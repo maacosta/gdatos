@@ -83,7 +83,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             StringBuilder msg = new StringBuilder();
 
-            if (this.txtPregunta.Text.Length > 3)
+            if (this.txtPregunta.Text.Length < 3)
             {
                 msg.AppendLine("La pregunta debe ser válida (más de 3 caracteres). ");
             }
