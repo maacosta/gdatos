@@ -44,6 +44,12 @@ IF OBJECT_ID('[LOS_DE_ADELANTE].[Rubro]', 'U') IS NOT NULL
 IF OBJECT_ID('[LOS_DE_ADELANTE].[Visibilidad]', 'U') IS NOT NULL 
   DROP TABLE [LOS_DE_ADELANTE].[Visibilidad]; 
 
+IF OBJECT_ID('[LOS_DE_ADELANTE].[PublicacionTipo]', 'U') IS NOT NULL 
+  DROP TABLE [LOS_DE_ADELANTE].[PublicacionTipo]; 
+
+IF OBJECT_ID('[LOS_DE_ADELANTE].[PublicacionEstado]', 'U') IS NOT NULL 
+  DROP TABLE [LOS_DE_ADELANTE].[PublicacionEstado]; 
+
 IF OBJECT_ID('[LOS_DE_ADELANTE].[Publicacion]', 'U') IS NOT NULL 
   DROP TABLE [LOS_DE_ADELANTE].[Publicacion]; 
 

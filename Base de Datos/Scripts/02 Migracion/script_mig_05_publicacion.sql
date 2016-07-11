@@ -1,6 +1,30 @@
 IF OBJECT_ID('tempdb..#TPublicacion') IS NOT NULL DROP TABLE #TPublicacion
 GO
 
+print '## LOS_DE_ADELANTE.PublicacionTipo'
+insert into LOS_DE_ADELANTE.PublicacionTipo
+	(TipoPublicacion, Descripcion)
+values ('C', 'Compra Inmediata')
+insert into LOS_DE_ADELANTE.PublicacionTipo
+	(TipoPublicacion, Descripcion)
+values ('S', 'Subasta')
+
+
+print '## LOS_DE_ADELANTE.PublicacionEstado'
+insert into LOS_DE_ADELANTE.PublicacionEstado
+	(Estado, Descripcion)
+values ('B', 'Borrador')
+insert into LOS_DE_ADELANTE.PublicacionEstado
+	(Estado, Descripcion)
+values ('A', 'Activa')
+insert into LOS_DE_ADELANTE.PublicacionEstado
+	(Estado, Descripcion)
+values ('P', 'Pausada')
+insert into LOS_DE_ADELANTE.PublicacionEstado
+	(Estado, Descripcion)
+values ('F', 'Finalizada')
+
+
 select p.* into #TPublicacion
 from (
 select distinct 
