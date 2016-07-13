@@ -10,11 +10,11 @@ namespace MercadoEnvio.Dal.Impl
 {
     public class CompraOfertaDal : BaseDal
     {
-        public CompraOferta GetMaximaOfertaBy(int idPublicacion)
+        public Oferta GetMaximaOfertaBy(int idPublicacion)
         {
             object[] param = new object[] { idPublicacion };
 
-            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_getMaximaOferta", param).FirstOrDefault();
+            var data = this._db.ExecuteSprocAccessor<Oferta>("LOS_DE_ADELANTE.sp_oferta_getMaximaOferta", param).FirstOrDefault();
 
             return data;
         }
@@ -28,20 +28,20 @@ namespace MercadoEnvio.Dal.Impl
             return data;
         }
 
-        public CompraOferta InsCompra(int idPublicacion, DateTime fechaSistema, decimal cantidad, string username)
+        public Compra InsCompra(int idPublicacion, int? idOferta, DateTime fechaSistema, decimal cantidad, string username)
         {
-            object[] param = new object[] { idPublicacion, fechaSistema, cantidad, username };
+            object[] param = new object[] { idPublicacion, idOferta, fechaSistema, cantidad, username };
 
-            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_insCompra", param).First();
+            var data = this._db.ExecuteSprocAccessor<Compra>("LOS_DE_ADELANTE.sp_compra_insCompra", param).First();
 
             return data;
         }
 
-        public CompraOferta InsOferta(int idPublicacion, DateTime fechaSistema, decimal monto, string username)
+        public Oferta InsOferta(int idPublicacion, DateTime fechaSistema, decimal monto, string username)
         {
             object[] param = new object[] { idPublicacion, fechaSistema, monto, username };
 
-            var data = this._db.ExecuteSprocAccessor<CompraOferta>("LOS_DE_ADELANTE.sp_compraoferta_insOferta", param).First();
+            var data = this._db.ExecuteSprocAccessor<Oferta>("LOS_DE_ADELANTE.sp_oferta_insOferta", param).First();
 
             return data;
         }

@@ -5,12 +5,13 @@ using System.Text;
 
 namespace MercadoEnvio.Common.Entity
 {
-    public class FacturacionItem
+    public class Oferta
     {
         public int Id { get; set; }
-        public int IdFactura { get; set; }
-        public int IdCompra { get; set; }
+        public int IdPublicacion { get; set; }
+        public string CodigoPublicacion { get; set; }
+        public DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
-        public decimal Cantidad { get; set; }
+        public string Usuario { get; set; }
     }
 }

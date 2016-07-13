@@ -21,16 +21,17 @@ namespace MercadoEnvio.Biz.Impl
             return this._compraOfertaDal.GetByOpcion(username, opcion);
         }
 
-        public CompraOferta InsCompra(CompraOferta compra)
+        public Compra InsCompra(Compra compra)
         {
             return this._compraOfertaDal.InsCompra(
                 compra.IdPublicacion,
+                null,
                 compra.Fecha,
                 compra.Cantidad,
                 compra.Usuario);
         }
 
-        public CompraOferta InsOferta(CompraOferta oferta)
+        public Oferta InsOferta(Oferta oferta)
         {
             return this._compraOfertaDal.InsOferta(
                 oferta.IdPublicacion,

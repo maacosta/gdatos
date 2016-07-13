@@ -25,9 +25,9 @@ namespace MercadoEnvio.Biz.Impl
             return this._facturacionDal.GetBy(fechaDesde, fechaHasta, montoDesde, montoHasta, textoDetalle, usuarioComprador, usuario);
         }
 
-        public Facturacion GenerarFacturacion(Publicacion publicacion, CompraOferta compraOferta, DateTime fechaSistema)
+        public Facturacion GenerarFacturacion(Publicacion publicacion, Compra compra, DateTime fechaSistema)
         {
-            return this._facturacionDal.InsFacturacion(publicacion.Id, compraOferta.Id, fechaSistema);
+            return this._facturacionDal.InsFacturacion(publicacion.Id, compra.Id, fechaSistema);
         }
 
         public int GenerarFacturacionSubasta(List<Publicacion> publicacionList, DateTime fechaSistema, string estadoFinalizado)
@@ -38,7 +38,8 @@ namespace MercadoEnvio.Biz.Impl
                 var oferta = this._compraOfertaDal.GetMaximaOfertaBy(p.Id);
                 if (oferta != null)
                 {
-                    this.GenerarFacturacion(p, oferta, fechaSistema);
+                    var compra = this._compraOfertaDal.InsCompra(oferta.IdPublicacion, oferta.Id, fechaSistema, 1, oferta.Usuario);
+                    this.GenerarFacturacion(p, compra, fechaSistema);
                     this._publicacionDal.UpdPublicacionEstado(p.Id, estadoFinalizado);
                     cantFact++;
                 }

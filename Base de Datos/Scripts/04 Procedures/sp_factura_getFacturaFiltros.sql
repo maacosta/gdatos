@@ -28,17 +28,17 @@ BEGIN
 		p.Codigo CodigoPublicacion,
 		p.Descripcion,
 		u.Username Usuario,
-		co.Id IdCompra,
-		co.Fecha FechaCompra,
+		c.Id IdCompra,
+		c.Fecha FechaCompra,
 		u2.Username UsuarioComprador
 	into #TFacturas
 	from LOS_DE_ADELANTE.Factura f
 		inner join LOS_DE_ADELANTE.Usuario u on f.IdUsuario = u.Id
 		inner join LOS_DE_ADELANTE.FormaPago fp on f.IdFormaPago = fp.Id
 		inner join LOS_DE_ADELANTE.FacturaItem fi on f.Id = fi.IdFactura
-		inner join LOS_DE_ADELANTE.CompraOferta co on co.Id = fi.IdCompraOferta
-		inner join LOS_DE_ADELANTE.Usuario u2 on co.IdUsuario = u2.Id
-		inner join LOS_DE_ADELANTE.Publicacion p on co.IdPublicacion = p.Id
+		inner join LOS_DE_ADELANTE.Compra c on c.Id = fi.IdCompra
+		inner join LOS_DE_ADELANTE.Usuario u2 on c.IdUsuario = u2.Id
+		inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 	where u.Username = @usuario
 		and (@fechaDesde is null or (@fechaDesde is not null and f.Fecha >= @fechaDesde))
 		and (@fechaHasta is null or (@fechaHasta is not null and f.Fecha <= @fechaHasta))
@@ -66,7 +66,7 @@ BEGIN
 	select distinct
 		fi.IdFactura,
 		fi.Id,
-		fi.IdCompraOferta,
+		fi.IdCompra,
 		fi.Monto,
 		fi.Cantidad
 	from LOS_DE_ADELANTE.FacturaItem fi

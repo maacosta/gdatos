@@ -18,7 +18,8 @@ namespace MercadoEnvio.ComprarOfertar
     public partial class frmAComprarOfertar : Form, IFormMDI
     {
         private Publicacion _publicacion;
-        private CompraOferta _compraOferta;
+        private Oferta _oferta;
+        private Compra _compra;
         private PublicacionPregunta _publicacionPregunta;
         private CompraOfertaBiz _compraOfertaBiz;
         private FacturacionBiz _facturacionBiz;
@@ -126,13 +127,29 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void TransformarACompraOferta()
         {
-            this._compraOferta = new CompraOferta();
-            this._compraOferta.IdPublicacion = this._publicacion.Id;
-            this._compraOferta.Tipo = this.GetTipoCompraOferta(this._publicacion);
-            this._compraOferta.Fecha = GlobalData.Instance.FechaSistema;
-            this._compraOferta.Cantidad = Convert.ToDecimal(this.txtCantidad.Text);
-            this._compraOferta.Monto = Convert.ToDecimal(this.txtMonto.Text);
-            this._compraOferta.Usuario = GlobalData.Instance.Username;
+            switch ((TipoPublicacion)this._publicacion.TipoPublicacion[0])
+            {
+                case TipoPublicacion.Compra_Inmediata:
+                    this._compra = new Compra()
+                    {
+                        IdPublicacion = this._publicacion.Id,
+                        Fecha = GlobalData.Instance.FechaSistema,
+                        Cantidad = Convert.ToDecimal(this.txtCantidad.Text),
+                        Usuario = GlobalData.Instance.Username
+                    };
+                    this._oferta = null;
+                    break;
+                case TipoPublicacion.Subasta:
+                    this._oferta = new Oferta()
+                    {
+                        IdPublicacion = this._publicacion.Id,
+                        Fecha = GlobalData.Instance.FechaSistema,
+                        Monto = Convert.ToDecimal(this.txtMonto.Text),
+                        Usuario = GlobalData.Instance.Username
+                    };
+                    this._compra = null;
+                    break;
+            }
         }
 
         private string GetTipoCompraOferta(Publicacion publicacion)
@@ -168,17 +185,18 @@ namespace MercadoEnvio.ComprarOfertar
 
             this.TransformarACompraOferta();
 
-            if (this._compraOferta.Tipo == ((char)TipoCompraOferta.Compra).ToString())
+            switch ((TipoPublicacion)this._publicacion.TipoPublicacion[0])
             {
-                this._compraOferta = this._compraOfertaBiz.InsCompra(this._compraOferta);
-                var facturacion = this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compraOferta, GlobalData.Instance.FechaSistema);
+                case TipoPublicacion.Compra_Inmediata:
+                    this._compra = this._compraOfertaBiz.InsCompra(this._compra);
+                    var facturacion = this._facturacionBiz.GenerarFacturacion(this._publicacion, this._compra, GlobalData.Instance.FechaSistema);
 
-                var frm = this.FormFactory.OpenChildForm<frmFactura>();
-                frm.SetFacturacion(facturacion);
-            }
-            else
-            {
-                this._compraOfertaBiz.InsOferta(this._compraOferta);
+                    var frm = this.FormFactory.OpenChildForm<frmFactura>();
+                    frm.SetFacturacion(facturacion);
+                    break;
+                case TipoPublicacion.Subasta:
+                    this._compraOfertaBiz.InsOferta(this._oferta);
+                    break;
             }
 
             this.Close();

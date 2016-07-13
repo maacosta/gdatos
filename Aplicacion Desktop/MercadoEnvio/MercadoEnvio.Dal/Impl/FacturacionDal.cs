@@ -74,7 +74,7 @@ namespace MercadoEnvio.Dal.Impl
                         {
                             IdFactura = reader.GetInt32(0),
                             Id = reader.GetInt32(1),
-                            IdCompraOferta = reader.GetInt32(2),
+                            IdCompra = reader.GetInt32(2),
                             Monto = reader.GetDecimal(3),
                             Cantidad = reader.GetDecimal(4)
                         };
