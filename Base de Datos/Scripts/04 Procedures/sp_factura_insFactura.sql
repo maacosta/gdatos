@@ -5,7 +5,7 @@ go
 CREATE PROCEDURE LOS_DE_ADELANTE.sp_factura_insFactura
 (
 	@idPublicacion int,
-	@idCompraOferta int,
+	@idCompra int,
 	@fechaSistema datetime
 )
 AS
@@ -33,12 +33,12 @@ BEGIN
 		@precioV = v.Precio, 
 		@porcentajeV = v.Porcentaje, 
 		@porcentajeEnvioV = v.PorcentajeEnvio,
-		@cantidadCO = co.Cantidad
+		@cantidadCO = c.Cantidad
 	from LOS_DE_ADELANTE.Publicacion p
 		inner join LOS_DE_ADELANTE.Visibilidad v on p.IdVisibilidad = v.Id
-		inner join LOS_DE_ADELANTE.CompraOferta co on p.Id = co.IdPublicacion
+		inner join LOS_DE_ADELANTE.Compra c on p.Id = c.IdPublicacion
 	where p.Id = @idPublicacion
-		and co.Id = @idCompraOferta
+		and c.Id = @idCompra
 
 	--calcular monto total
 	set @totalItem = @precioP * @cantidadCO
@@ -59,22 +59,22 @@ BEGIN
 		set @idFactura = SCOPE_IDENTITY()
 
 		--item costo fijo
-		insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompraOferta, Monto, Cantidad)
-		values (@idFactura, @idCompraOferta, @precioV, 1)
+		insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompra, Monto, Cantidad)
+		values (@idFactura, @idCompra, @precioV, 1)
 
 		--item costo variable
-		insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompraOferta, Monto, Cantidad)
-		values (@idFactura, @idCompraOferta, @precioP * @porcentajeV, @cantidadCO)
+		insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompra, Monto, Cantidad)
+		values (@idFactura, @idCompra, @precioP * @porcentajeV, @cantidadCO)
 
 		--item costo variable envio
 		if @incluirEnvioP = 1
-			insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompraOferta, Monto, Cantidad)
-			values (@idFactura, @idCompraOferta, @totalItem * @porcentajeEnvioV, 1)
+			insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompra, Monto, Cantidad)
+			values (@idFactura, @idCompra, @totalItem * @porcentajeEnvioV, 1)
 
 		--actualizar oferta para que sea del tipo compra
 		update LOS_DE_ADELANTE.CompraOferta
 		set Tipo = 'C'
-		where Id = @idCompraOferta
+		where Id = @idCompra
 
 		--actualizar publicacion subasta para descontar el stock
 		update LOS_DE_ADELANTE.Publicacion
@@ -95,22 +95,22 @@ BEGIN
 		p.Codigo CodigoPublicacion,
 		p.Descripcion,
 		u.Username Usuario,
-		co.Id IdCompra,
-		co.Fecha FechaCompra,
+		c.Id IdCompra,
+		c.Fecha FechaCompra,
 		u2.Username UsuarioComprador
 	from LOS_DE_ADELANTE.Factura f
 		inner join LOS_DE_ADELANTE.Usuario u on f.IdUsuario = u.Id
 		inner join LOS_DE_ADELANTE.FormaPago fp on f.IdFormaPago = fp.Id
 		inner join LOS_DE_ADELANTE.FacturaItem fi on f.Id = fi.IdFactura
-		inner join LOS_DE_ADELANTE.CompraOferta co on co.Id = fi.IdCompraOferta
-		inner join LOS_DE_ADELANTE.Usuario u2 on co.IdUsuario = u2.Id
-		inner join LOS_DE_ADELANTE.Publicacion p on co.IdPublicacion = p.Id
+		inner join LOS_DE_ADELANTE.Compra c on c.Id = fi.IdCompra
+		inner join LOS_DE_ADELANTE.Usuario u2 on c.IdUsuario = u2.Id
+		inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 	where f.Id = @idFactura
 
 	select
 		fi.IdFactura,
 		fi.Id,
-		fi.IdCompraOferta,
+		fi.IdCompra,
 		fi.Monto,
 		fi.Cantidad
 	from LOS_DE_ADELANTE.FacturaItem fi
