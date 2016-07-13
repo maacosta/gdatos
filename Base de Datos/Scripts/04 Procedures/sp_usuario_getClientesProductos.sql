@@ -24,24 +24,24 @@ BEGIN
 		select top 5
 			u.Id,
 			u.Username,
-			convert(varchar(4), year(co.Fecha)) Anio,
-			convert(varchar(2), month(co.Fecha)) Mes,
+			convert(varchar(4), year(c.Fecha)) Anio,
+			convert(varchar(2), month(c.Fecha)) Mes,
 			r.Codigo CodigoRubro,
 			r.DescCorta DescripcionRubro,
-			sum(co.Cantidad) CantidadTotal
+			sum(c.Cantidad) CantidadTotal
 		from LOS_DE_ADELANTE.Usuario u
-			inner join LOS_DE_ADELANTE.CompraOferta co on co.IdUsuario = u.Id
-			inner join LOS_DE_ADELANTE.Publicacion p on co.IdPublicacion = p.Id
+			inner join LOS_DE_ADELANTE.Compra c on c.IdUsuario = u.Id
+			inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.Rubro r on p.IdRubro = r.Id
 		where 1 = 1
-			and year(co.Fecha) = @anio
-			and month(co.Fecha) >= @triIni
-			and month(co.Fecha) < @triFin
+			and year(c.Fecha) = @anio
+			and month(c.Fecha) >= @triIni
+			and month(c.Fecha) < @triFin
 		group by
 			u.Id,
 			u.Username,
-			convert(varchar(4), year(co.Fecha)),
-			convert(varchar(2), month(co.Fecha)),
+			convert(varchar(4), year(c.Fecha)),
+			convert(varchar(2), month(c.Fecha)),
 			r.Codigo,
 			r.DescCorta
 		order by CantidadTotal desc
