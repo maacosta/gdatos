@@ -15,7 +15,6 @@ BEGIN
 
 	declare @idUsuario int
 	declare @stockP numeric(18, 0)
-	declare @estadoP char
 	declare @id int
 
 	select @idUsuario = Id from LOS_DE_ADELANTE.Usuario where Username = @username
@@ -32,13 +31,14 @@ BEGIN
 
 		set @id = SCOPE_IDENTITY()
 
-		if @stockP - @cantidad = 0
-			set @estadoP = 'F'
-
 		update LOS_DE_ADELANTE.Publicacion
-			set Stock = @stockP - @cantidad,
-			Estado = @estadoP
+			set Stock = @stockP - @cantidad
 		where Id = @idPublicacion
+
+		if @stockP - @cantidad = 0
+			update LOS_DE_ADELANTE.Publicacion
+				set Estado = 'F'
+			where Id = @idPublicacion
 
 	commit tran
 
