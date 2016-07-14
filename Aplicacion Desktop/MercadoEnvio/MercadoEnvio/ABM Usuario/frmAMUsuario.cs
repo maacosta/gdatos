@@ -209,10 +209,6 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void TransformarAUsuario()
         {
             this._usuario.Username = this.txtUsuario.Text;
-            //cargar roles
-            var roles = this._rolBiz.GetByUsuario(this._usuario.Username);
-            this.ucmsRol.CleanObjects();
-            roles.ForEach(r => this.ucmsRol.SetObject(r, r.Nombre));
 
             this._usuario.Mail = this.txtEmail.Text;
             this._usuario.Telefono = this.txtTelefono.Text;
