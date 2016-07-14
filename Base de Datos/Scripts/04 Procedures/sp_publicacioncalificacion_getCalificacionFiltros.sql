@@ -35,17 +35,17 @@ BEGIN
 			isnull(pc.Id, 0) Id, 
 			p.Id IdPublicacion, 
 			p.Codigo CodigoPublicacion, 
-			co.Fecha,
+			c.Fecha,
 			isnull(pc.Calificacion, 0) Calificacion, 
 			isnull(pc.Comentario, '') Comentario,
 			u.Username Usuario
 		from LOS_DE_ADELANTE.Publicacion p
-			inner join LOS_DE_ADELANTE.CompraOferta co on co.IdPublicacion = p.Id and co.Tipo = 'C'
+			inner join LOS_DE_ADELANTE.Compra c on c.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.Usuario u on p.IdUsuario = u.Id
 			left join LOS_DE_ADELANTE.PublicacionCalificacion pc on pc.IdPublicacion = p.Id
-		where co.IdUsuario = @idUsuario
+		where c.IdUsuario = @idUsuario
 			and pc.Id is null
-		order by co.Fecha asc
+		order by c.Fecha asc
 
 END
 go

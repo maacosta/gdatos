@@ -15,13 +15,13 @@ BEGIN
 		select
 			c.Id, 
 			c.IdPublicacion, 
-			p.Codigo CodigoPublicacion, 
+			convert(nvarchar(20), p.Codigo) CodigoPublicacion, 
 			pt.Descripcion Tipo, 
 			c.Fecha, 
 			c.Cantidad, 
 			p.Precio Monto, 
 			u.Username Usuario,
-			pc.Calificacion
+			convert(int, pc.Calificacion) Calificacion
 		from LOS_DE_ADELANTE.Compra c
 			inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.PublicacionTipo pt on pt.TipoPublicacion = p.TipoPublicacion
@@ -32,13 +32,13 @@ BEGIN
 		select
 			o.Id, 
 			o.IdPublicacion, 
-			p.Codigo CodigoPublicacion, 
+			convert(nvarchar(20), p.Codigo) CodigoPublicacion, 
 			pt.Descripcion Tipo, 
 			o.Fecha, 
 			null Cantidad, 
 			o.Monto, 
 			u.Username Usuario,
-			null Calificacion
+			convert(int, null) Calificacion
 		from LOS_DE_ADELANTE.Oferta o
 			inner join LOS_DE_ADELANTE.Publicacion p on o.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.PublicacionTipo pt on pt.TipoPublicacion = p.TipoPublicacion
@@ -51,13 +51,13 @@ BEGIN
 		select
 			c.Id, 
 			c.IdPublicacion, 
-			p.Codigo CodigoPublicacion, 
+			convert(nvarchar(20), p.Codigo) CodigoPublicacion, 
 			pt.Descripcion Tipo, 
 			c.Fecha, 
 			c.Cantidad, 
 			p.Precio Monto, 
 			u.Username Usuario,
-			pc.Calificacion
+			convert(int, pc.Calificacion) Calificacion
 		from LOS_DE_ADELANTE.Compra c
 			inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.PublicacionTipo pt on pt.TipoPublicacion = p.TipoPublicacion
@@ -70,13 +70,13 @@ BEGIN
 		select
 			c.Id, 
 			c.IdPublicacion, 
-			p.Codigo CodigoPublicacion, 
+			convert(nvarchar(20), p.Codigo) CodigoPublicacion, 
 			pt.Descripcion Tipo, 
 			c.Fecha, 
 			c.Cantidad, 
 			p.Precio Monto, 
 			u.Username Usuario,
-			null Calificacion
+			convert(int, null) Calificacion
 		from LOS_DE_ADELANTE.Compra c
 			inner join LOS_DE_ADELANTE.Publicacion p on c.IdPublicacion = p.Id
 			inner join LOS_DE_ADELANTE.PublicacionTipo pt on pt.TipoPublicacion = p.TipoPublicacion
