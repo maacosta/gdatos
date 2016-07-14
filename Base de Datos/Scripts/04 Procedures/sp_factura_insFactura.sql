@@ -71,16 +71,6 @@ BEGIN
 			insert into LOS_DE_ADELANTE.FacturaItem (IdFactura, IdCompra, Monto, Cantidad)
 			values (@idFactura, @idCompra, @totalItem * @porcentajeEnvioV, 1)
 
-		--actualizar oferta para que sea del tipo compra
-		update LOS_DE_ADELANTE.CompraOferta
-		set Tipo = 'C'
-		where Id = @idCompra
-
-		--actualizar publicacion subasta para descontar el stock
-		update LOS_DE_ADELANTE.Publicacion
-		set Stock = Stock - @cantidadCO
-		where Id = @idPublicacion and TipoPublicacion = 'S'
-		
 	commit transaction
 
 	--devolver factura
